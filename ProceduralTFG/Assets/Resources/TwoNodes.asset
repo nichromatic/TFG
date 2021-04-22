@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6cf0c1d50937e8428ba68564cbb4c22, type: 3}
+  m_Name: TwoNodes
+  m_EditorClassIdentifier: 
+  nodeList:
+  - nodeID: bb7b3e61-3eed-4425-8121-1061dc668ffe
+    nodePos: {x: 195, y: 267}
+    nodeName: Root
+    rootNode: 1
+  - nodeID: 497a3cb7-7ce4-4add-b8be-debaeb126947
+    nodePos: {x: 449, y: 242}
+    nodeName: Node
+    rootNode: 0
+  - nodeID: 41e3e923-700d-413e-8e13-df3edf32e0d3
+    nodePos: {x: 451, y: 330}
+    nodeName: Node
+    rootNode: 0
+  linkList:
+  - parentNodeID: bb7b3e61-3eed-4425-8121-1061dc668ffe
+    childNodeID: 497a3cb7-7ce4-4add-b8be-debaeb126947
+    portName: childPort0
+    chance: 0
+  - parentNodeID: bb7b3e61-3eed-4425-8121-1061dc668ffe
+    childNodeID: 41e3e923-700d-413e-8e13-df3edf32e0d3
+    portName: childPort1
+    chance: 0

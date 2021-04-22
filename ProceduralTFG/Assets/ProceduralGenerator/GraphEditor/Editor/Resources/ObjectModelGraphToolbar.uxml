@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<UXML xmlns="UnityEditor.UIElements">
+  <Toolbar class="graphToolbar">
+    <VisualElement xmlns="UnityEngine.UIElements" class="toolbar-right">
+      <Button name="clearGraphBtn"></Button>
+    </VisualElement>
+    <VisualElement xmlns="UnityEngine.UIElements" class="toolbar-left">
+      <Label name="filenameLabel" class="toolbar-label"></Label>
+      <TextField name="filename" class="toolbar-textfield"></TextField>
+      <Button name="saveGraphBtn"></Button>
+      <Button name="loadGraphBtn"></Button>
+    </VisualElement>
+  </Toolbar>
+</UXML>

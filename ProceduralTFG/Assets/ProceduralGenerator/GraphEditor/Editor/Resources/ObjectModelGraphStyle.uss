@@ -1,0 +1,59 @@
+GridBackground.graphGridBg {
+	--grid-background-color: #282828;
+	--line-color: rgba(193,193,193,0.1);
+	--thick-line-color: rgba(193,193,193,0.1);
+	--spacing: 25;
+}
+
+Button {
+	cursor: link;
+	width: auto;
+}
+
+Button.deleteButton {
+	background-color: #191919;
+	border-color: #191919;
+	border-radius: 50%;
+	width: 16px;
+	height: 16px;
+	-unity-font-style: bold;
+	font-size: 8px;
+	-unity-text-align: middle-center;
+}
+
+TextField.titleTextField {
+	margin: 3px 4px;
+	min-width: 50px;
+}
+
+TextField.titleTextField >* {
+	padding: 5px;
+}
+
+Toolbar.graphToolbar {
+	align-self: stretch;
+	padding: 2px;
+	height: 30px;
+}
+
+Toolbar.graphToolbar .toolbar-right, Toolbar.graphToolbar .toolbar-left {
+	display: flex;
+	flex-direction: row;
+}
+
+Toolbar.graphToolbar .toolbar-left {
+	flex-grow: 1;
+	justify-content: flex-end;
+}
+
+Label.toolbar-label {
+	margin: 5px;
+}
+
+TextField.toolbar-textfield {
+	min-width: 150px;
+}
+
+TextField.toolbar-textfield > * {
+	padding: 5px 10px;
+}

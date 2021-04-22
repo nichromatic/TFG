@@ -2,16 +2,16 @@
 #
 # Get latest from https://github.com/github/gitignore/blob/master/Unity.gitignore
 #
-/[Ll]ibrary/
-/[Tt]emp/
-/[Oo]bj/
-/[Bb]uild/
-/[Bb]uilds/
-/[Ll]ogs/
-/[Mm]emoryCaptures/
+ProceduralTFG/[Ll]ibrary/
+ProceduralTFG/[Tt]emp/
+ProceduralTFG/[Oo]bj/
+ProceduralTFG/[Bb]uild/
+ProceduralTFG/[Bb]uilds/
+ProceduralTFG/[Ll]ogs/
+ProceduralTFG/[Mm]emoryCaptures/
 
 # Asset meta data should only be ignored when the corresponding asset is also ignored
-!/[Aa]ssets/**/*.meta
+!ProceduralTFG/[Aa]ssets/**/*.meta
 
 # Uncomment this line if you wish to ignore the asset store tools plugin
 # /[Aa]ssets/AssetStoreTools*
