@@ -27,7 +27,7 @@ TextField.titleTextField {
 }
 
 TextField.titleTextField >* {
-	padding: 5px;
+	padding: 5px 10px;
 }
 
 Toolbar.graphToolbar {

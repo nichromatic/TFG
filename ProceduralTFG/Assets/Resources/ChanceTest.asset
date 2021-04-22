@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6cf0c1d50937e8428ba68564cbb4c22, type: 3}
+  m_Name: ChanceTest
+  m_EditorClassIdentifier: 
+  nodeList:
+  - nodeID: 8121326e-ea5d-4fcd-ba9e-7f53e552106a
+    nodePos: {x: 234, y: 376}
+    nodeName: Root node
+    rootNode: 1
+  - nodeID: ac294284-704b-4a56-88ca-189aae1ca70f
+    nodePos: {x: 474, y: 399}
+    nodeName: Nodo 75
+    rootNode: 0
+  - nodeID: 64bbcbec-2e48-494a-a239-56b4b346d516
+    nodePos: {x: 462, y: 297}
+    nodeName: Nodo 100
+    rootNode: 0
+  - nodeID: ad9da43d-6863-46d5-bd9a-b013babab694
+    nodePos: {x: 689, y: 329}
+    nodeName: Subnodo 100
+    rootNode: 0
+  - nodeID: ce596f3d-0dc9-4a64-ad11-06b3b5c55c8a
+    nodePos: {x: 689, y: 494}
+    nodeName: Subnodo 25
+    rootNode: 0
+  - nodeID: 307bb40d-54a5-45f5-a22a-9da14b5c5081
+    nodePos: {x: 460, y: 523}
+    nodeName: Nodo 50
+    rootNode: 0
+  linkList:
+  - parentNodeID: 8121326e-ea5d-4fcd-ba9e-7f53e552106a
+    childNodeID: 64bbcbec-2e48-494a-a239-56b4b346d516
+    portName: 
+    chance: 100
+  - parentNodeID: 8121326e-ea5d-4fcd-ba9e-7f53e552106a
+    childNodeID: ac294284-704b-4a56-88ca-189aae1ca70f
+    portName: 
+    chance: 75
+  - parentNodeID: 8121326e-ea5d-4fcd-ba9e-7f53e552106a
+    childNodeID: 307bb40d-54a5-45f5-a22a-9da14b5c5081
+    portName: 
+    chance: 50
+  - parentNodeID: ac294284-704b-4a56-88ca-189aae1ca70f
+    childNodeID: ad9da43d-6863-46d5-bd9a-b013babab694
+    portName: 
+    chance: 100
+  - parentNodeID: ac294284-704b-4a56-88ca-189aae1ca70f
+    childNodeID: ce596f3d-0dc9-4a64-ad11-06b3b5c55c8a
+    portName: 
+    chance: 25

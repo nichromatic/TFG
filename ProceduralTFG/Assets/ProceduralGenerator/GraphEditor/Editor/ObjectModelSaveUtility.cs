@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
+using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -35,10 +36,12 @@ public class ObjectModelSaveUtility
             var outputNode = connectedPorts[i].output.node as ObjectModelGraphNode;
             var inputNode = connectedPorts[i].input.node as ObjectModelGraphNode;
 
+            var chance = connectedPorts[i].output.contentContainer.Q<FloatField>("chance").value;
             graphData.linkList.Add(new ObjectModelLinkData {
                 parentNodeID = outputNode.GUID,
                 portName = connectedPorts[i].output.portName,
-                childNodeID = inputNode.GUID
+                childNodeID = inputNode.GUID,
+                chance = chance
             });
         }
         foreach (var graphNode in nodes)
@@ -97,7 +100,7 @@ public class ObjectModelSaveUtility
         {
             if (nodeData.rootNode)
             {
-                var tempNode = _graphView.GenerateRootNode(false); // Don't generate default port, we add them from the saved graph
+                var tempNode = _graphView.GenerateRootNode(nodeData.nodeName, false); // Don't generate default port, we add them from the saved graph
                 tempNode.GUID = nodeData.nodeID;
                 tempNode.SetPosition(new Rect(nodeData.nodePos, _graphView.defaultNodeSize));
 
@@ -106,7 +109,7 @@ public class ObjectModelSaveUtility
                 var nodePorts = savedGraph.linkList.Where(x => x.parentNodeID == nodeData.nodeID).ToList();
                 for (int i = 0; i < nodePorts.Count; i++)
                 {
-                    _graphView.GenerateChildPort(tempNode);
+                    _graphView.GenerateChildPort(tempNode, nodePorts[i].chance);
                 }
 
             } else
@@ -120,7 +123,7 @@ public class ObjectModelSaveUtility
                 var nodePorts = savedGraph.linkList.Where(x => x.parentNodeID == nodeData.nodeID).ToList();
                 for (int i = 0; i < nodePorts.Count; i++)
                 {
-                    _graphView.GenerateChildPort(tempNode);
+                    _graphView.GenerateChildPort(tempNode, nodePorts[i].chance);
                 }
             }
         }

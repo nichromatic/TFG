@@ -62,7 +62,7 @@ public class ObjectModel
             {
                 var findChildNode = graphData.nodeList.Where(child => child.nodeID == childLink.childNodeID).ToList();
                 var childNode = new ObjectModelNode(findChildNode[0]);
-                var newLink = new ObjectModelLink(node, childNode);
+                var newLink = new ObjectModelLink(node, childNode, childLink.chance);
                 node.childLinks.Add(newLink);
                 childNode.parentLink = newLink;
                 children.Add(childNode);

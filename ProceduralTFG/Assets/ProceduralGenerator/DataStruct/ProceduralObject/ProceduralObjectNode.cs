@@ -29,7 +29,9 @@ public class ProceduralObjectNode
     {
         modelNode.childLinks.ForEach(link =>
         {
-            // TODO chance logic
+            var coinToss = UnityEngine.Random.Range(0f, 100f);
+            if (coinToss > link.chance) return;
+
             var childNode = new ProceduralObjectNode(this, link.child, parentObject);
             childNodes.Add(childNode);
             childNode.GenerateChildren(link.child);

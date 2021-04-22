@@ -1,0 +1,76 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6cf0c1d50937e8428ba68564cbb4c22, type: 3}
+  m_Name: Enemigo
+  m_EditorClassIdentifier: 
+  nodeList:
+  - nodeID: d2038d0d-3e4b-4c16-bc37-0f454865f03b
+    nodePos: {x: 180, y: 296}
+    nodeName: Enemigo
+    rootNode: 1
+  - nodeID: ffebd0ac-deb3-413a-b31d-c4eee7cebef0
+    nodePos: {x: 484, y: 135}
+    nodeName: Cuerpo
+    rootNode: 0
+  - nodeID: 7f95f149-56a2-4bc8-8c91-d76365f83643
+    nodePos: {x: 743, y: 109}
+    nodeName: Arma
+    rootNode: 0
+  - nodeID: 2d4704f5-1f29-4656-be9e-3ddbf5cacaa5
+    nodePos: {x: 746, y: 207}
+    nodeName: Armadura
+    rootNode: 0
+  - nodeID: 7e574793-dc51-4437-b591-ffcb42a7457c
+    nodePos: {x: 970, y: 218}
+    nodeName: Casco
+    rootNode: 0
+  - nodeID: 0d28b649-89a1-4593-8ce5-c636a804dbdc
+    nodePos: {x: 973, y: 305}
+    nodeName: Botas
+    rootNode: 0
+  - nodeID: b218dc0c-5faa-4862-9bab-c40ea641dee2
+    nodePos: {x: 716, y: 360}
+    nodeName: Torreta
+    rootNode: 0
+  - nodeID: 6853d662-0362-49e4-bb2a-01c7373f78c7
+    nodePos: {x: 481, y: 360}
+    nodeName: "Veh\xEDculo"
+    rootNode: 0
+  linkList:
+  - parentNodeID: d2038d0d-3e4b-4c16-bc37-0f454865f03b
+    childNodeID: ffebd0ac-deb3-413a-b31d-c4eee7cebef0
+    portName: childPort0
+    chance: 0
+  - parentNodeID: d2038d0d-3e4b-4c16-bc37-0f454865f03b
+    childNodeID: 6853d662-0362-49e4-bb2a-01c7373f78c7
+    portName: childPort1
+    chance: 0
+  - parentNodeID: ffebd0ac-deb3-413a-b31d-c4eee7cebef0
+    childNodeID: 7f95f149-56a2-4bc8-8c91-d76365f83643
+    portName: childPort0
+    chance: 0
+  - parentNodeID: ffebd0ac-deb3-413a-b31d-c4eee7cebef0
+    childNodeID: 2d4704f5-1f29-4656-be9e-3ddbf5cacaa5
+    portName: childPort1
+    chance: 0
+  - parentNodeID: 2d4704f5-1f29-4656-be9e-3ddbf5cacaa5
+    childNodeID: 7e574793-dc51-4437-b591-ffcb42a7457c
+    portName: childPort0
+    chance: 0
+  - parentNodeID: 2d4704f5-1f29-4656-be9e-3ddbf5cacaa5
+    childNodeID: 0d28b649-89a1-4593-8ce5-c636a804dbdc
+    portName: childPort1
+    chance: 0
+  - parentNodeID: 6853d662-0362-49e4-bb2a-01c7373f78c7
+    childNodeID: b218dc0c-5faa-4862-9bab-c40ea641dee2
+    portName: childPort0
+    chance: 0

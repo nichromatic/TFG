@@ -5,6 +5,7 @@ using UnityEditor.Experimental.GraphView;
 using UnityEngine.UIElements;
 using System;
 using System.Linq;
+using UnityEditor.UIElements;
 
 public class ObjectModelGraphView : GraphView
 {
@@ -79,15 +80,28 @@ public class ObjectModelGraphView : GraphView
         return newNode;
     }
 
-    public ObjectModelGraphNode GenerateRootNode(bool addDefaultPort = true)
+    public ObjectModelGraphNode GenerateRootNode(string name = "Root node", bool addDefaultPort = true)
     {
         var rootNode = new ObjectModelGraphNode
         {
-            title = "Root node",
             GUID = Guid.NewGuid().ToString(),
             rootNode = true,
-            nodeName = "Root"
+            nodeName = name
         };
+
+        // Textfield for the nodeName
+        var textField = new TextField()
+        {
+            name = string.Empty,
+            value = name
+        };
+        textField.RegisterValueChangedCallback(e =>
+        {
+            rootNode.nodeName = e.newValue;
+        });
+        textField.AddToClassList("titleTextField");
+        rootNode.titleContainer.Remove(rootNode.titleContainer.Q<Label>("title-label"));
+        rootNode.titleContainer.Insert(0, textField);
 
         // We add 1 child (output) port by default if needed
         if (addDefaultPort)
@@ -125,32 +139,6 @@ public class ObjectModelGraphView : GraphView
     #region PORT FUNCTIONS
 
     /// <summary>
-    /// DEPRECATED method for generating a generic port (please use GenerateParentPort or GenerateChildPort instead).
-    /// </summary>
-    public Port GeneratePort(ObjectModelGraphNode node, Direction direction, bool addToNode = false, Port.Capacity capacity = Port.Capacity.Single, String name = "Child node")
-    {
-        var port = node.InstantiatePort(Orientation.Horizontal, direction, capacity, typeof(float));
-
-        var outputPortCount = node.outputContainer.Query("connector").ToList().Count;
-        if (direction == Direction.Output) port.portName = name + " " + outputPortCount.ToString();
-        else port.portName = name;
-
-        if (direction == Direction.Output)
-        {
-            var deleteButton = new Button(() => RemovePort(node, port)) { text = "X" };
-            deleteButton.AddToClassList("deleteButton");
-            port.contentContainer.Add(deleteButton);
-        }
-        if (addToNode)
-        {
-            Debug.Log("Added port " + port.portName + " to node " + node.GUID);
-            node.outputContainer.Add(port);
-            RefreshNode(node);
-        }
-        return port;
-    }
-
-    /// <summary>
     /// Method for generating the port that connects to the parent of this node (input).
     /// </summary>
     public Port GenerateParentPort(ObjectModelGraphNode node, bool addToNode = true, String name = "Parent", Port.Capacity capacity = Port.Capacity.Single)
@@ -168,14 +156,31 @@ public class ObjectModelGraphView : GraphView
     /// <summary>
     /// Method for generating the port that connects to a child of this node (output).
     /// </summary>
-    public Port GenerateChildPort(ObjectModelGraphNode node, bool addToNode = true, String name = "childPort", Port.Capacity capacity = Port.Capacity.Single)
+    public Port GenerateChildPort(ObjectModelGraphNode node, float chance = 100f, bool addToNode = true, String name = "childPort", Port.Capacity capacity = Port.Capacity.Single)
     {
         var port = node.InstantiatePort(Orientation.Horizontal, Direction.Output, capacity, typeof(float));
         port.portName = name + node.GetNextPortID();
 
+        var chanceLabel = new Label("%");
+        chanceLabel.AddToClassList("port-label");
+        port.contentContainer.Add(chanceLabel);
+        var chanceField = new FloatField()
+        {
+            name = "chance",
+            value = chance
+        };
+        chanceField.RegisterValueChangedCallback(evt =>
+        {
+            var clampedValue = Mathf.Clamp(evt.newValue, 0, 100);
+            chanceField.value = clampedValue;
+        });
+        port.contentContainer.Add(chanceField);
+
         var deleteButton = new Button(() => RemovePort(node, port)) { text = "X" };
         deleteButton.AddToClassList("deleteButton");
         port.contentContainer.Add(deleteButton);
+
+        port.contentContainer.Q<Label>("type").text = "";
 
         if (addToNode)
         {

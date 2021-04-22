@@ -14,7 +14,5 @@ public class ProceduralObject
     {
         rootNode = new ProceduralObjectNode(null, model.rootNode, this);
         rootNode.GenerateChildren(model.rootNode);
-
-        rootNode.DebugPrintNode();
     }
 }
