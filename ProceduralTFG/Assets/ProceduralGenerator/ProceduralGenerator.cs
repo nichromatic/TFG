@@ -8,39 +8,42 @@ public class ProceduralGenerator : MonoBehaviour
 {
 
     public ObjectModelGraphData graphData;      // Graph data used to build the model
-    private ObjectModel generatedModel;         // Built object model
+    private ObjectModel objectModel;         // Built object model
 
     public ProceduralObject generatedObject;    // Last generated object (abstract)
 
-    public bool generateGameObject = true;          // Determines whether or not a GO is generated in the scene
-    public bool regenerateSameGameObject = true;    // Determines if the same object is reset whenever we generate a new one
+    public bool spawnNewObject = true;    // Determines if the same object is reset whenever we generate a new one
     public GameObject generatedGameObject;          // Last generated object (gameobject)
 
-    [ContextMenu("Generate Object")]
-    public void Generate()
+    public ProceduralObject Generate()
     {
         if (graphData == null)
         {
             Debug.LogError("There is no ObjectModel associated with this Generator.");
-            return;
-        } else if (generatedModel == null)
+            return null;
+        } else if (objectModel == null)
         {
             Debug.LogError("The Generator didn't build the model properly. Please try selecting the ObjectModel again.");
-            return;
+            return null;
         }
 
-        generatedObject = new ProceduralObject(generatedModel);
-        if (generateGameObject) GenerateGameObject(generatedObject);
+        generatedObject = new ProceduralObject(objectModel);
+
+        return generatedObject;
     }
 
-    private void GenerateGameObject(ProceduralObject obj)
+    public GameObject GenerateGameObject(ProceduralObject obj = null)
     {
-        if (regenerateSameGameObject)
+        if (obj == null) obj = Generate();
+
+        if (!spawnNewObject)
         {
             DestroyImmediate(generatedGameObject);
         }
         generatedGameObject = new GameObject(obj.rootNode.nodeName);
         GenerateChildGameObjects(generatedGameObject.transform, obj.rootNode);
+
+        return generatedGameObject;
     }
 
     private void GenerateChildGameObjects(Transform parent, ProceduralObjectNode node)
@@ -61,13 +64,13 @@ public class ProceduralGenerator : MonoBehaviour
             return;
         }
 
-        generatedModel = new ObjectModel();
-        generatedModel.BuildModelFromGraph(graphData);
+        objectModel = new ObjectModel();
+        objectModel.BuildModelFromGraph(graphData);
     }
 
 
     public bool HasModelBeenLoaded()
     {
-        return generatedModel != null;
+        return objectModel != null;
     }
 }

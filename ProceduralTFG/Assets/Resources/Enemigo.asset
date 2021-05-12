@@ -13,64 +13,72 @@ MonoBehaviour:
   m_Name: Enemigo
   m_EditorClassIdentifier: 
   nodeList:
-  - nodeID: d2038d0d-3e4b-4c16-bc37-0f454865f03b
-    nodePos: {x: 180, y: 296}
+  - nodeID: d8441e64-d092-4fd2-b45e-e71e9f5f3711
+    nodePos: {x: 210, y: 314}
     nodeName: Enemigo
     rootNode: 1
-  - nodeID: ffebd0ac-deb3-413a-b31d-c4eee7cebef0
-    nodePos: {x: 484, y: 135}
-    nodeName: Cuerpo
-    rootNode: 0
-  - nodeID: 7f95f149-56a2-4bc8-8c91-d76365f83643
-    nodePos: {x: 743, y: 109}
-    nodeName: Arma
-    rootNode: 0
-  - nodeID: 2d4704f5-1f29-4656-be9e-3ddbf5cacaa5
-    nodePos: {x: 746, y: 207}
-    nodeName: Armadura
-    rootNode: 0
-  - nodeID: 7e574793-dc51-4437-b591-ffcb42a7457c
-    nodePos: {x: 970, y: 218}
-    nodeName: Casco
-    rootNode: 0
-  - nodeID: 0d28b649-89a1-4593-8ce5-c636a804dbdc
-    nodePos: {x: 973, y: 305}
-    nodeName: Botas
-    rootNode: 0
-  - nodeID: b218dc0c-5faa-4862-9bab-c40ea641dee2
-    nodePos: {x: 716, y: 360}
-    nodeName: Torreta
-    rootNode: 0
-  - nodeID: 6853d662-0362-49e4-bb2a-01c7373f78c7
-    nodePos: {x: 481, y: 360}
+  - nodeID: dfd3bb28-4fa7-45ba-a190-03b99a4f2519
+    nodePos: {x: 494, y: 155}
     nodeName: "Veh\xEDculo"
     rootNode: 0
+  - nodeID: c2a65a68-1e85-4bc3-8d8c-5de9d125d0df
+    nodePos: {x: 492, y: 293}
+    nodeName: Armadura
+    rootNode: 0
+  - nodeID: a8b0e6f9-310c-466f-a413-592528197246
+    nodePos: {x: 748, y: 252}
+    nodeName: Casco
+    rootNode: 0
+  - nodeID: 589aeea0-7d15-4e50-a9d2-dfd5be7f0b5b
+    nodePos: {x: 748, y: 340}
+    nodeName: Botas
+    rootNode: 0
+  - nodeID: 778d1097-6c34-4246-8eb8-03c12a610e86
+    nodePos: {x: 493, y: 446}
+    nodeName: Arma
+    rootNode: 0
+  - nodeID: 0695f349-9be8-4ac8-a586-8ecce369f8d9
+    nodePos: {x: 737, y: 526}
+    nodeName: Cuchillo
+    rootNode: 0
+  - nodeID: 2baf2f11-c71e-48a5-9118-d967a3fb68c9
+    nodePos: {x: 744, y: 438}
+    nodeName: Rifle
+    rootNode: 0
+  - nodeID: 7f5f4fc9-be65-4fa0-a30f-3bd17df1e407
+    nodePos: {x: 727, y: 155}
+    nodeName: Torreta
+    rootNode: 0
   linkList:
-  - parentNodeID: d2038d0d-3e4b-4c16-bc37-0f454865f03b
-    childNodeID: ffebd0ac-deb3-413a-b31d-c4eee7cebef0
+  - parentNodeID: d8441e64-d092-4fd2-b45e-e71e9f5f3711
+    childNodeID: dfd3bb28-4fa7-45ba-a190-03b99a4f2519
     portName: childPort0
-    chance: 0
-  - parentNodeID: d2038d0d-3e4b-4c16-bc37-0f454865f03b
-    childNodeID: 6853d662-0362-49e4-bb2a-01c7373f78c7
+    chance: 50
+  - parentNodeID: d8441e64-d092-4fd2-b45e-e71e9f5f3711
+    childNodeID: c2a65a68-1e85-4bc3-8d8c-5de9d125d0df
     portName: childPort1
-    chance: 0
-  - parentNodeID: ffebd0ac-deb3-413a-b31d-c4eee7cebef0
-    childNodeID: 7f95f149-56a2-4bc8-8c91-d76365f83643
+    chance: 75
+  - parentNodeID: d8441e64-d092-4fd2-b45e-e71e9f5f3711
+    childNodeID: 778d1097-6c34-4246-8eb8-03c12a610e86
+    portName: childPort2
+    chance: 100
+  - parentNodeID: dfd3bb28-4fa7-45ba-a190-03b99a4f2519
+    childNodeID: 7f5f4fc9-be65-4fa0-a30f-3bd17df1e407
     portName: childPort0
-    chance: 0
-  - parentNodeID: ffebd0ac-deb3-413a-b31d-c4eee7cebef0
-    childNodeID: 2d4704f5-1f29-4656-be9e-3ddbf5cacaa5
+    chance: 25
+  - parentNodeID: c2a65a68-1e85-4bc3-8d8c-5de9d125d0df
+    childNodeID: a8b0e6f9-310c-466f-a413-592528197246
+    portName: childPort0
+    chance: 50
+  - parentNodeID: c2a65a68-1e85-4bc3-8d8c-5de9d125d0df
+    childNodeID: 589aeea0-7d15-4e50-a9d2-dfd5be7f0b5b
     portName: childPort1
-    chance: 0
-  - parentNodeID: 2d4704f5-1f29-4656-be9e-3ddbf5cacaa5
-    childNodeID: 7e574793-dc51-4437-b591-ffcb42a7457c
+    chance: 100
+  - parentNodeID: 778d1097-6c34-4246-8eb8-03c12a610e86
+    childNodeID: 2baf2f11-c71e-48a5-9118-d967a3fb68c9
     portName: childPort0
-    chance: 0
-  - parentNodeID: 2d4704f5-1f29-4656-be9e-3ddbf5cacaa5
-    childNodeID: 0d28b649-89a1-4593-8ce5-c636a804dbdc
+    chance: 100
+  - parentNodeID: 778d1097-6c34-4246-8eb8-03c12a610e86
+    childNodeID: 0695f349-9be8-4ac8-a586-8ecce369f8d9
     portName: childPort1
-    chance: 0
-  - parentNodeID: 6853d662-0362-49e4-bb2a-01c7373f78c7
-    childNodeID: b218dc0c-5faa-4862-9bab-c40ea641dee2
-    portName: childPort0
-    chance: 0
+    chance: 25

@@ -69,10 +69,6 @@ public class ObjectModelGraphView : GraphView
         addChildBtn.text = "Add child";
         newNode.titleButtonContainer.Add(addChildBtn);
 
-        /*var childPortsLabel = new Label("Child nodes");
-        newNode.outputContainer.Add(childPortsLabel);*/
-
-        //newNode.styleSheets.Add(Resources.Load<StyleSheet>("ObjectModelNodeStyle"));
 
         RefreshNode(newNode);
         newNode.SetPosition(new Rect(position, defaultNodeSize));
@@ -180,7 +176,7 @@ public class ObjectModelGraphView : GraphView
         deleteButton.AddToClassList("deleteButton");
         port.contentContainer.Add(deleteButton);
 
-        port.contentContainer.Q<Label>("type").text = "";
+        port.contentContainer.Q<Label>("type").AddToClassList("hidden-label");
 
         if (addToNode)
         {

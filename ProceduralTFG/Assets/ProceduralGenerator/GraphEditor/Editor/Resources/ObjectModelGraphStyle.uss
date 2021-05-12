@@ -1,3 +1,5 @@
+/* Test */
+
 GridBackground.graphGridBg {
 	--grid-background-color: #282828;
 	--line-color: rgba(193,193,193,0.1);
@@ -8,6 +10,11 @@ GridBackground.graphGridBg {
 Button {
 	cursor: link;
 	width: auto;
+}
+
+Label.hidden-label {
+	visibility: hidden;
+	width: 0px;
 }
 
 Button.deleteButton {

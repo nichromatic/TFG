@@ -1,0 +1,76 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6cf0c1d50937e8428ba68564cbb4c22, type: 3}
+  m_Name: Ejemplo
+  m_EditorClassIdentifier: 
+  nodeList:
+  - nodeID: d8441e64-d092-4fd2-b45e-e71e9f5f3711
+    nodePos: {x: 210, y: 314}
+    nodeName: Root node
+    rootNode: 1
+  - nodeID: c5865746-e4a3-4cef-91b0-5d5c7f46ec5d
+    nodePos: {x: 793, y: 155}
+    nodeName: Nodo 10
+    rootNode: 0
+  - nodeID: daf66a25-521f-40bc-b721-5688eabc4819
+    nodePos: {x: 799, y: 256}
+    nodeName: Nodo 20
+    rootNode: 0
+  - nodeID: 1effeba5-9aa7-4c00-a511-d9b3a48a98f7
+    nodePos: {x: 801, y: 360}
+    nodeName: Nodo 30
+    rootNode: 0
+  - nodeID: 9784db90-cd0c-4a6f-bdb0-cdbb69ab9320
+    nodePos: {x: 518, y: 187}
+    nodeName: Nodo 100
+    rootNode: 0
+  - nodeID: ce4efd64-abfe-4cad-aa1b-b1db7bbb2393
+    nodePos: {x: 518, y: 531}
+    nodeName: Nodo 50
+    rootNode: 0
+  - nodeID: 133fb461-61a1-4f27-9c2d-8d63246af0fe
+    nodePos: {x: 823, y: 469}
+    nodeName: Nodo 75
+    rootNode: 0
+  - nodeID: f9daf742-85a9-4eb0-ba1d-089794b6cad9
+    nodePos: {x: 813, y: 575}
+    nodeName: Nodo 100
+    rootNode: 0
+  linkList:
+  - parentNodeID: d8441e64-d092-4fd2-b45e-e71e9f5f3711
+    childNodeID: 9784db90-cd0c-4a6f-bdb0-cdbb69ab9320
+    portName: childPort3
+    chance: 100
+  - parentNodeID: d8441e64-d092-4fd2-b45e-e71e9f5f3711
+    childNodeID: ce4efd64-abfe-4cad-aa1b-b1db7bbb2393
+    portName: childPort4
+    chance: 50
+  - parentNodeID: 9784db90-cd0c-4a6f-bdb0-cdbb69ab9320
+    childNodeID: c5865746-e4a3-4cef-91b0-5d5c7f46ec5d
+    portName: childPort0
+    chance: 10
+  - parentNodeID: 9784db90-cd0c-4a6f-bdb0-cdbb69ab9320
+    childNodeID: daf66a25-521f-40bc-b721-5688eabc4819
+    portName: childPort1
+    chance: 20
+  - parentNodeID: 9784db90-cd0c-4a6f-bdb0-cdbb69ab9320
+    childNodeID: 1effeba5-9aa7-4c00-a511-d9b3a48a98f7
+    portName: childPort2
+    chance: 30
+  - parentNodeID: ce4efd64-abfe-4cad-aa1b-b1db7bbb2393
+    childNodeID: 133fb461-61a1-4f27-9c2d-8d63246af0fe
+    portName: childPort0
+    chance: 75
+  - parentNodeID: ce4efd64-abfe-4cad-aa1b-b1db7bbb2393
+    childNodeID: f9daf742-85a9-4eb0-ba1d-089794b6cad9
+    portName: childPort1
+    chance: 100

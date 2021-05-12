@@ -233,6 +233,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03b7413882a2b864fbc6aacab389a079, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  graphData: {fileID: 11400000, guid: a22d2424dbee4e74d83b307fc8ff208d, type: 2}
+  spawnNewObject: 0
+  generatedGameObject: {fileID: 0}
 --- !u!4 &1954672504
 Transform:
   m_ObjectHideFlags: 0
