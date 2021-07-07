@@ -17,34 +17,50 @@ MonoBehaviour:
     nodePos: {x: 210, y: 314}
     nodeName: Root node
     rootNode: 1
+    nodeProperties: []
   - nodeID: c5865746-e4a3-4cef-91b0-5d5c7f46ec5d
     nodePos: {x: 793, y: 155}
     nodeName: Nodo 10
     rootNode: 0
+    nodeProperties:
+    - propertyName: 
+      propertyType: 1
+    - propertyName: 
+      propertyType: 0
+    - propertyName: 
+      propertyType: 0
+    - propertyName: 
+      propertyType: 0
   - nodeID: daf66a25-521f-40bc-b721-5688eabc4819
     nodePos: {x: 799, y: 256}
     nodeName: Nodo 20
     rootNode: 0
+    nodeProperties: []
   - nodeID: 1effeba5-9aa7-4c00-a511-d9b3a48a98f7
     nodePos: {x: 801, y: 360}
     nodeName: Nodo 30
     rootNode: 0
+    nodeProperties: []
   - nodeID: 9784db90-cd0c-4a6f-bdb0-cdbb69ab9320
     nodePos: {x: 518, y: 187}
     nodeName: Nodo 100
     rootNode: 0
+    nodeProperties: []
   - nodeID: ce4efd64-abfe-4cad-aa1b-b1db7bbb2393
     nodePos: {x: 518, y: 531}
     nodeName: Nodo 50
     rootNode: 0
+    nodeProperties: []
   - nodeID: 133fb461-61a1-4f27-9c2d-8d63246af0fe
     nodePos: {x: 823, y: 469}
     nodeName: Nodo 75
     rootNode: 0
+    nodeProperties: []
   - nodeID: f9daf742-85a9-4eb0-ba1d-089794b6cad9
     nodePos: {x: 813, y: 575}
     nodeName: Nodo 100
     rootNode: 0
+    nodeProperties: []
   linkList:
   - parentNodeID: d8441e64-d092-4fd2-b45e-e71e9f5f3711
     childNodeID: 9784db90-cd0c-4a6f-bdb0-cdbb69ab9320

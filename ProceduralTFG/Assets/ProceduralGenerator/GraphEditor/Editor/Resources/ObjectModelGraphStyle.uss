@@ -1,4 +1,4 @@
-/* Test */
+/* BASIC */
 
 GridBackground.graphGridBg {
 	--grid-background-color: #282828;
@@ -17,12 +17,34 @@ Label.hidden-label {
 	width: 0px;
 }
 
+.col {
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
+}
+
+.row {
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+}
+
+.flex-grow {
+	flex-grow: 1;
+}
+
+.display-none {
+	display: none;
+}
+
+/* NODES */
+
 Button.deleteButton {
 	background-color: #191919;
 	border-color: #191919;
 	border-radius: 50%;
-	width: 16px;
-	height: 16px;
+	width: 14px;
+	height: 14px;
 	-unity-font-style: bold;
 	font-size: 8px;
 	-unity-text-align: middle-center;
@@ -36,6 +58,8 @@ TextField.titleTextField {
 TextField.titleTextField >* {
 	padding: 5px 10px;
 }
+
+/* TOOLBAR */
 
 Toolbar.graphToolbar {
 	align-self: stretch;
@@ -63,4 +87,75 @@ TextField.toolbar-textfield {
 
 TextField.toolbar-textfield > * {
 	padding: 5px 10px;
+}
+
+/* VARIABLE ROWS */
+
+.property-row-container {
+	width: 100%;
+	background-color: rgba(60, 60, 60, 0.7);
+}
+
+.property-header {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	border-bottom-width: 2px;
+	border-color: #282828;
+	padding: 2px 5px;
+	background-color: rgba(75, 75, 75, 0.7);
+}
+
+.property-header Label {
+	flex-grow: 1;
+	-unity-font-style: bold;
+	padding-top: 4px;
+}
+
+.property-row {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	border-bottom-width: 2px;
+	border-color: #282828;
+	padding: 5px;
+}
+
+.info-column .main-info {
+	margin-bottom: 5px;
+}
+
+.property-row EnumField {
+	height: 18px;
+}
+
+.max-min-row {
+	align-items: center;
+	margin-bottom: 5px;
+	margin-left: 22px;
+}
+
+.value-row-col {
+	flex-grow: 0;
+}
+
+.value-row {
+	width: 100%;
+	display: flex;
+	margin-bottom: 2px;
+}
+
+.value-row .col-button {
+	width: 20px;
+	flex-grow: 0;
+}
+
+.value-row .col-values {
+	flex-grow: 1;
+	min-width: 75px;
+}
+
+.value-row .col-weights {
+	width: 45px;
+	flex-grow: 0;
 }

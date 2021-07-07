@@ -1,18 +1,22 @@
 ﻿using System.Collections.Generic;
+using ObjectModel;
 
-public class ProceduralObject
+namespace ProceduralGenerator
 {
-    public ProceduralObjectNode rootNode;
-    public List<ProceduralObjectNode> allNodes;
-
-    public ProceduralObject(ObjectModel model)
+    public class ProceduralObject
     {
-        Generate(model);
-    }
+        public ProceduralObjectNode rootNode;
+        public List<ProceduralObjectNode> allNodes;
 
-    private void Generate(ObjectModel model)
-    {
-        rootNode = new ProceduralObjectNode(null, model.rootNode, this);
-        rootNode.GenerateChildren(model.rootNode);
+        public ProceduralObject(Model model)
+        {
+            Generate(model);
+        }
+
+        private void Generate(Model model)
+        {
+            rootNode = new ProceduralObjectNode(null, model.rootNode, this);
+            rootNode.GenerateChildren(model.rootNode);
+        }
     }
 }
