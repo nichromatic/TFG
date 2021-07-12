@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -17,6 +17,8 @@ namespace ObjectModel
         public PropertyType propertyType;
 
         public string JSONvalues;
+        public List<object> values = new List<object>();
+
         public List<float> valueWeights = new List<float>();
 
         public bool multipleValues;
