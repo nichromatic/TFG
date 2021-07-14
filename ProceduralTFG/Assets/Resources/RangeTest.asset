@@ -10,22 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f6cf0c1d50937e8428ba68564cbb4c22, type: 3}
-  m_Name: New Object Model
+  m_Name: RangeTest
   m_EditorClassIdentifier: 
   nodeList:
-  - nodeID: df9ac5f3-149c-4bef-a852-5025128b2f4b
+  - nodeID: c9cb746f-fb8b-4a94-91f8-a4f9db4bf01b
     nodePos: {x: 100, y: 100}
     nodeName: Root node
     rootNode: 1
     JSONProperties: []
-  - nodeID: 8ad27250-38fb-48a0-bb39-3f6aa8ae4461
-    nodePos: {x: 379, y: 71}
+  - nodeID: cad63c4d-05ea-4d6e-9419-6b911f7056ab
+    nodePos: {x: 376, y: 66}
     nodeName: Node
     rootNode: 0
     JSONProperties:
-    - '{"propertyName":"Property Name","propertyType":0,"multipleValues":false,"repeatValues":false,"minMultiple":0,"maxMultiple":0,"values":["String","String","String","String"],"valueWeights":[1.0,1.0,1.0,1.0]}'
+    - '{"propertyName":"Range","propertyType":3,"multipleValues":false,"repeatValues":false,"minMultiple":0,"maxMultiple":0,"roundValue":true,"values":[5.0,10.0]}'
   linkList:
-  - parentNodeID: df9ac5f3-149c-4bef-a852-5025128b2f4b
-    childNodeID: 8ad27250-38fb-48a0-bb39-3f6aa8ae4461
+  - parentNodeID: c9cb746f-fb8b-4a94-91f8-a4f9db4bf01b
+    childNodeID: cad63c4d-05ea-4d6e-9419-6b911f7056ab
     portName: childPort0
     chance: 100

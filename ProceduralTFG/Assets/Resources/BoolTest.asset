@@ -10,22 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f6cf0c1d50937e8428ba68564cbb4c22, type: 3}
-  m_Name: New Object Model
+  m_Name: BoolTest
   m_EditorClassIdentifier: 
   nodeList:
-  - nodeID: df9ac5f3-149c-4bef-a852-5025128b2f4b
+  - nodeID: 7447db51-5d76-41a4-b50e-1bebfc39c7a5
     nodePos: {x: 100, y: 100}
     nodeName: Root node
     rootNode: 1
     JSONProperties: []
-  - nodeID: 8ad27250-38fb-48a0-bb39-3f6aa8ae4461
-    nodePos: {x: 379, y: 71}
+  - nodeID: 380a530a-44ea-4de8-b253-14a53acfdb85
+    nodePos: {x: 413, y: 87}
     nodeName: Node
     rootNode: 0
     JSONProperties:
-    - '{"propertyName":"Property Name","propertyType":0,"multipleValues":false,"repeatValues":false,"minMultiple":0,"maxMultiple":0,"values":["String","String","String","String"],"valueWeights":[1.0,1.0,1.0,1.0]}'
+    - '{"propertyName":"Bool Property","propertyType":2,"multipleValues":false,"repeatValues":false,"minMultiple":0,"maxMultiple":0,"values":[true],"valueWeights":[0.0]}'
   linkList:
-  - parentNodeID: df9ac5f3-149c-4bef-a852-5025128b2f4b
-    childNodeID: 8ad27250-38fb-48a0-bb39-3f6aa8ae4461
+  - parentNodeID: 7447db51-5d76-41a4-b50e-1bebfc39c7a5
+    childNodeID: 380a530a-44ea-4de8-b253-14a53acfdb85
     portName: childPort0
     chance: 100

@@ -19,6 +19,8 @@ namespace ObjectModel {
         public int minMultiple;
         public int maxMultiple;
 
+        public bool roundValue;
+
         public Property(string name, PropertyType type, GraphProperty element)
         {
             propertyName = name;
@@ -26,15 +28,16 @@ namespace ObjectModel {
             graphElement = element;
         }
 
-        public Property(PropertyData data, GraphProperty element)
+        public Property(string data, GraphProperty element)
         {
-            propertyName = data.propertyName;
-            propertyType = data.propertyType;
+            Property p = UnityEngine.JsonUtility.FromJson<Property>(data);
+            propertyName = p.propertyName;
+            propertyType = p.propertyType;
             graphElement = element;
-            multipleValues = data.multipleValues;
-            minMultiple = data.minValues;
-            maxMultiple = data.maxValues;
-            repeatValues = data.repeatValues;
+            multipleValues = p.multipleValues;
+            minMultiple = p.minMultiple;
+            maxMultiple = p.maxMultiple;
+            repeatValues = p.repeatValues;
         }
 
         public virtual List<Object> GetValues()
@@ -47,12 +50,16 @@ namespace ObjectModel {
             return null;
         }
 
-        public virtual void SetValues(List<Object> newValues, List<float> newWeights) { }
+        public virtual string GetAsJSON() {
+            return (UnityEngine.JsonUtility.ToJson(this));
+        }
 
-        public virtual void InitializeRow(VisualElement parent, List<Object> values = null, List<float> weights = null) { }
+        public virtual void SetValues(string newValues, List<float> newWeights) { }
+
+        public virtual void InitializeRow(VisualElement parent) { }
 
         public virtual void InitializeRowButton(Button button) { }
 
-        public virtual void InitializeRowValues(List<Object> values = null, List<float> weights = null) { }
+        public virtual void InitializeRowValues() { }
     }
 }

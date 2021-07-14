@@ -8,7 +8,8 @@ namespace ObjectModel
     {
         String,
         Number,
-        Boolean
+        Boolean,
+        Range
     }
     [System.Serializable]
     public class PropertyData
@@ -16,14 +17,14 @@ namespace ObjectModel
         public string propertyName;
         public PropertyType propertyType;
 
-        public string JSONvalues;
-        public List<object> values = new List<object>();
-
-        public List<float> valueWeights = new List<float>();
-
         public bool multipleValues;
-        public int minValues;
-        public int maxValues;
         public bool repeatValues;
+        public int minMultiple;
+        public int maxMultiple;
+
+        public bool roundValue;
+
+        public List<string> values = new List<string>();
+        public List<float> valueWeights = new List<float>();
     }
 }

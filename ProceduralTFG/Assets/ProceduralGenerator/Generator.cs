@@ -45,6 +45,8 @@ namespace ProceduralGenerator
                 DestroyImmediate(generatedGameObject);
             }
             generatedGameObject = new GameObject(obj.rootNode.nodeName);
+            var objData = generatedGameObject.AddComponent<ObjectData>();
+            objData.nodeData = obj.rootNode;
             GenerateChildGameObjects(generatedGameObject.transform, obj.rootNode);
 
             return generatedGameObject;
@@ -56,6 +58,8 @@ namespace ProceduralGenerator
             {
                 var go = new GameObject(child.nodeName);
                 go.transform.SetParent(parent);
+                var objData = go.AddComponent<ObjectData>();
+                objData.nodeData = child;
                 GenerateChildGameObjects(go.transform, child);
             });
         }

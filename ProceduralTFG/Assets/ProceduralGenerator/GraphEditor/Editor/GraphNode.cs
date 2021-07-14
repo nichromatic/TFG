@@ -23,9 +23,9 @@ namespace ObjectModel
             return nextPortID.ToString();
         }
 
-        public List<PropertyData> ExportPropertyData()
+        public List<string> ExportPropertyData()
         {
-            List<PropertyData> data = new List<PropertyData>();
+            List<string> data = new List<string>();
             nodePropertyRows.ForEach(p => data.Add(p.ExportPropertyData()));
             return data;
         }

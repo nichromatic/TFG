@@ -13,7 +13,6 @@ namespace ObjectModel
 
         public string nodeName;
         public bool rootNode;
-
-        public List<PropertyData> nodeProperties = new List<PropertyData>();
+        public List<string> JSONProperties = new List<string>();
     }
 }

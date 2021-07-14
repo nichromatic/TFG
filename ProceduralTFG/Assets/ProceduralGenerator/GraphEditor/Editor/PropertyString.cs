@@ -17,7 +17,13 @@ namespace ObjectModel
 
         public PropertyString(string name, GraphProperty element) : base(name, PropertyType.String, element) { }
 
-        public PropertyString(PropertyData data, GraphProperty element) : base(data, element) { }
+        public PropertyString(string name, string data, GraphProperty element, bool loadValues = true) : base(data, element) {
+            PropertyString p = UnityEngine.JsonUtility.FromJson<PropertyString>(data);
+            if (loadValues) {
+                values = p.values;
+                valueWeights = p.valueWeights;
+            }
+        }
 
         public override List<Object> GetValues()
         {
@@ -31,9 +37,11 @@ namespace ObjectModel
             return valueWeights;
         }
 
-        public override void SetValues(List<Object> newValues, List<float> newWeights)
+        public override void SetValues(string JSONValues, List<float> newWeights)
         {
-            newValues.ForEach(value =>
+            string[] newValues = UnityEngine.JsonUtility.FromJson<string[]>(JSONValues);
+            List<string> newValuesList = new List<string>(newValues);
+            newValuesList.ForEach(value =>
             {
                 values.Add((string)value);
             });
@@ -43,7 +51,7 @@ namespace ObjectModel
             });
         }
 
-        public override void InitializeRow(VisualElement parent, List<Object> newValues, List<float> newWeights)
+        public override void InitializeRow(VisualElement parent)
         {
             parentElement = parent;
             var varRowTemplate = UnityEngine.Resources.Load<VisualTreeAsset>("PropertyRows/StringPropertyRow");
@@ -54,12 +62,27 @@ namespace ObjectModel
             var rowButtons = varRow.Query<Button>();
             rowButtons.ForEach(button => InitializeRowButton(button));
 
+            Label propertyLabel = varRow.Query<Label>("propertyLabel").ToList()[0];
+            propertyLabel.text = propertyName;
+
             TextField nameField = varRow.Query<TextField>("propertyName").ToList()[0];
             if (propertyName != null) nameField.SetValueWithoutNotify(propertyName);
             else nameField.SetValueWithoutNotify(defaultName);
             nameField.MarkDirtyRepaint();
-            nameField.RegisterValueChangedCallback(evt => propertyName = evt.newValue);
+            nameField.RegisterValueChangedCallback(evt => {
+                propertyName = evt.newValue;
+                propertyLabel.text = evt.newValue;
+            });
 
+            EnumField typeField = varRow.Query<EnumField>("propertyType").ToList()[0];
+            typeField.SetValueWithoutNotify(propertyType);
+            typeField.MarkDirtyRepaint();
+            typeField.RegisterValueChangedCallback(evt => {
+                parentElement.Remove(varRow);
+                this.propertyType = (PropertyType)evt.newValue;
+                graphElement.InitializeRow(parentElement, (PropertyType)evt.newValue, true, this.GetAsJSON(), false);
+                //graphElement.DeleteProperty();
+            });
 
             var multipleValueConfig = varRow.Query<VisualElement>("multipleValueConfig");
             if (multipleValues) multipleValueConfig.ForEach(div => div.RemoveFromClassList("display-none"));
@@ -98,7 +121,7 @@ namespace ObjectModel
                 maxMultiple = evt.newValue;
             });
 
-            InitializeRowValues(newValues, newWeights);
+            InitializeRowValues();
         }
 
         public override void InitializeRowButton(Button button)
@@ -106,8 +129,11 @@ namespace ObjectModel
             switch (button.name)
             {
                 case "deletePropertyBtn":
-                    //parentElement.Remove(varRow);
-                    //graphElement.DeleteProperty();
+                    button.clickable.clicked += () =>
+                    {
+                        parentElement.Remove(varRow);
+                        graphElement.DeleteProperty();
+                    };
                     break;
                 case "addValueBtn":
                     button.clickable.clicked += () =>
@@ -151,16 +177,23 @@ namespace ObjectModel
             valueContainer.Add(valueRow);
         }
 
-        public override void InitializeRowValues(List<Object> newValues = null, List<float> newWeights = null)
+        public override void InitializeRowValues()
         {
+            int i = 0;
+            var tempVal = values;
+            var tempWeights = valueWeights;
             values = new List<string>();
             valueWeights = new List<float>();
-            int i = 0;
-            newValues.ForEach(v =>
+            tempVal.ForEach(v =>
             {
-                AddValueRow(v, newWeights[i], i);
+                AddValueRow(v, tempWeights[i], i);
                 i++;
             });
         }
+
+        public override string GetAsJSON() {
+            return (UnityEngine.JsonUtility.ToJson(this));
+        }
+
     }
 }

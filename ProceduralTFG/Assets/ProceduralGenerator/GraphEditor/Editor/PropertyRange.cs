@@ -6,25 +6,25 @@ using UnityEngine.UIElements;
 namespace ObjectModel
 {
     [Serializable]
-    public class PropertyBool : Property
+    public class PropertyRange : Property
     {
-        public List<bool> values = new List<bool>();
-        public List<float> valueWeights = new List<float>();
+        public List<float> values = new List<float>();
+        private const float defaultMin = 0f;
+        private const string defaultName = "Range property";
+        private const float defaultMax = 10f;
 
-        private const bool defaultValue = true;
-        private const string defaultName = "Boolean property";
-        private const float defaultWeight = 50f;
+        private const bool defaultRound = false;
 
-        public PropertyBool(string name, GraphProperty element) : base(name, PropertyType.Number, element) { }
+        public PropertyRange(string name, GraphProperty element) : base(name, PropertyType.Range, element) { }
 
-        public PropertyBool(string name, string data, GraphProperty element, bool loadValues = true) : base(data, element) {
-            PropertyBool p = UnityEngine.JsonUtility.FromJson<PropertyBool>(data);
+        public PropertyRange(string name, string data, GraphProperty element, bool loadValues = true) : base(data, element) {
+            PropertyRange p = UnityEngine.JsonUtility.FromJson<PropertyRange>(data);
             if (loadValues) {
                 values = p.values;
-                valueWeights = p.valueWeights;
+                roundValue = p.roundValue;
             } else {
-                values = new List<bool>(new bool[]{defaultValue});
-                valueWeights = new List<float>(new float[]{defaultWeight});
+                values = new List<float>(new float[]{defaultMin, defaultMax});
+                roundValue = defaultRound;
             }
         }
 
@@ -35,18 +35,13 @@ namespace ObjectModel
             return castValues;
         }
 
-        public override List<float> GetWeights()
-        {
-            return valueWeights;
-        }
-
         public override void SetValues(string JSONValues, List<float> newWeights)
         {
             string[] newValues = UnityEngine.JsonUtility.FromJson<string[]>(JSONValues);
             List<string> newValuesList = new List<string>(newValues);
             newValuesList.ForEach(value =>
             {
-                values.Add(bool.Parse(value));
+                values.Add(float.Parse(value));
             });
             /* newWeights.ForEach(value =>
             {
@@ -57,7 +52,7 @@ namespace ObjectModel
         public override void InitializeRow(VisualElement parent)
         {
             parentElement = parent;
-            var varRowTemplate = UnityEngine.Resources.Load<VisualTreeAsset>("PropertyRows/BoolPropertyRow");
+            var varRowTemplate = UnityEngine.Resources.Load<VisualTreeAsset>("PropertyRows/RangePropertyRow");
             varRow = varRowTemplate.CloneTree();
             parentElement.Add(varRow);
 
@@ -87,59 +82,23 @@ namespace ObjectModel
                 //graphElement.DeleteProperty();
             });
 
-            Toggle valueToggle = varRow.Query<Toggle>("propertyValue").ToList()[0];
-            if (values == null || values.Count == 0) values = new List<bool>(new bool[]{defaultValue});
-            valueToggle.SetValueWithoutNotify(values[0]);
-            valueToggle.MarkDirtyRepaint();
-            valueToggle.RegisterValueChangedCallback(evt => {
-                values[0] = evt.newValue;
+            Toggle roundToInt = varRow.Query<Toggle>("roundValue").ToList()[0];
+            roundToInt.SetValueWithoutNotify(roundValue);
+            roundToInt.MarkDirtyRepaint();
+            roundToInt.RegisterValueChangedCallback(evt => {
+                roundValue = evt.newValue;
             });
 
-            FloatField chanceField = varRow.Query<FloatField>("valueWeight").ToList()[0];
-            if (valueWeights == null || valueWeights.Count == 0) valueWeights = new List<float>(new float[]{defaultWeight});
-            chanceField.SetValueWithoutNotify(valueWeights[0]);
-            chanceField.MarkDirtyRepaint();
-            chanceField.RegisterValueChangedCallback(evt => valueWeights[0] = evt.newValue);
-
-            /* 
-            var multipleValueConfig = varRow.Query<VisualElement>("multipleValueConfig");
-            if (multipleValues) multipleValueConfig.ForEach(div => div.RemoveFromClassList("display-none"));
-
-            Toggle multipleValuesCheck = varRow.Query<Toggle>("multipleValues").ToList()[0];
-            multipleValuesCheck.SetValueWithoutNotify(multipleValues);
-            multipleValuesCheck.MarkDirtyRepaint();
-            multipleValuesCheck.RegisterValueChangedCallback(evt => {
-                if (evt.newValue)
-                {
-                    multipleValueConfig.ForEach(div => div.RemoveFromClassList("display-none"));
-                }
-                else
-                {
-                    multipleValueConfig.ForEach(div => div.AddToClassList("display-none"));
-                }
-                multipleValues = evt.newValue;
-            });
-            Toggle repeatValuesCheck = varRow.Query<Toggle>("repeatValues").ToList()[0];
-            repeatValuesCheck.SetValueWithoutNotify(repeatValues);
-            repeatValuesCheck.MarkDirtyRepaint();
-            repeatValuesCheck.RegisterValueChangedCallback(evt => {
-                repeatValues = evt.newValue;
-            });
-
-            IntegerField minField = varRow.Query<IntegerField>("multipleMin").ToList()[0];
-            minField.SetValueWithoutNotify(minMultiple);
+            if (values == null || values.Count < 2) values = new List<float>(new float[]{defaultMin, defaultMax});
+            FloatField minField = varRow.Query<FloatField>("propertyValueMin").ToList()[0];
+            minField.SetValueWithoutNotify(values[0]);
             minField.MarkDirtyRepaint();
-            minField.RegisterValueChangedCallback(evt => {
-                minMultiple = evt.newValue;
-            });
-            IntegerField maxField = varRow.Query<IntegerField>("multipleMax").ToList()[0];
-            maxField.SetValueWithoutNotify(maxMultiple);
-            maxField.MarkDirtyRepaint();
-            maxField.RegisterValueChangedCallback(evt => {
-                maxMultiple = evt.newValue;
-            });
+            minField.RegisterValueChangedCallback(evt => values[0] = evt.newValue);
 
-            InitializeRowValues(); */
+            FloatField maxField = varRow.Query<FloatField>("propertyValueMax").ToList()[0];
+            maxField.SetValueWithoutNotify(values[1]);
+            maxField.MarkDirtyRepaint();
+            maxField.RegisterValueChangedCallback(evt => values[1] = evt.newValue);
         }
 
         public override void InitializeRowButton(Button button)
@@ -153,16 +112,16 @@ namespace ObjectModel
                         graphElement.DeleteProperty();
                     };
                     break;
-                case "addValueBtn":
+                /* case "addValueBtn":
                     button.clickable.clicked += () =>
                     {
                         AddValueRow();
                     };
-                    break;
+                    break; */
             }
         }
 
-        private void AddValueRow(Object value = null, float weight = defaultWeight, int index = 0)
+        /* private void AddValueRow(Object value = null, float weight = defaultWeight, int index = 0)
         {
             if (value == null)
             {
@@ -170,13 +129,13 @@ namespace ObjectModel
                 value = defaultValue;
             }
 
-            values.Add((bool)value);
-            valueWeights.Add(weight);
+            values.Add((float)value);
+            //valueWeights.Add(weight);
 
             var valueRowTemplate = UnityEngine.Resources.Load<VisualTreeAsset>("PropertyRows/NumberValueRow");
             VisualElement valueRow = valueRowTemplate.CloneTree();
 
-            /* FloatField valueField = valueRow.Query<FloatField>("propertyValue").ToList()[0];
+             FloatField valueField = valueRow.Query<FloatField>("propertyValue").ToList()[0];
             valueField.SetValueWithoutNotify((float)value);
             valueField.MarkDirtyRepaint();
             valueField.RegisterValueChangedCallback(evt => values[index] = evt.newValue);
@@ -184,7 +143,7 @@ namespace ObjectModel
             FloatField weightField = valueRow.Query<FloatField>("valueWeight").ToList()[0];
             weightField.SetValueWithoutNotify(weight);
             weightField.MarkDirtyRepaint();
-            weightField.RegisterValueChangedCallback(evt => valueWeights[index] = evt.newValue); */
+            weightField.RegisterValueChangedCallback(evt => valueWeights[index] = evt.newValue);
 
             Button deleteBtn = valueRow.Query<Button>("deleteValueBtn").ToList()[0];
             deleteBtn.clickable.clicked += () =>
@@ -193,21 +152,21 @@ namespace ObjectModel
             };
 
             valueContainer.Add(valueRow);
-        }
+        } */
 
-        public override void InitializeRowValues()
+        /* public override void InitializeRowValues()
         {
             int i = 0;
             var tempVal = values;
             var tempWeights = valueWeights;
-            values = new List<bool>();
+            values = new List<float>();
             valueWeights = new List<float>();
             tempVal.ForEach(v =>
             {
                 AddValueRow(v, tempWeights[i], i);
                 i++;
             });
-        }
+        } */
 
         public override string GetAsJSON() {
             return (UnityEngine.JsonUtility.ToJson(this));

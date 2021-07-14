@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:editor="UnityEditor.UIElements" xmlns:engine="UnityEngine.UIElements" xmlns="UnityEditor.Experimental.GraphView" elementFormDefault="qualified" targetNamespace="UnityEditor.U2D.Animation" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:schema xmlns:editor="UnityEditor.UIElements" xmlns:engine="UnityEngine.UIElements" xmlns="UnityEditor.U2D.Animation" elementFormDefault="qualified" targetNamespace="UnityEditor.U2D.Animation" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="UnityEngine.UIElements.xsd" namespace="UnityEngine.UIElements" />
   <xs:complexType name="SelectListViewType">
     <xs:complexContent mixed="false">
@@ -20,7 +20,7 @@
       </xs:restriction>
     </xs:complexContent>
   </xs:complexType>
-  <xs:element name="SelectListView" substitutionGroup="engine:VisualElement" xmlns:q1="UnityEditor.U2D.Animation" type="q1:SelectListViewType" />
+  <xs:element name="SelectListView" substitutionGroup="engine:VisualElement" type="SelectListViewType" />
   <xs:complexType name="SpriteBoneInfluenceListWidgetType">
     <xs:complexContent mixed="false">
       <xs:restriction base="engine:VisualElementType">
@@ -41,7 +41,7 @@
       </xs:restriction>
     </xs:complexContent>
   </xs:complexType>
-  <xs:element name="SpriteBoneInfluenceListWidget" substitutionGroup="engine:VisualElement" xmlns:q2="UnityEditor.U2D.Animation" type="q2:SpriteBoneInfluenceListWidgetType" />
+  <xs:element name="SpriteBoneInfluenceListWidget" substitutionGroup="engine:VisualElement" type="SpriteBoneInfluenceListWidgetType" />
   <xs:complexType name="SpriteBoneInfluenceWindowType">
     <xs:complexContent mixed="false">
       <xs:restriction base="engine:VisualElementType">
@@ -62,7 +62,7 @@
       </xs:restriction>
     </xs:complexContent>
   </xs:complexType>
-  <xs:element name="SpriteBoneInfluenceWindow" substitutionGroup="engine:VisualElement" xmlns:q3="UnityEditor.U2D.Animation" type="q3:SpriteBoneInfluenceWindowType" />
+  <xs:element name="SpriteBoneInfluenceWindow" substitutionGroup="engine:VisualElement" type="SpriteBoneInfluenceWindowType" />
   <xs:complexType name="BoneInspectorPanelType">
     <xs:complexContent mixed="false">
       <xs:restriction base="engine:VisualElementType">
@@ -83,7 +83,7 @@
       </xs:restriction>
     </xs:complexContent>
   </xs:complexType>
-  <xs:element name="BoneInspectorPanel" substitutionGroup="engine:VisualElement" xmlns:q4="UnityEditor.U2D.Animation" type="q4:BoneInspectorPanelType" />
+  <xs:element name="BoneInspectorPanel" substitutionGroup="engine:VisualElement" type="BoneInspectorPanelType" />
   <xs:complexType name="BoneToolbarType">
     <xs:complexContent mixed="false">
       <xs:restriction base="engine:VisualElementType">
@@ -104,7 +104,7 @@
       </xs:restriction>
     </xs:complexContent>
   </xs:complexType>
-  <xs:element name="BoneToolbar" substitutionGroup="engine:VisualElement" xmlns:q5="UnityEditor.U2D.Animation" type="q5:BoneToolbarType" />
+  <xs:element name="BoneToolbar" substitutionGroup="engine:VisualElement" type="BoneToolbarType" />
   <xs:complexType name="CopyToolbarType">
     <xs:complexContent mixed="false">
       <xs:restriction base="engine:VisualElementType">
@@ -125,7 +125,7 @@
       </xs:restriction>
     </xs:complexContent>
   </xs:complexType>
-  <xs:element name="CopyToolbar" substitutionGroup="engine:VisualElement" xmlns:q6="UnityEditor.U2D.Animation" type="q6:CopyToolbarType" />
+  <xs:element name="CopyToolbar" substitutionGroup="engine:VisualElement" type="CopyToolbarType" />
   <xs:complexType name="GenerateGeometryPanelType">
     <xs:complexContent mixed="false">
       <xs:restriction base="engine:VisualElementType">
@@ -146,7 +146,7 @@
       </xs:restriction>
     </xs:complexContent>
   </xs:complexType>
-  <xs:element name="GenerateGeometryPanel" substitutionGroup="engine:VisualElement" xmlns:q7="UnityEditor.U2D.Animation" type="q7:GenerateGeometryPanelType" />
+  <xs:element name="GenerateGeometryPanel" substitutionGroup="engine:VisualElement" type="GenerateGeometryPanelType" />
   <xs:complexType name="GenerateWeightsPanelType">
     <xs:complexContent mixed="false">
       <xs:restriction base="engine:VisualElementType">
@@ -167,7 +167,7 @@
       </xs:restriction>
     </xs:complexContent>
   </xs:complexType>
-  <xs:element name="GenerateWeightsPanel" substitutionGroup="engine:VisualElement" xmlns:q8="UnityEditor.U2D.Animation" type="q8:GenerateWeightsPanelType" />
+  <xs:element name="GenerateWeightsPanel" substitutionGroup="engine:VisualElement" type="GenerateWeightsPanelType" />
   <xs:complexType name="MeshToolbarType">
     <xs:complexContent mixed="false">
       <xs:restriction base="engine:VisualElementType">
@@ -188,7 +188,7 @@
       </xs:restriction>
     </xs:complexContent>
   </xs:complexType>
-  <xs:element name="MeshToolbar" substitutionGroup="engine:VisualElement" xmlns:q9="UnityEditor.U2D.Animation" type="q9:MeshToolbarType" />
+  <xs:element name="MeshToolbar" substitutionGroup="engine:VisualElement" type="MeshToolbarType" />
   <xs:complexType name="PastePanelType">
     <xs:complexContent mixed="false">
       <xs:restriction base="engine:VisualElementType">
@@ -209,7 +209,7 @@
       </xs:restriction>
     </xs:complexContent>
   </xs:complexType>
-  <xs:element name="PastePanel" substitutionGroup="engine:VisualElement" xmlns:q10="UnityEditor.U2D.Animation" type="q10:PastePanelType" />
+  <xs:element name="PastePanel" substitutionGroup="engine:VisualElement" type="PastePanelType" />
   <xs:complexType name="ToolbarType">
     <xs:complexContent mixed="false">
       <xs:restriction base="engine:VisualElementType">
@@ -230,7 +230,7 @@
       </xs:restriction>
     </xs:complexContent>
   </xs:complexType>
-  <xs:element name="Toolbar" substitutionGroup="engine:VisualElement" xmlns:q11="UnityEditor.U2D.Animation" type="q11:ToolbarType" />
+  <xs:element name="Toolbar" substitutionGroup="engine:VisualElement" type="ToolbarType" />
   <xs:complexType name="WeightInspectorIMGUIPanelType">
     <xs:complexContent mixed="false">
       <xs:restriction base="engine:VisualElementType">
@@ -251,7 +251,7 @@
       </xs:restriction>
     </xs:complexContent>
   </xs:complexType>
-  <xs:element name="WeightInspectorIMGUIPanel" substitutionGroup="engine:VisualElement" xmlns:q12="UnityEditor.U2D.Animation" type="q12:WeightInspectorIMGUIPanelType" />
+  <xs:element name="WeightInspectorIMGUIPanel" substitutionGroup="engine:VisualElement" type="WeightInspectorIMGUIPanelType" />
   <xs:complexType name="WeightPainterPanelType">
     <xs:complexContent mixed="false">
       <xs:restriction base="engine:VisualElementType">
@@ -272,7 +272,7 @@
       </xs:restriction>
     </xs:complexContent>
   </xs:complexType>
-  <xs:element name="WeightPainterPanel" substitutionGroup="engine:VisualElement" xmlns:q13="UnityEditor.U2D.Animation" type="q13:WeightPainterPanelType" />
+  <xs:element name="WeightPainterPanel" substitutionGroup="engine:VisualElement" type="WeightPainterPanelType" />
   <xs:complexType name="WeightToolbarType">
     <xs:complexContent mixed="false">
       <xs:restriction base="engine:VisualElementType">
@@ -293,7 +293,7 @@
       </xs:restriction>
     </xs:complexContent>
   </xs:complexType>
-  <xs:element name="WeightToolbar" substitutionGroup="engine:VisualElement" xmlns:q14="UnityEditor.U2D.Animation" type="q14:WeightToolbarType" />
+  <xs:element name="WeightToolbar" substitutionGroup="engine:VisualElement" type="WeightToolbarType" />
   <xs:complexType name="BoneReparentToolWindowType">
     <xs:complexContent mixed="false">
       <xs:restriction base="engine:VisualElementType">
@@ -314,7 +314,7 @@
       </xs:restriction>
     </xs:complexContent>
   </xs:complexType>
-  <xs:element name="BoneReparentToolWindow" substitutionGroup="engine:VisualElement" xmlns:q15="UnityEditor.U2D.Animation" type="q15:BoneReparentToolWindowType" />
+  <xs:element name="BoneReparentToolWindow" substitutionGroup="engine:VisualElement" type="BoneReparentToolWindowType" />
   <xs:complexType name="BoneReparentToolViewType">
     <xs:complexContent mixed="false">
       <xs:restriction base="engine:VisualElementType">
@@ -335,7 +335,7 @@
       </xs:restriction>
     </xs:complexContent>
   </xs:complexType>
-  <xs:element name="BoneReparentToolView" substitutionGroup="engine:VisualElement" xmlns:q16="UnityEditor.U2D.Animation" type="q16:BoneReparentToolViewType" />
+  <xs:element name="BoneReparentToolView" substitutionGroup="engine:VisualElement" type="BoneReparentToolViewType" />
   <xs:complexType name="VisibilityToolWindowType">
     <xs:complexContent mixed="false">
       <xs:restriction base="engine:VisualElementType">
@@ -356,5 +356,5 @@
       </xs:restriction>
     </xs:complexContent>
   </xs:complexType>
-  <xs:element name="VisibilityToolWindow" substitutionGroup="engine:VisualElement" xmlns:q17="UnityEditor.U2D.Animation" type="q17:VisibilityToolWindowType" />
+  <xs:element name="VisibilityToolWindow" substitutionGroup="engine:VisualElement" type="VisibilityToolWindowType" />
 </xs:schema>

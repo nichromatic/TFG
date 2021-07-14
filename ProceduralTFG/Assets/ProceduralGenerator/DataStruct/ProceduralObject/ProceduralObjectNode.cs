@@ -11,6 +11,7 @@ namespace ProceduralGenerator
         public ProceduralObject parentObject;
         private ProceduralObjectNode parentNode;
         public List<ProceduralObjectNode> childNodes = new List<ProceduralObjectNode>();
+        public List<ProceduralObjectProperty> properties = new List<ProceduralObjectProperty>();
         public bool rootNode = false;
         public string nodeName = "";
 
@@ -28,8 +29,15 @@ namespace ProceduralGenerator
             nodeName = data.nodeName;
         }
 
+        public void GenerateProperties(ModelNode modelNode) {
+            foreach(PropertyData p in modelNode.nodeProperties) {
+                properties.Add(new ProceduralObjectProperty(p));
+            }
+        }
+
         public void GenerateChildren(ModelNode modelNode)
         {
+            GenerateProperties(modelNode);
             modelNode.childLinks.ForEach(link =>
             {
                 var coinToss = UnityEngine.Random.Range(0f, 100f);

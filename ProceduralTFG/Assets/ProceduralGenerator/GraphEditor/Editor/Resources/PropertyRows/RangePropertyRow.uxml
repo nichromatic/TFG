@@ -17,20 +17,6 @@
           <TextField name="propertyName" class="flex-grow"></TextField>
         </VisualElement>
       </VisualElement>
-      <VisualElement xmlns="UnityEngine.UIElements" class="row">
-        <Toggle name="multipleValues"></Toggle>
-        <Label text="Generate multiple values"></Label>
-      </VisualElement>
-      <VisualElement name="multipleValueConfig" xmlns="UnityEngine.UIElements" class="row max-min-row display-none">
-        <Label text="From "></Label>
-        <IntegerField xmlns="UnityEditor.UIElements" name="multipleMin"></IntegerField>
-        <Label text=" to "></Label>
-        <IntegerField xmlns="UnityEditor.UIElements" name="multipleMax"></IntegerField>
-      </VisualElement>
-      <VisualElement name="multipleValueConfig" xmlns="UnityEngine.UIElements" class="row display-none">
-        <Toggle name="repeatValues"></Toggle>
-        <Label text="Allow repeated values"></Label>
-      </VisualElement>
     </VisualElement>
     
     <VisualElement xmlns="UnityEngine.UIElements" class="value-column col">
@@ -38,20 +24,27 @@
       <VisualElement xmlns="UnityEngine.UIElements" name="valueRowContainer" class="value-row-col col">
         <VisualElement xmlns="UnityEngine.UIElements" name="labelValueRow" class="value-row row">
           <VisualElement xmlns="UnityEngine.UIElements" class="col col-values">
-            <Label text="Values"></Label>
+            <Label text="Min"></Label>
           </VisualElement>
-          <VisualElement xmlns="UnityEngine.UIElements" class="col col-weights">
-            <Label text="Weights"></Label>
-          </VisualElement>
-          <VisualElement xmlns="UnityEngine.UIElements" class="col col-button">
+          <VisualElement xmlns="UnityEngine.UIElements" class="col col-values">
+            <Label text="Max"></Label>
           </VisualElement>
         </VisualElement>
       </VisualElement>
 
-      <VisualElement xmlns="UnityEngine.UIElements" class="value-row row">
-        <Button text="Add value" name="addValueBtn" class="flex-grow"></Button>
+      <VisualElement xmlns="UnityEngine.UIElements" name="valueRow" class="value-row row">
+        <VisualElement xmlns="UnityEngine.UIElements" class="col col-values">
+          <FloatField xmlns="UnityEditor.UIElements" name="propertyValueMin"></FloatField>
+        </VisualElement>
+        <VisualElement xmlns="UnityEngine.UIElements" class="col col-values">
+          <FloatField xmlns="UnityEditor.UIElements" name="propertyValueMax"></FloatField>
+        </VisualElement>
       </VisualElement>
-    
+
+      <VisualElement xmlns="UnityEngine.UIElements" name="valueRow" class="value-row row">
+        <Toggle name="roundValue"></Toggle>
+        <Label text="Round to integer"></Label>
+      </VisualElement>
     </VisualElement>
   </VisualElement>
 </UXML>

@@ -55,7 +55,7 @@ namespace ObjectModel
                     nodePos = graphNode.GetPosition().position, // GetPosition() returns the entire Rect(pos,size), we only need the position
                     nodeName = graphNode.nodeName,
                     rootNode = graphNode.rootNode,
-                    nodeProperties = graphNode.ExportPropertyData()
+                    JSONProperties = graphNode.ExportPropertyData()
                 });
             }
 
@@ -134,7 +134,7 @@ namespace ObjectModel
                     {
                         _graphView.GenerateChildPort(tempNode, nodePorts[i].chance);
                     }
-                    for (int i = 0; i < nodeData.nodeProperties.Count; i++)
+                    for (int i = 0; i < nodeData.JSONProperties.Count; i++)
                     {
                         if (tempNode.nodePropertiesContainer == null)
                         {
@@ -143,7 +143,7 @@ namespace ObjectModel
                             tempNode.nodePropertiesContainer = propertyContainer;
                             tempNode.extensionContainer.Add(propertyContainer);
                         }
-                        tempNode.nodePropertyRows.Add(new GraphProperty(tempNode.nodePropertiesContainer, tempNode, nodeData.nodeProperties[i]));
+                        tempNode.nodePropertyRows.Add(new GraphProperty(tempNode.nodePropertiesContainer, tempNode, nodeData.JSONProperties[i]));
                     }
                 }
             }
