@@ -5,6 +5,7 @@ using UnityEditor.Experimental.GraphView;
 using UnityEngine.UIElements;
 using UnityEditor.UIElements;
 using UnityEditor;
+using System.Linq;
 
 namespace ObjectModel
 {
@@ -25,6 +26,7 @@ namespace ObjectModel
             rootVisualElement.styleSheets.Add(Resources.Load<StyleSheet>("ObjectModelGraphStyle"));
             InitializeGraph();
             InitializeToolbar();
+            InitializeBlackboard();
         }
 
         public void OnDisable()
@@ -87,6 +89,31 @@ namespace ObjectModel
                     };
                     break;
             }
+        }
+
+        private void InitializeBlackboard() {
+            var bb = new Blackboard(_graphView);
+            bb.Add(new BlackboardSection());
+            bb.subTitle = "Input properties";
+
+            bb.addItemRequested = _blackboard => {
+                _graphView.AddBlackboardProperty(new InputProperty());
+            };
+            bb.editTextRequested = (_blackboad, element, newValue) => {
+                if (_graphView.inputProperties.Any(i => i.propertyName == newValue)) {
+                    EditorUtility.DisplayDialog("Error","An input property with that name already exists. Please choose a different one.", "OK");
+                } else {
+                    var oldValue = ((BlackboardField)element).text;
+                    var index = _graphView.inputProperties.FindIndex(i => i.propertyName == oldValue);
+                    _graphView.inputProperties[index].propertyName = newValue;
+                    ((BlackboardField)element).text = newValue;
+                }
+            };
+
+            bb.SetPosition(new Rect(10, 40, 200, 300));
+            
+            _graphView._blackboard = bb;
+            _graphView.Add(bb);
         }
 
         private void RequestSystemOperation(bool save)

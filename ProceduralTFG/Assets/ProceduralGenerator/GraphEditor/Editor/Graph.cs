@@ -13,8 +13,10 @@ namespace ObjectModel
     {
         public readonly Vector2 defaultNodePos = new Vector2(0, 0);
         public readonly Vector2 defaultNodeSize = new Vector2(150, 200);
+        public readonly Vector2 defaultRootNodePos = new Vector2(325, 300);
 
-        public readonly Vector2 defaultRootNodePos = new Vector2(100, 100);
+        public Blackboard _blackboard;
+        public List<InputProperty> inputProperties = new List<InputProperty>();
 
         public Graph()
         {
@@ -242,6 +244,22 @@ namespace ObjectModel
         #endregion
 
 
+        public void AddBlackboardProperty(InputProperty input) {
+            var newInput = new InputProperty();
+            var newInputName = input.propertyName;
+
+            while(inputProperties.Any(i => i.propertyName == newInputName))
+                newInputName += "(1)";
+            newInput.propertyName = newInputName;
+
+            inputProperties.Add(newInput);
+
+            var container = new VisualElement();
+            var field = new BlackboardField{text = newInput.propertyName, typeText = "JSON file"};
+            container.Add(field);
+
+            _blackboard.Add(container);
+        }
         private void RefreshNode(GraphNode node)
         {
             node.RefreshExpandedState();
@@ -279,6 +297,9 @@ namespace ObjectModel
                     RemoveElement(node);
                 }
             }
+
+            inputProperties.Clear();
+            _blackboard.Clear();
         }
 
         public override void BuildContextualMenu(ContextualMenuPopulateEvent evt)

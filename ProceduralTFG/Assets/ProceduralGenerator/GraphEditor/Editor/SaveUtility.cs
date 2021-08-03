@@ -32,6 +32,7 @@ namespace ObjectModel
 
             var graphData = ScriptableObject.CreateInstance<GraphData>();
 
+            // PORTS
             var connectedPorts = edges.Where(x => x.input.node != null).ToArray();
             for (int i = 0; i < connectedPorts.Length; i++)
             {
@@ -47,19 +48,24 @@ namespace ObjectModel
                     chance = chance
                 });
             }
+
+            // NODES
             foreach (var graphNode in nodes)
             {
                 graphData.nodeList.Add(new NodeData
                 {
                     nodeID = graphNode.GUID,
-                    nodePos = graphNode.GetPosition().position, // GetPosition() returns the entire Rect(pos,size), we only need the position
+                    nodePos = graphNode.GetPosition().position,
                     nodeName = graphNode.nodeName,
                     rootNode = graphNode.rootNode,
                     JSONProperties = graphNode.ExportPropertyData()
                 });
             }
 
-            // We create the Resources folder if it doesn't exist
+            // INPUT PROPERTIES
+            graphData.inputProperties.AddRange(_graphView.inputProperties);
+
+            // SAVE FILE
             if (!AssetDatabase.IsValidFolder("Assets/Resources"))
                 AssetDatabase.CreateFolder("Assets", "Resources");
 
@@ -85,6 +91,7 @@ namespace ObjectModel
                 ClearGraph();
                 CreateNodes();
                 ConnectNodes();
+                CreateInputProperties();
             }
         }
 
@@ -92,14 +99,14 @@ namespace ObjectModel
         {
             //nodes.Find(x => x.RootNode).GUID = savedGraph.linkList[0].parentNodeID;
 
-            foreach (var node in nodes)
+            /* foreach (var node in nodes)
             {
                 //if (node.RootNode) continue;
                 edges.Where(x => x.input.node == node).ToList().ForEach(edge => _graphView.RemoveElement(edge));
 
-                _graphView.RemoveElement(node);
-                ;
-            }
+                _graphView.RemoveElement(node);;
+            } */
+            _graphView.ClearGraph(true);
         }
 
         private void CreateNodes()
@@ -172,6 +179,12 @@ namespace ObjectModel
             tempEdge.output.Connect(tempEdge);
             _graphView.Add(tempEdge);
 
+        }
+
+        private void CreateInputProperties() {
+            foreach(var property in savedGraph.inputProperties) {
+                _graphView.AddBlackboardProperty(property);
+            }
         }
     }
 }
