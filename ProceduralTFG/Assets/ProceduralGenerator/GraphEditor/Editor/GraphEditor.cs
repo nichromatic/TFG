@@ -71,7 +71,9 @@ namespace ObjectModel
                     button.clickable.clicked += () =>
                     {
                         if (EditorUtility.DisplayDialog("Clear graph", "Are you sure you want to delete the graph? All data not saved to an asset will be lost.", "Clear graph", "Cancel"))
-                            _graphView.ClearGraph();
+                        {
+                            _graphView.ClearGraph(true, true, true);
+                        } 
                     };
                     break;
                 case "saveGraphBtn":
@@ -113,7 +115,7 @@ namespace ObjectModel
             bb.SetPosition(new Rect(10, 40, 200, 300));
             
             _graphView._blackboard = bb;
-            _graphView.Add(bb);
+            //_graphView.Add(bb);
         }
 
         private void RequestSystemOperation(bool save)

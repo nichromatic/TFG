@@ -47,6 +47,7 @@ namespace ProceduralGenerator
             generatedGameObject = new GameObject(obj.rootNode.nodeName);
             var objData = generatedGameObject.AddComponent<ObjectData>();
             objData.nodeData = obj.rootNode;
+            if (obj.rootNode.nodeSprite != null) generatedGameObject.AddComponent<SpriteRenderer>().sprite = Sprite.Create(obj.rootNode.nodeSprite, new Rect(0.0f, 0.0f, obj.rootNode.nodeSprite.width, obj.rootNode.nodeSprite.height), new Vector2(0.5f, 0.5f), 100.0f);
             GenerateChildGameObjects(generatedGameObject.transform, obj.rootNode);
 
             return generatedGameObject;
@@ -60,6 +61,7 @@ namespace ProceduralGenerator
                 go.transform.SetParent(parent);
                 var objData = go.AddComponent<ObjectData>();
                 objData.nodeData = child;
+                if (child.nodeSprite != null) go.AddComponent<SpriteRenderer>().sprite = Sprite.Create(child.nodeSprite, new Rect(0.0f, 0.0f, child.nodeSprite.width, child.nodeSprite.height), new Vector2(0.5f, 0.5f), 100.0f);
                 GenerateChildGameObjects(go.transform, child);
             });
         }

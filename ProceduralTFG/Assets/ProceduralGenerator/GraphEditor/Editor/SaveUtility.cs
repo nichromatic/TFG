@@ -58,7 +58,8 @@ namespace ObjectModel
                     nodePos = graphNode.GetPosition().position,
                     nodeName = graphNode.nodeName,
                     rootNode = graphNode.rootNode,
-                    JSONProperties = graphNode.ExportPropertyData()
+                    JSONProperties = graphNode.ExportPropertyData(),
+                    nodeSprite = graphNode.nodeSprite
                 });
             }
 
@@ -115,22 +116,7 @@ namespace ObjectModel
             {
                 if (nodeData.rootNode)
                 {
-                    var tempNode = _graphView.GenerateRootNode(nodeData.nodeName, false); // Don't generate default port, we add them from the saved graph
-                    tempNode.GUID = nodeData.nodeID;
-                    tempNode.SetPosition(new Rect(nodeData.nodePos, _graphView.defaultNodeSize));
-
-                    _graphView.AddElement(tempNode);
-
-                    var nodePorts = savedGraph.linkList.Where(x => x.parentNodeID == nodeData.nodeID).ToList();
-                    for (int i = 0; i < nodePorts.Count; i++)
-                    {
-                        _graphView.GenerateChildPort(tempNode, nodePorts[i].chance);
-                    }
-
-                }
-                else
-                {
-                    var tempNode = _graphView.CreateNode(nodeData.nodeName, _graphView.defaultNodePos);
+                    var tempNode = _graphView.GenerateRootNode(nodeData, false); // Don't generate default port, we add them from the saved graph
                     tempNode.GUID = nodeData.nodeID;
                     tempNode.SetPosition(new Rect(nodeData.nodePos, _graphView.defaultNodeSize));
 
@@ -148,7 +134,35 @@ namespace ObjectModel
                             VisualElement propertyContainer = new VisualElement();
                             propertyContainer.AddToClassList("property-row-container");
                             tempNode.nodePropertiesContainer = propertyContainer;
-                            tempNode.extensionContainer.Add(propertyContainer);
+                            //node.extensionContainer.Add(propertyContainer);
+                            tempNode.nodePropertiesFoldout.Add(propertyContainer);
+                        }
+                        tempNode.nodePropertyRows.Add(new GraphProperty(tempNode.nodePropertiesContainer, tempNode, nodeData.JSONProperties[i]));
+                    }
+
+                }
+                else
+                {
+                    var tempNode = _graphView.CreateNode(nodeData, _graphView.defaultNodePos);
+                    tempNode.GUID = nodeData.nodeID;
+                    tempNode.SetPosition(new Rect(nodeData.nodePos, _graphView.defaultNodeSize));
+
+                    _graphView.AddElement(tempNode);
+
+                    var nodePorts = savedGraph.linkList.Where(x => x.parentNodeID == nodeData.nodeID).ToList();
+                    for (int i = 0; i < nodePorts.Count; i++)
+                    {
+                        _graphView.GenerateChildPort(tempNode, nodePorts[i].chance);
+                    }
+                    for (int i = 0; i < nodeData.JSONProperties.Count; i++)
+                    {
+                        if (tempNode.nodePropertiesContainer == null)
+                        {
+                            VisualElement propertyContainer = new VisualElement();
+                            propertyContainer.AddToClassList("property-row-container");
+                            tempNode.nodePropertiesContainer = propertyContainer;
+                            //node.extensionContainer.Add(propertyContainer);
+                            tempNode.nodePropertiesFoldout.Add(propertyContainer);
                         }
                         tempNode.nodePropertyRows.Add(new GraphProperty(tempNode.nodePropertiesContainer, tempNode, nodeData.JSONProperties[i]));
                     }

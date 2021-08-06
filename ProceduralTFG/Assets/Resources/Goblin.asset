@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6cf0c1d50937e8428ba68564cbb4c22, type: 3}
+  m_Name: Goblin
+  m_EditorClassIdentifier: 
+  nodeList:
+  - nodeID: e0f1f361-0dfb-4d9f-ba23-bf5381358e08
+    nodePos: {x: 331, y: 300}
+    nodeName: Goblin
+    rootNode: 1
+    JSONProperties: []
+    nodeSprite: {fileID: 2800000, guid: 3dfef67c5b3168f4cb36b94d4f73f3cb, type: 3}
+  - nodeID: 121e6f70-3e8a-4799-b6b3-1da7665872cd
+    nodePos: {x: 617, y: 120}
+    nodeName: Helmet
+    rootNode: 0
+    JSONProperties: []
+    nodeSprite: {fileID: 2800000, guid: 3f5275c8fa4e9c64d84f1c1bcbcb4510, type: 3}
+  - nodeID: ca78f83d-925d-44a8-a92d-2ec527561fee
+    nodePos: {x: 622, y: 437}
+    nodeName: Sword
+    rootNode: 0
+    JSONProperties: []
+    nodeSprite: {fileID: 2800000, guid: dbb2deb0619e7d24a8499c3b6fceaca1, type: 3}
+  linkList:
+  - parentNodeID: e0f1f361-0dfb-4d9f-ba23-bf5381358e08
+    childNodeID: 121e6f70-3e8a-4799-b6b3-1da7665872cd
+    portName: childPort0
+    chance: 50
+  - parentNodeID: e0f1f361-0dfb-4d9f-ba23-bf5381358e08
+    childNodeID: ca78f83d-925d-44a8-a92d-2ec527561fee
+    portName: childPort1
+    chance: 75
+  inputProperties: []

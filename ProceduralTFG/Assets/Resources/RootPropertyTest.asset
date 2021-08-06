@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6cf0c1d50937e8428ba68564cbb4c22, type: 3}
+  m_Name: RootPropertyTest
+  m_EditorClassIdentifier: 
+  nodeList:
+  - nodeID: 192534b0-70db-42fa-bf87-114d1de64133
+    nodePos: {x: 503, y: 158}
+    nodeName: Node 1
+    rootNode: 0
+    JSONProperties:
+    - '{"propertyName":"Node1 String","propertyType":0,"multipleValues":false,"repeatValues":false,"minMultiple":0,"maxMultiple":0,"roundValue":false,"values":["String","String","String"],"valueWeights":[1.0,1.0,1.0]}'
+  - nodeID: 99267bd3-9e1d-4380-a03c-ef565c5de560
+    nodePos: {x: 82, y: 150}
+    nodeName: Root node
+    rootNode: 1
+    JSONProperties:
+    - '{"propertyName":"Root string","propertyType":0,"multipleValues":false,"repeatValues":false,"minMultiple":0,"maxMultiple":0,"roundValue":false,"values":["Root1","Root2","Root2"],"valueWeights":[1.0,1.0,1.0]}'
+  linkList:
+  - parentNodeID: 99267bd3-9e1d-4380-a03c-ef565c5de560
+    childNodeID: 192534b0-70db-42fa-bf87-114d1de64133
+    portName: childPort0
+    chance: 100
+  inputProperties: []

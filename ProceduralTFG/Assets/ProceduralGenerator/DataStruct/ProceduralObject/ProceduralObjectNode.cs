@@ -14,6 +14,7 @@ namespace ProceduralGenerator
         public List<ProceduralObjectProperty> properties = new List<ProceduralObjectProperty>();
         public bool rootNode = false;
         public string nodeName = "";
+        public Texture2D nodeSprite;
 
         public ProceduralObjectNode(ProceduralObjectNode parent, ModelNode data, ProceduralObject PO)
         {
@@ -27,6 +28,7 @@ namespace ProceduralGenerator
         {
             rootNode = data.rootNode;
             nodeName = data.nodeName;
+            nodeSprite = data.nodeSprite;
         }
 
         public void GenerateProperties(ModelNode modelNode) {

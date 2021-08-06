@@ -14,5 +14,7 @@ namespace ObjectModel
         public string nodeName;
         public bool rootNode;
         public List<string> JSONProperties = new List<string>();
+
+        public Texture2D nodeSprite;
     }
 }

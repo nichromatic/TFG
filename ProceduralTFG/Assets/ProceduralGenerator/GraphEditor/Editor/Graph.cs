@@ -39,47 +39,68 @@ namespace ObjectModel
             AddElement(GenerateRootNode());
         }
 
-        public GraphNode CreateNode(string name, Vector2 position)
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        #region NODE FUNCTIONS
+
+        public GraphNode CreateNode(NodeData data, Vector2 position)
         {
+            var name = "Node";
+            if (data != null) name = data.nodeName;
+            Texture2D sprite = null;
+            if (data != null) sprite = data.nodeSprite;
+
             var newNode = new GraphNode
             {
                 GUID = Guid.NewGuid().ToString(),
                 rootNode = false,
-                nodeName = name
+                nodeName = name,
+                nodeSprite = sprite
             };
 
             // Parent (input) port
             var inputPort = GenerateParentPort(newNode);
 
             // Textfield for the nodeName
-            var textField = new TextField()
-            {
-                name = string.Empty,
-                value = name
-            };
-            textField.RegisterValueChangedCallback(e =>
-            {
-                newNode.nodeName = e.newValue;
-            });
-            textField.AddToClassList("titleTextField");
-            newNode.titleContainer.Remove(newNode.titleContainer.Q<Label>("title-label"));
-            newNode.titleContainer.Insert(0, textField);
+            newNode.InitializeNameField();
 
             // Btn to add child (output) ports
             var addChildBtn = new Button(() =>
             {
                 var newOutputPort = GenerateChildPort(newNode);
             });
-            addChildBtn.text = "Add child";
+            addChildBtn.text = "Add child port";
             newNode.titleButtonContainer.Add(addChildBtn);
+            //newNode.outputContainer.Insert(0,addChildBtn);
 
+            var propertyFoldout = new Foldout();
             var addPropertyBtn = new Button(() =>
             {
                 CreateVariableInputRow(newNode);
             });
             addPropertyBtn.text = "Add property";
-            newNode.extensionContainer.Add(addPropertyBtn);
+            addPropertyBtn.AddToClassList("addBtn");
+            propertyFoldout.Add(addPropertyBtn);
+            propertyFoldout.value = false;
+            propertyFoldout.text = "Node properties";
+            propertyFoldout.AddToClassList("nodeFoldout");
+            propertyFoldout.AddToClassList("propertyFoldout");
+            newNode.extensionContainer.Add(propertyFoldout);
+            newNode.nodePropertiesFoldout = propertyFoldout;
 
+            var graphicFoldout = new Foldout();
+            /* var addGraphicBtn = new Button(() =>
+            {
+                newNode.InitializeSpriteField(graphicFoldout);
+            });
+            addGraphicBtn.text = "Add sprite";
+            addGraphicBtn.AddToClassList("addBtn");
+            graphicFoldout.Add(addGraphicBtn); */
+            newNode.InitializeSpriteField(graphicFoldout, newNode.nodeSprite);
+            if (newNode.nodeSprite == null) graphicFoldout.value = false;
+            graphicFoldout.text = "Visual representation";
+            graphicFoldout.AddToClassList("nodeFoldout");
+            graphicFoldout.AddToClassList("graphicFoldout");
+            newNode.extensionContainer.Add(graphicFoldout);
 
             RefreshNode(newNode);
             newNode.SetPosition(new Rect(position, defaultNodeSize));
@@ -87,25 +108,19 @@ namespace ObjectModel
             return newNode;
         }
 
-        public void CreateVariableInputRow(GraphNode node, PropertyType type = PropertyType.String, Property baseProperty = null)
+        public GraphNode GenerateRootNode(NodeData data = null, bool addDefaultPort = true)
         {
-            if (node.nodePropertiesContainer == null)
-            {
-                VisualElement propertyContainer = new VisualElement();
-                propertyContainer.AddToClassList("property-row-container");
-                node.nodePropertiesContainer = propertyContainer;
-                node.extensionContainer.Add(propertyContainer);
-            }
-            node.nodePropertyRows.Add(new GraphProperty(node.nodePropertiesContainer, node, baseProperty));
-        }
+            var name = "Root node";
+            if (data != null) name = data.nodeName;
+            Texture2D sprite = null;
+            if (data != null) sprite = data.nodeSprite;
 
-        public GraphNode GenerateRootNode(string name = "Root node", bool addDefaultPort = true)
-        {
             var rootNode = new GraphNode
             {
                 GUID = Guid.NewGuid().ToString(),
                 rootNode = true,
-                nodeName = name
+                nodeName = name,
+                nodeSprite = sprite
             };
 
             // Textfield for the nodeName
@@ -119,6 +134,7 @@ namespace ObjectModel
                 rootNode.nodeName = e.newValue;
             });
             textField.AddToClassList("titleTextField");
+            rootNode.mainContainer.AddToClassList("rootNode");
             rootNode.titleContainer.Remove(rootNode.titleContainer.Q<Label>("title-label"));
             rootNode.titleContainer.Insert(0, textField);
 
@@ -138,14 +154,35 @@ namespace ObjectModel
             rootNode.titleButtonContainer.Add(addChildBtn);
 
 
-            // TODO Add global variables to node
-            /*var addVarBtn = new Button(() =>
+            var propertyFoldout = new Foldout();
+            var addPropertyBtn = new Button(() =>
             {
-                RefreshNode(rootNode);
+                CreateVariableInputRow(rootNode);
             });
-            addVarBtn.text = "Add variable";
-            rootNode.mainContainer.Add(addVarBtn);*/
+            addPropertyBtn.text = "Add property";
+            addPropertyBtn.AddToClassList("addBtn");
+            propertyFoldout.Add(addPropertyBtn);
+            propertyFoldout.value = false;
+            propertyFoldout.text = "Node properties";
+            propertyFoldout.AddToClassList("nodeFoldout");
+            propertyFoldout.AddToClassList("propertyFoldout");
+            rootNode.extensionContainer.Add(propertyFoldout);
+            rootNode.nodePropertiesFoldout = propertyFoldout;
 
+            var graphicFoldout = new Foldout();
+            /* var addGraphicBtn = new Button(() =>
+            {
+                rootNode.InitializeSpriteField(graphicFoldout);
+            });
+            addGraphicBtn.text = "Add sprite";
+            addGraphicBtn.AddToClassList("addBtn");
+            graphicFoldout.Add(addGraphicBtn); */
+            rootNode.InitializeSpriteField(graphicFoldout, rootNode.nodeSprite);
+            if (rootNode.nodeSprite == null) graphicFoldout.value = false;
+            graphicFoldout.text = "Visual representation";
+            graphicFoldout.AddToClassList("nodeFoldout");
+            graphicFoldout.AddToClassList("graphicFoldout");
+            rootNode.extensionContainer.Add(graphicFoldout);
             rootNode.capabilities &= ~Capabilities.Deletable; // We disable the ability to delete the root node
             rootNode.SetPosition(new Rect(defaultRootNodePos, defaultNodeSize));
 
@@ -153,13 +190,25 @@ namespace ObjectModel
 
             return rootNode;
         }
+        
+        public void CreateVariableInputRow(GraphNode node, PropertyType type = PropertyType.String, Property baseProperty = null)
+        {
+            if (node.nodePropertiesContainer == null)
+            {
+                VisualElement propertyContainer = new VisualElement();
+                propertyContainer.AddToClassList("property-row-container");
+                node.nodePropertiesContainer = propertyContainer;
+                //node.extensionContainer.Add(propertyContainer);
+                node.nodePropertiesFoldout.Add(propertyContainer);
+            }
+            node.nodePropertyRows.Add(new GraphProperty(node.nodePropertiesContainer, node, baseProperty));
+        }
 
+        #endregion
+        
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         #region PORT FUNCTIONS
 
-        /// <summary>
-        /// Method for generating the port that connects to the parent of this node (input).
-        /// </summary>
         public Port GenerateParentPort(GraphNode node, bool addToNode = true, String name = "Parent", Port.Capacity capacity = Port.Capacity.Single)
         {
             var port = node.InstantiatePort(Orientation.Horizontal, Direction.Input, capacity, typeof(float));
@@ -172,9 +221,6 @@ namespace ObjectModel
             return port;
         }
 
-        /// <summary>
-        /// Method for generating the port that connects to a child of this node (output).
-        /// </summary>
         public Port GenerateChildPort(GraphNode node, float chance = 100f, bool addToNode = true, String name = "childPort", Port.Capacity capacity = Port.Capacity.Single)
         {
             var port = node.InstantiatePort(Orientation.Horizontal, Direction.Output, capacity, typeof(float));
@@ -209,9 +255,6 @@ namespace ObjectModel
             return port;
         }
 
-        /// <summary>
-        /// Remove port from node, making sure that any edges connected to it are deleted first.
-        /// </summary>
         private void RemovePort(GraphNode node, Port port)
         {
             var portEdge = edges.ToList().Where(x => x.output.portName == port.portName && x.output.node == port.node);
@@ -226,9 +269,6 @@ namespace ObjectModel
             RefreshNode(node);
         }
 
-        /// <summary>
-        /// Overrides the List.GetCompatiblePorts() method to add some custom conditions.
-        /// </summary>
         public override List<Port> GetCompatiblePorts(Port startPort, NodeAdapter nodeAdapter)
         {
             var compatiblePorts = new List<Port>();
@@ -243,6 +283,8 @@ namespace ObjectModel
 
         #endregion
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        #region BLACKBOARD
 
         public void AddBlackboardProperty(InputProperty input) {
             var newInput = new InputProperty();
@@ -260,13 +302,19 @@ namespace ObjectModel
 
             _blackboard.Add(container);
         }
+
+        #endregion
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        #region GRAPH INTERFACE
+
         private void RefreshNode(GraphNode node)
         {
             node.RefreshExpandedState();
             node.RefreshPorts();
         }
 
-        public void ClearGraph(bool removeRoot = false, bool removeRootPorts = true)
+        public void ClearGraph(bool removeRoot = false, bool removeRootPorts = true, bool generateRoot = false)
         {
             var graphNodes = nodes.ToList().Cast<GraphNode>().ToList();
             var graphLinks = edges.ToList();
@@ -300,6 +348,8 @@ namespace ObjectModel
 
             inputProperties.Clear();
             _blackboard.Clear();
+
+            if (generateRoot) InitializeGraph();
         }
 
         public override void BuildContextualMenu(ContextualMenuPopulateEvent evt)
@@ -309,10 +359,12 @@ namespace ObjectModel
                 evt.menu.AppendAction("Create node", (e) =>
                 {
                     //Debug.Log("Created node through context menu at position: " + e.eventInfo.mousePosition);
-                    AddElement(CreateNode("Node", e.eventInfo.mousePosition));
+                    AddElement(CreateNode(null, e.eventInfo.mousePosition));
                 });
             }
             base.BuildContextualMenu(evt);
         }
+
+        #endregion
     }
 }
