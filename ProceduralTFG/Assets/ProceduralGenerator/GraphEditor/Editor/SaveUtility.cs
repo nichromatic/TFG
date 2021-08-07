@@ -15,7 +15,7 @@ namespace ObjectModel
         private GraphData savedGraph;
 
         private List<Edge> edges => _graphView.edges.ToList();
-        private List<GraphNode> nodes => _graphView.nodes.ToList().Cast<GraphNode>().ToList();
+        private List<BaseNode> nodes => _graphView.nodes.ToList().Cast<BaseNode>().ToList();
 
 
         public static SaveUtility GetInstance(Graph graphView)
@@ -36,31 +36,45 @@ namespace ObjectModel
             var connectedPorts = edges.Where(x => x.input.node != null).ToArray();
             for (int i = 0; i < connectedPorts.Length; i++)
             {
-                var outputNode = connectedPorts[i].output.node as GraphNode;
-                var inputNode = connectedPorts[i].input.node as GraphNode;
+                var outputNode = connectedPorts[i].output.node as BaseNode;
+                var inputNode = connectedPorts[i].input.node as BaseNode;
 
-                var chance = connectedPorts[i].output.contentContainer.Q<FloatField>("chance").value;
+                var chanceField = connectedPorts[i].output.contentContainer.Q<FloatField>("chance");
+                var chanceValue = 100f;
+                if (chanceField != null) chanceValue = chanceField.value;
                 graphData.linkList.Add(new LinkData
                 {
                     parentNodeID = outputNode.GUID,
                     portName = connectedPorts[i].output.portName,
                     childNodeID = inputNode.GUID,
-                    chance = chance
+                    chance = chanceValue
                 });
             }
 
             // NODES
-            foreach (var graphNode in nodes)
+            foreach (Node graphNode in nodes)
             {
-                graphData.nodeList.Add(new NodeData
-                {
-                    nodeID = graphNode.GUID,
-                    nodePos = graphNode.GetPosition().position,
-                    nodeName = graphNode.nodeName,
-                    rootNode = graphNode.rootNode,
-                    JSONProperties = graphNode.ExportPropertyData(),
-                    nodeSprite = graphNode.nodeSprite
-                });
+                if (graphNode is GraphNode) {
+                    GraphNode n = (GraphNode)graphNode;
+                    graphData.nodeList.Add(new NodeData
+                    {
+                        nodeID = n.GUID,
+                        nodePos = n.GetPosition().position,
+                        nodeName = n.nodeName,
+                        rootNode = n.rootNode,
+                        JSONProperties = n.ExportPropertyData(),
+                        nodeSprite = n.nodeSprite
+                    });
+                } else if (graphNode is GraphConstraintNode) {
+                    GraphConstraintNode c = (GraphConstraintNode)graphNode;
+                    graphData.nodeList.Add(new NodeData
+                    {
+                        nodeID = c.GUID,
+                        nodePos = c.GetPosition().position,
+                        type = c.type,
+                        constraintNode = true
+                    });
+                } 
             }
 
             // INPUT PROPERTIES
@@ -114,9 +128,8 @@ namespace ObjectModel
         {
             foreach (var nodeData in savedGraph.nodeList)
             {
-                if (nodeData.rootNode)
-                {
-                    var tempNode = _graphView.GenerateRootNode(nodeData, false); // Don't generate default port, we add them from the saved graph
+                if (nodeData.constraintNode) {
+                    var tempNode = _graphView.CreateConstraintNode(nodeData, _graphView.defaultNodePos);
                     tempNode.GUID = nodeData.nodeID;
                     tempNode.SetPosition(new Rect(nodeData.nodePos, _graphView.defaultNodeSize));
 
@@ -125,46 +138,61 @@ namespace ObjectModel
                     var nodePorts = savedGraph.linkList.Where(x => x.parentNodeID == nodeData.nodeID).ToList();
                     for (int i = 0; i < nodePorts.Count; i++)
                     {
-                        _graphView.GenerateChildPort(tempNode, nodePorts[i].chance);
+                        _graphView.GenerateChildPort(tempNode, false);
                     }
-                    for (int i = 0; i < nodeData.JSONProperties.Count; i++)
+                } else {
+                    if (nodeData.rootNode)
                     {
-                        if (tempNode.nodePropertiesContainer == null)
+                        var tempNode = _graphView.GenerateRootNode(nodeData, false); // Don't generate default port, we add them from the saved graph
+                        tempNode.GUID = nodeData.nodeID;
+                        tempNode.SetPosition(new Rect(nodeData.nodePos, _graphView.defaultNodeSize));
+
+                        _graphView.AddElement(tempNode);
+
+                        var nodePorts = savedGraph.linkList.Where(x => x.parentNodeID == nodeData.nodeID).ToList();
+                        for (int i = 0; i < nodePorts.Count; i++)
                         {
-                            VisualElement propertyContainer = new VisualElement();
-                            propertyContainer.AddToClassList("property-row-container");
-                            tempNode.nodePropertiesContainer = propertyContainer;
-                            //node.extensionContainer.Add(propertyContainer);
-                            tempNode.nodePropertiesFoldout.Add(propertyContainer);
+                            _graphView.GenerateChildPort(tempNode, true, nodePorts[i].chance);
                         }
-                        tempNode.nodePropertyRows.Add(new GraphProperty(tempNode.nodePropertiesContainer, tempNode, nodeData.JSONProperties[i]));
-                    }
-
-                }
-                else
-                {
-                    var tempNode = _graphView.CreateNode(nodeData, _graphView.defaultNodePos);
-                    tempNode.GUID = nodeData.nodeID;
-                    tempNode.SetPosition(new Rect(nodeData.nodePos, _graphView.defaultNodeSize));
-
-                    _graphView.AddElement(tempNode);
-
-                    var nodePorts = savedGraph.linkList.Where(x => x.parentNodeID == nodeData.nodeID).ToList();
-                    for (int i = 0; i < nodePorts.Count; i++)
-                    {
-                        _graphView.GenerateChildPort(tempNode, nodePorts[i].chance);
-                    }
-                    for (int i = 0; i < nodeData.JSONProperties.Count; i++)
-                    {
-                        if (tempNode.nodePropertiesContainer == null)
+                        for (int i = 0; i < nodeData.JSONProperties.Count; i++)
                         {
-                            VisualElement propertyContainer = new VisualElement();
-                            propertyContainer.AddToClassList("property-row-container");
-                            tempNode.nodePropertiesContainer = propertyContainer;
-                            //node.extensionContainer.Add(propertyContainer);
-                            tempNode.nodePropertiesFoldout.Add(propertyContainer);
+                            if (tempNode.nodePropertiesContainer == null)
+                            {
+                                VisualElement propertyContainer = new VisualElement();
+                                propertyContainer.AddToClassList("property-row-container");
+                                tempNode.nodePropertiesContainer = propertyContainer;
+                                //node.extensionContainer.Add(propertyContainer);
+                                tempNode.nodePropertiesFoldout.Add(propertyContainer);
+                            }
+                            tempNode.nodePropertyRows.Add(new GraphProperty(tempNode.nodePropertiesContainer, tempNode, nodeData.JSONProperties[i]));
                         }
-                        tempNode.nodePropertyRows.Add(new GraphProperty(tempNode.nodePropertiesContainer, tempNode, nodeData.JSONProperties[i]));
+
+                    }
+                    else if (!nodeData.constraintNode)
+                    {
+                        var tempNode = _graphView.CreateNode(nodeData, _graphView.defaultNodePos);
+                        tempNode.GUID = nodeData.nodeID;
+                        tempNode.SetPosition(new Rect(nodeData.nodePos, _graphView.defaultNodeSize));
+
+                        _graphView.AddElement(tempNode);
+
+                        var nodePorts = savedGraph.linkList.Where(x => x.parentNodeID == nodeData.nodeID).ToList();
+                        for (int i = 0; i < nodePorts.Count; i++)
+                        {
+                            _graphView.GenerateChildPort(tempNode, true, nodePorts[i].chance);
+                        }
+                        for (int i = 0; i < nodeData.JSONProperties.Count; i++)
+                        {
+                            if (tempNode.nodePropertiesContainer == null)
+                            {
+                                VisualElement propertyContainer = new VisualElement();
+                                propertyContainer.AddToClassList("property-row-container");
+                                tempNode.nodePropertiesContainer = propertyContainer;
+                                //node.extensionContainer.Add(propertyContainer);
+                                tempNode.nodePropertiesFoldout.Add(propertyContainer);
+                            }
+                            tempNode.nodePropertyRows.Add(new GraphProperty(tempNode.nodePropertiesContainer, tempNode, nodeData.JSONProperties[i]));
+                        }
                     }
                 }
             }

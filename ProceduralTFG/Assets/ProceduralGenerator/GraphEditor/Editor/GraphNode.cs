@@ -7,9 +7,8 @@ using UnityEditor.UIElements;
 
 namespace ObjectModel
 {
-    public class GraphNode : Node
+    public class GraphNode : BaseNode
     {
-        public string GUID;
         public bool rootNode = false;
         public string nodeName;
         //public List<Property> nodeProperties = new List<Property>();

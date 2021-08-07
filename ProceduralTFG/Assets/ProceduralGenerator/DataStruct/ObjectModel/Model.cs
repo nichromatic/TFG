@@ -7,12 +7,12 @@ namespace ObjectModel
     public class Model
     {
         public ModelNode rootNode;
-        public List<ModelNode> allNodes;
+        public List<ModelBaseNode> allNodes;
         public List<ModelLink> allLinks;
 
         public void BuildModelFromGraph(GraphData graphData)
         {
-            allNodes = new List<ModelNode>();
+            allNodes = new List<ModelBaseNode>();
             allLinks = new List<ModelLink>();
 
             var findRootNode = graphData.nodeList.Where(node => node.rootNode).ToList(); // Find the rootNode
@@ -29,8 +29,8 @@ namespace ObjectModel
 
             rootNode = new ModelNode(findRootNode[0]);
 
-            var currentNode = rootNode;
-            var openNodes = new List<ModelNode>();
+            var currentNode = (ModelBaseNode)rootNode;
+            var openNodes = new List<ModelBaseNode>();
             var finished = false;
             while (!finished)
             {
@@ -54,9 +54,9 @@ namespace ObjectModel
             }
         }
 
-        public List<ModelNode> GenerateChildren(ModelNode node, GraphData graphData)
+        public List<ModelBaseNode> GenerateChildren(ModelBaseNode node, GraphData graphData)
         {
-            var children = new List<ModelNode>();
+            var children = new List<ModelBaseNode>();
 
             // Find all links that have this node as the parent (output)
             var childLinks = graphData.linkList.Where(link => link.parentNodeID == node.GUID).ToList();
@@ -65,7 +65,11 @@ namespace ObjectModel
                 childLinks.ForEach(childLink =>
                 {
                     var findChildNode = graphData.nodeList.Where(child => child.nodeID == childLink.childNodeID).ToList();
-                    var childNode = new ModelNode(findChildNode[0]);
+                    var childNode = new ModelBaseNode(findChildNode[0]);
+                    if (!findChildNode[0].constraintNode)
+                        childNode = new ModelNode(findChildNode[0]);
+                    else if (findChildNode[0].constraintNode)
+                        childNode = new ModelConstraintNode(findChildNode[0]);
                     var newLink = new ModelLink(node, childNode, childLink.chance);
                     node.childLinks.Add(newLink);
                     childNode.parentLink = newLink;

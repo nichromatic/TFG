@@ -61,6 +61,21 @@ TextField.titleTextField {
 	-unity-font-style: bold;
 }
 
+EnumField.titleEnumField {
+	margin: 3px 4px;
+	min-width: 50px;
+	font-size: 12px;
+	-unity-font-style: bold;
+}
+
+EnumField.titleEnumField > VisualElement {
+	background-color: #2A2A2A;
+}
+
+EnumField.titleEnumField TextElement {
+	padding: 0px 6px;
+}
+
 .node #title{
 	background-color: #44C0FF;
 }
@@ -71,6 +86,20 @@ TextField.titleTextField {
 
 .rootNode #title{
 	background-color: #2bb55e;
+}
+
+.constraintNode #title{
+	background-color: #bc55cf;
+}
+
+.constraintNode {
+	max-width: 200px;
+}
+
+.constraintNodeDescription {
+	width: 100%;
+	background-color: rgba(65, 65, 65, 0.7);
+	padding: 5px 10px;
 }
 
 TextField.titleTextField >* {

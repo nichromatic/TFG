@@ -68,7 +68,7 @@ namespace ObjectModel
             {
                 var newOutputPort = GenerateChildPort(newNode);
             });
-            addChildBtn.text = "Add child port";
+            addChildBtn.text = "Add child";
             newNode.titleButtonContainer.Add(addChildBtn);
             //newNode.outputContainer.Insert(0,addChildBtn);
 
@@ -102,6 +102,52 @@ namespace ObjectModel
             graphicFoldout.AddToClassList("graphicFoldout");
             newNode.extensionContainer.Add(graphicFoldout);
 
+            RefreshNode(newNode);
+            newNode.SetPosition(new Rect(position, defaultNodeSize));
+
+            return newNode;
+        }
+
+        public GraphConstraintNode CreateConstraintNode(NodeData data, Vector2 position)
+        {
+
+            var newNode = new GraphConstraintNode
+            {
+                GUID = Guid.NewGuid().ToString(),
+            };
+
+            if (data != null) newNode.type = data.type;
+
+            // Parent (input) port
+            var inputPort = GenerateParentPort(newNode);
+
+            // Btn to add child (output) ports
+            var addChildBtn = new Button(() =>
+            {
+                var newOutputPort = GenerateChildPort(newNode, false);
+            });
+            addChildBtn.text = "Add child";
+            newNode.titleButtonContainer.Add(addChildBtn);
+
+            var constraintDescription = new TextElement();
+            constraintDescription.text = newNode.GetConstraintDescription();
+            var constraintDescriptionContainer = new VisualElement();
+            constraintDescriptionContainer.AddToClassList("constraintNodeDescription");
+            constraintDescriptionContainer.Add(constraintDescription);
+            newNode.extensionContainer.Add(constraintDescriptionContainer);
+
+            var constraintTypeSelect = new EnumField(newNode.type);
+            constraintTypeSelect.RegisterValueChangedCallback(e =>
+            {
+                newNode.type = (ConstraintType)e.newValue;
+                constraintDescription.text = newNode.GetConstraintDescription();
+            });
+            constraintTypeSelect.AddToClassList("titleEnumField");
+            newNode.titleContainer.Insert(0, constraintTypeSelect);
+
+            //newNode.outputContainer.Insert(0,addChildBtn);
+
+            newNode.mainContainer.AddToClassList("constraintNode");
             RefreshNode(newNode);
             newNode.SetPosition(new Rect(position, defaultNodeSize));
 
@@ -209,7 +255,7 @@ namespace ObjectModel
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         #region PORT FUNCTIONS
 
-        public Port GenerateParentPort(GraphNode node, bool addToNode = true, String name = "Parent", Port.Capacity capacity = Port.Capacity.Single)
+        public Port GenerateParentPort(Node node, bool addToNode = true, String name = "Parent", Port.Capacity capacity = Port.Capacity.Single)
         {
             var port = node.InstantiatePort(Orientation.Horizontal, Direction.Input, capacity, typeof(float));
             port.portName = name;
@@ -221,25 +267,28 @@ namespace ObjectModel
             return port;
         }
 
-        public Port GenerateChildPort(GraphNode node, float chance = 100f, bool addToNode = true, String name = "childPort", Port.Capacity capacity = Port.Capacity.Single)
+        public Port GenerateChildPort(Node node, bool showChance = true, float chance = 100f, bool addToNode = true, String name = "childPort", Port.Capacity capacity = Port.Capacity.Single)
         {
             var port = node.InstantiatePort(Orientation.Horizontal, Direction.Output, capacity, typeof(float));
-            port.portName = name + node.GetNextPortID();
+            if (node is GraphNode) port.portName = name + ((GraphNode)node).GetNextPortID();
+            else if (node is GraphConstraintNode) port.portName = name + ((GraphConstraintNode)node).GetNextPortID();
 
-            var chanceLabel = new Label("%");
-            chanceLabel.AddToClassList("port-label");
-            port.contentContainer.Add(chanceLabel);
-            var chanceField = new FloatField()
-            {
-                name = "chance",
-                value = chance
-            };
-            chanceField.RegisterValueChangedCallback(evt =>
-            {
-                var clampedValue = Mathf.Clamp(evt.newValue, 0, 100);
-                chanceField.value = clampedValue;
-            });
-            port.contentContainer.Add(chanceField);
+            if (showChance) {
+                var chanceLabel = new Label("%");
+                chanceLabel.AddToClassList("port-label");
+                port.contentContainer.Add(chanceLabel);
+                var chanceField = new FloatField()
+                {
+                    name = "chance",
+                    value = chance
+                };
+                chanceField.RegisterValueChangedCallback(evt =>
+                {
+                    var clampedValue = Mathf.Clamp(evt.newValue, 0, 100);
+                    chanceField.value = clampedValue;
+                });
+                port.contentContainer.Add(chanceField);
+            }
 
             var deleteButton = new Button(() => RemovePort(node, port)) { text = "X" };
             deleteButton.AddToClassList("deleteButton");
@@ -255,7 +304,7 @@ namespace ObjectModel
             return port;
         }
 
-        private void RemovePort(GraphNode node, Port port)
+        private void RemovePort(Node node, Port port)
         {
             var portEdge = edges.ToList().Where(x => x.output.portName == port.portName && x.output.node == port.node);
             if (portEdge.Any())
@@ -308,7 +357,7 @@ namespace ObjectModel
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         #region GRAPH INTERFACE
 
-        private void RefreshNode(GraphNode node)
+        private void RefreshNode(Node node)
         {
             node.RefreshExpandedState();
             node.RefreshPorts();
@@ -316,7 +365,7 @@ namespace ObjectModel
 
         public void ClearGraph(bool removeRoot = false, bool removeRootPorts = true, bool generateRoot = false)
         {
-            var graphNodes = nodes.ToList().Cast<GraphNode>().ToList();
+            var graphNodes = nodes.ToList().Cast<BaseNode>().ToList();
             var graphLinks = edges.ToList();
 
             foreach (var node in graphNodes)
@@ -324,8 +373,10 @@ namespace ObjectModel
                 // First we delete all edges connected to this node
                 graphLinks.Where(x => x.input.node == node).ToList().ForEach(link => RemoveElement(link));
 
+                var isRootNode = false;  
+                if (node is GraphNode && ((GraphNode)node).rootNode) isRootNode = true;
                 // If it's the rootNode but we don't want to delete it ...
-                if (node.rootNode && !removeRoot)
+                if (isRootNode && !removeRoot)
                 {
                     // ... if we don't want to delete its ports either, we skip the rest of this iteration
                     if (!removeRootPorts) continue;
@@ -360,6 +411,11 @@ namespace ObjectModel
                 {
                     //Debug.Log("Created node through context menu at position: " + e.eventInfo.mousePosition);
                     AddElement(CreateNode(null, e.eventInfo.mousePosition));
+                });
+                evt.menu.AppendAction("Create constraint node", (e) =>
+                {
+                    //Debug.Log("Created node through context menu at position: " + e.eventInfo.mousePosition);
+                    AddElement(CreateConstraintNode(null, e.eventInfo.mousePosition));
                 });
             }
             base.BuildContextualMenu(evt);

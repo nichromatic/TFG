@@ -3,20 +3,14 @@ using UnityEngine;
 
 namespace ObjectModel
 {
-    public class ModelNode
+    public class ModelNode : ModelBaseNode
     {
-        public ModelLink parentLink;
-        public List<ModelLink> childLinks = new List<ModelLink>();
-        public bool rootNode = false;
-        public string GUID;
         public string nodeName;
         public List<PropertyData> nodeProperties = new List<PropertyData>();
         public Texture2D nodeSprite;
 
-        public ModelNode(NodeData nodeData)
+        public ModelNode(NodeData nodeData) : base(nodeData)
         {
-            rootNode = nodeData.rootNode;
-            GUID = nodeData.nodeID;
             nodeName = nodeData.nodeName;
             nodeSprite = nodeData.nodeSprite;
             foreach(string s in nodeData.JSONProperties) {

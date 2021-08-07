@@ -5,6 +5,10 @@ using UnityEngine;
 
 namespace ObjectModel
 {
+    public enum ConstraintType {
+        AND,
+        OR
+    }
     [Serializable]
     public class NodeData
     {
@@ -16,5 +20,8 @@ namespace ObjectModel
         public List<string> JSONProperties = new List<string>();
 
         public Texture2D nodeSprite;
+
+        public ConstraintType type;
+        public bool constraintNode;
     }
 }

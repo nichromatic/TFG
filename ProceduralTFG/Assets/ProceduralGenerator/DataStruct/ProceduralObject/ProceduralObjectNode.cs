@@ -37,18 +37,53 @@ namespace ProceduralGenerator
             }
         }
 
-        public void GenerateChildren(ModelNode modelNode)
+        public void GenerateChildren(ModelBaseNode modelNode)
         {
-            GenerateProperties(modelNode);
+            GenerateProperties((ModelNode)modelNode);
             modelNode.childLinks.ForEach(link =>
             {
-                var coinToss = UnityEngine.Random.Range(0f, 100f);
-                if (coinToss > link.chance) return;
+                if (link.child is ModelNode) {
+                    var coinToss = UnityEngine.Random.Range(0f, 100f);
+                    if (coinToss > link.chance) return;
 
-                var childNode = new ProceduralObjectNode(this, link.child, parentObject);
-                childNodes.Add(childNode);
-                childNode.GenerateChildren(link.child);
+                    var childNode = new ProceduralObjectNode(this, (ModelNode)link.child, parentObject);
+                    childNodes.Add(childNode);
+                    childNode.GenerateChildren(link.child);
+                } else if (link.child is ModelConstraintNode) {
+                    var coinToss = UnityEngine.Random.Range(0f, 100f);
+                    if (coinToss > link.chance) return;
+
+                    HandleConstraint((ModelConstraintNode)link.child);
+                }
             });
+        }
+
+        public void HandleConstraint(ModelConstraintNode constraint) {
+            switch (constraint.type) {
+                case ConstraintType.AND: // All child nodes are generated
+                    constraint.childLinks.ForEach(link =>
+                    {
+                        if (link.child is ModelNode) {
+                            var childNode = new ProceduralObjectNode(this, (ModelNode)link.child, parentObject);
+                            childNodes.Add(childNode);
+                            childNode.GenerateChildren(link.child);
+                        } else if (link.child is ModelConstraintNode) {
+                            HandleConstraint((ModelConstraintNode)link.child);
+                        }
+                    });
+                break;
+                case ConstraintType.OR: // We choose 1 child to generate: All others are ignored
+                    var coinToss = UnityEngine.Random.Range(0, constraint.childLinks.Count);
+                    var chosenChild = constraint.childLinks[coinToss].child;
+                    if (chosenChild is ModelNode) {
+                            var childNode = new ProceduralObjectNode(this, (ModelNode)chosenChild, parentObject);
+                            childNodes.Add(childNode);
+                            childNode.GenerateChildren(chosenChild);
+                        } else if (chosenChild is ModelConstraintNode) {
+                            HandleConstraint((ModelConstraintNode)chosenChild);
+                        }
+                break;
+            }
         }
 
         public void DebugPrintNode()

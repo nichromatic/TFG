@@ -2,12 +2,12 @@
 {
     public class ModelLink
     {
-        public ModelNode parent;
-        public ModelNode child;
+        public ModelBaseNode parent;
+        public ModelBaseNode child;
 
         public float chance;
 
-        public ModelLink(ModelNode parent, ModelNode child, float chance = 100f)
+        public ModelLink(ModelBaseNode parent, ModelBaseNode child, float chance = 100f)
         {
             this.parent = parent;
             this.child = child;
