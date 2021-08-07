@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<UXML xmlns="UnityEditor.UIElements">
+  <VisualElement xmlns="UnityEngine.UIElements" class="property-header">
+    <Label text="Property" name="propertyLabel"></Label>
+    <Button text="X" name="deletePropertyBtn" class="deleteButton"></Button>
+  </VisualElement>
+  <VisualElement xmlns="UnityEngine.UIElements" class="property-row">
+    
+    <VisualElement xmlns="UnityEngine.UIElements" class="info-column col">
+      <VisualElement xmlns="UnityEngine.UIElements" class="main-info row">
+        <VisualElement xmlns="UnityEngine.UIElements" class="col">
+          <Label text="Type"></Label>
+          <EnumField xmlns="UnityEditor.UIElements" type="ObjectModel.PropertyType, Assembly-CSharp" name="propertyType"></EnumField>
+        </VisualElement>
+        <VisualElement xmlns="UnityEngine.UIElements" class="col">
+          <Label text="Name"></Label>
+          <TextField name="propertyName" class="flex-grow"></TextField>
+        </VisualElement>
+      </VisualElement>
+      <VisualElement xmlns="UnityEngine.UIElements" class="row">
+        <Toggle name="multipleValues"></Toggle>
+        <Label text="Generate multiple values"></Label>
+      </VisualElement>
+      <VisualElement name="multipleValueConfig" xmlns="UnityEngine.UIElements" class="row max-min-row display-none">
+        <Label text="From "></Label>
+        <IntegerField xmlns="UnityEditor.UIElements" name="multipleMin"></IntegerField>
+        <Label text=" to "></Label>
+        <IntegerField xmlns="UnityEditor.UIElements" name="multipleMax"></IntegerField>
+      </VisualElement>
+      <VisualElement name="multipleValueConfig" xmlns="UnityEngine.UIElements" class="row display-none">
+        <Toggle name="repeatValues"></Toggle>
+        <Label text="Allow repeated values"></Label>
+      </VisualElement>
+    </VisualElement>
+    
+    <VisualElement xmlns="UnityEngine.UIElements" class="value-column col">
+      
+      <VisualElement xmlns="UnityEngine.UIElements" name="valueRowContainer" class="value-row-col col">
+        <VisualElement xmlns="UnityEngine.UIElements" name="labelValueRow" class="value-row row">
+          <VisualElement xmlns="UnityEngine.UIElements" class="col col-values">
+            <Label text="Values"></Label>
+          </VisualElement>
+          <VisualElement xmlns="UnityEngine.UIElements" class="col col-weights">
+            <Label text="Weights"></Label>
+          </VisualElement>
+          <VisualElement xmlns="UnityEngine.UIElements" class="col col-button">
+          </VisualElement>
+        </VisualElement>
+      </VisualElement>
+
+      <VisualElement xmlns="UnityEngine.UIElements" class="value-row row">
+        <Button text="Add value" name="addValueBtn" class="flex-grow"></Button>
+      </VisualElement>
+    
+    </VisualElement>
+  </VisualElement>
+</UXML>

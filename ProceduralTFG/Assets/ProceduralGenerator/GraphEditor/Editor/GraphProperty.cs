@@ -98,6 +98,19 @@ namespace ObjectModel
                     var propRange = (PropertyRange)property;
                     propRange.InitializeRow(parent);
                     break;
+                case PropertyType.Color:
+
+                    if (!loadProperty)
+                    {
+                        property = new PropertyColor("Property Name", this);
+                    } else if (loadValues) {
+                        property = new PropertyColor("",savedData, this);
+                    } else if (!loadValues) {
+                        property = new PropertyColor("",savedData, this, false);
+                    } 
+                    var propColor = (PropertyColor)property;
+                    propColor.InitializeRow(parent);
+                    break;
             }
         }
         

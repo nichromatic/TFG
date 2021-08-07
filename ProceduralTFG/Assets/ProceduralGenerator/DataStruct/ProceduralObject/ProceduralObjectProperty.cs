@@ -46,6 +46,15 @@ namespace ProceduralGenerator
                     values.Add(possibleValues[coinToss]);
                     if (!property.repeatValues) possibleValues.RemoveAt(coinToss);
                 }
+            } else if (propertyType == PropertyType.Color) {
+                List<object> possibleValues = new List<object>(property.values);
+                int repeatTimes = 1;
+                if (property.multipleValues) repeatTimes = UnityEngine.Random.Range(property.minMultiple, property.maxMultiple+1);
+                for (int i = 0; i < repeatTimes; i++) {
+                    var coinToss = UnityEngine.Random.Range(0, possibleValues.Count);
+                    values.Add(possibleValues[coinToss]);
+                    if (!property.repeatValues) possibleValues.RemoveAt(coinToss);
+                }
             }
         }
         public int GetValueCount() {

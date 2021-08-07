@@ -251,6 +251,10 @@ TextField.toolbar-textfield > * {
 	flex-grow: 0;
 }
 
+.colorVarField {
+	width: 100px;
+}
+
 ObjectField.spriteField {
 	min-height: 18px;
 	flex-grow: 1;

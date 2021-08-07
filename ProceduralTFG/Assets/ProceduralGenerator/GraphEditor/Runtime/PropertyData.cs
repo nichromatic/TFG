@@ -9,7 +9,9 @@ namespace ObjectModel
         String,
         Number,
         Boolean,
-        Range
+        Range,
+        Color,
+        ColorRange
     }
     [System.Serializable]
     public class PropertyData
