@@ -7,7 +7,8 @@ namespace ObjectModel
 {
     public enum ConstraintType {
         AND,
-        OR
+        OR,
+        MULTIPLY
     }
     [Serializable]
     public class NodeData
@@ -23,5 +24,7 @@ namespace ObjectModel
 
         public ConstraintType type;
         public bool constraintNode;
+
+        public int constraintValue;
     }
 }

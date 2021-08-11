@@ -116,7 +116,10 @@ namespace ObjectModel
                 GUID = Guid.NewGuid().ToString(),
             };
 
-            if (data != null) newNode.type = data.type;
+            if (data != null)  {
+                newNode.type = data.type;
+                newNode.constraintValue = data.constraintValue;
+            }
 
             // Parent (input) port
             var inputPort = GenerateParentPort(newNode);
@@ -129,10 +132,22 @@ namespace ObjectModel
             addChildBtn.text = "Add child";
             newNode.titleButtonContainer.Add(addChildBtn);
 
+            var constraintValue = new IntegerField() {
+                label = "Repeat times",
+                value = newNode.constraintValue
+            };
+            constraintValue.RegisterValueChangedCallback(e =>
+            {
+                newNode.constraintValue = e.newValue;
+            });
+            constraintValue.AddToClassList("constraintNodeValue");
+            if (newNode.type != ConstraintType.MULTIPLY) constraintValue.AddToClassList("display-none");
+
             var constraintDescription = new TextElement();
             constraintDescription.text = newNode.GetConstraintDescription();
             var constraintDescriptionContainer = new VisualElement();
             constraintDescriptionContainer.AddToClassList("constraintNodeDescription");
+            constraintDescriptionContainer.Add(constraintValue);
             constraintDescriptionContainer.Add(constraintDescription);
             newNode.extensionContainer.Add(constraintDescriptionContainer);
 
@@ -141,6 +156,11 @@ namespace ObjectModel
             {
                 newNode.type = (ConstraintType)e.newValue;
                 constraintDescription.text = newNode.GetConstraintDescription();
+                if (newNode.type == ConstraintType.MULTIPLY) {
+                    constraintValue.RemoveFromClassList("display-none");
+                } else if (!constraintValue.ClassListContains("display-none")) {
+                    constraintValue.AddToClassList("display-none");
+                }
             });
             constraintTypeSelect.AddToClassList("titleEnumField");
             newNode.titleContainer.Insert(0, constraintTypeSelect);

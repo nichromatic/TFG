@@ -28,7 +28,7 @@ namespace ObjectModel
 
         public void Save(string filename)
         {
-            if (!edges.Any()) return; // Si no hay ningún link, no se guarda nada
+            //if (!edges.Any()) return; // Si no hay ningún link, no se guarda nada
 
             var graphData = ScriptableObject.CreateInstance<GraphData>();
 
@@ -72,6 +72,7 @@ namespace ObjectModel
                         nodeID = c.GUID,
                         nodePos = c.GetPosition().position,
                         type = c.type,
+                        constraintValue = c.constraintValue,
                         constraintNode = true
                     });
                 } 

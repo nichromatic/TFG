@@ -23,17 +23,6 @@ namespace ObjectModel
             if (savedData != null)
             {
                 property = new Property(savedData, this);
-                /* switch (property.propertyType) {
-                    case PropertyType.String:
-                        property = new PropertyString("",savedData, this);
-                    break;
-                    case PropertyType.Number:
-                        property = new PropertyNumber("",savedData, this);
-                    break;
-                    case PropertyType.Boolean:
-                        property = new Property(savedData, this);
-                    break;
-                } */
                 InitializeRow(parent, property.propertyType, true, savedData);
             } else {
                 InitializeRow(parent, PropertyType.String);

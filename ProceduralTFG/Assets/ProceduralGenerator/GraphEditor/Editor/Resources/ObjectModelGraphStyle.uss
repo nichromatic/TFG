@@ -93,9 +93,11 @@ EnumField.titleEnumField TextElement {
 }
 
 .constraintNode {
-	max-width: 200px;
+	max-width: 230px;
 }
-
+.constraintNodeValue {
+	margin: 0px;
+}
 .constraintNodeDescription {
 	width: 100%;
 	background-color: rgba(65, 65, 65, 0.7);

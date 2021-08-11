@@ -84,6 +84,7 @@ namespace ObjectModel
             spriteSelectRow.AddToClassList("row");
             spriteSelectRow.Add(spriteField);
             spriteSelectRow.Add(deleteSpriteBtn);
+
             nodeSpriteContainer.Add(spritePreview);
             nodeSpriteContainer.Add(spriteSelectRow);
             parent.Add(nodeSpriteContainer);

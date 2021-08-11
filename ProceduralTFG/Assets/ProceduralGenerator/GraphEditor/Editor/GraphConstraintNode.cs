@@ -12,6 +12,8 @@ namespace ObjectModel
 
         public ConstraintType type = ConstraintType.AND;
 
+        public int constraintValue = 1;
+
         private int nextPortID = -1;
 
         public string GetNextPortID()
@@ -24,6 +26,7 @@ namespace ObjectModel
             switch (this.type) {
                 case ConstraintType.AND: return "If one of these nodes is generated, the rest will be generated too.";
                 case ConstraintType.OR: return "Only one of these nodes will be generated, the rest will be ignored.";
+                case ConstraintType.MULTIPLY: return "All nodes associated will be generated a number of times.";
             }
             return "";
         }

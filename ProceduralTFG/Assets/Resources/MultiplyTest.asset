@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6cf0c1d50937e8428ba68564cbb4c22, type: 3}
+  m_Name: MultiplyTest
+  m_EditorClassIdentifier: 
+  nodeList:
+  - nodeID: 3c8fcdce-1614-48f5-a402-1d0c8f5ecb5d
+    nodePos: {x: 325, y: 300}
+    nodeName: Root node
+    rootNode: 1
+    JSONProperties: []
+    nodeSprite: {fileID: 0}
+    type: 0
+    constraintNode: 0
+    constraintValue: 0
+  - nodeID: 98bf239d-81d8-4c5d-9349-54286bbebb94
+    nodePos: {x: 923, y: 247}
+    nodeName: Repeat 1
+    rootNode: 0
+    JSONProperties: []
+    nodeSprite: {fileID: 0}
+    type: 0
+    constraintNode: 0
+    constraintValue: 0
+  - nodeID: 99332e2b-551e-4038-b4c5-43f97fbc099c
+    nodePos: {x: 579, y: 289}
+    nodeName: 
+    rootNode: 0
+    JSONProperties: []
+    nodeSprite: {fileID: 0}
+    type: 2
+    constraintNode: 1
+    constraintValue: 3
+  - nodeID: 3e743f2c-6c5c-41e2-a0bf-7b9140ea371d
+    nodePos: {x: 926, y: 391}
+    nodeName: Repeat 2
+    rootNode: 0
+    JSONProperties: []
+    nodeSprite: {fileID: 0}
+    type: 0
+    constraintNode: 0
+    constraintValue: 0
+  linkList:
+  - parentNodeID: 3c8fcdce-1614-48f5-a402-1d0c8f5ecb5d
+    childNodeID: 99332e2b-551e-4038-b4c5-43f97fbc099c
+    portName: childPort0
+    chance: 100
+  - parentNodeID: 99332e2b-551e-4038-b4c5-43f97fbc099c
+    childNodeID: 98bf239d-81d8-4c5d-9349-54286bbebb94
+    portName: childPort0
+    chance: 100
+  - parentNodeID: 99332e2b-551e-4038-b4c5-43f97fbc099c
+    childNodeID: 3e743f2c-6c5c-41e2-a0bf-7b9140ea371d
+    portName: childPort1
+    chance: 100
+  inputProperties: []

@@ -18,7 +18,7 @@ MonoBehaviour:
     nodeName: Node
     rootNode: 0
     JSONProperties:
-    - '{"propertyName":"Property Name","propertyType":4,"multipleValues":false,"repeatValues":false,"minMultiple":0,"maxMultiple":0,"roundValue":false,"values":["#B800FFFF","#002FFFFF","#00FFDC63"],"valueColors":[{"r":0.7234582901000977,"g":0.0,"b":1.0,"a":1.0},{"r":0.0,"g":0.18304133415222169,"b":1.0,"a":1.0},{"r":0.0,"g":1.0,"b":0.8624210357666016,"a":0.38823530077934267}],"valueWeights":[1.0,1.0,1.0]}'
+    - '{"propertyName":"Property Name","propertyType":4,"multipleValues":true,"repeatValues":true,"minMultiple":1,"maxMultiple":3,"roundValue":false,"values":["#B800FFFF","#002FFFFF","#00FFDC63"],"valueColors":[{"r":0.7215686440467835,"g":0.0,"b":1.0,"a":1.0},{"r":0.0,"g":0.18431372940540315,"b":1.0,"a":1.0},{"r":0.0,"g":1.0,"b":0.8627451062202454,"a":0.38823530077934267}],"valueWeights":[1.0,1.0,1.0]}'
     nodeSprite: {fileID: 0}
     type: 0
     constraintNode: 0
@@ -27,7 +27,7 @@ MonoBehaviour:
     nodeName: Root node
     rootNode: 1
     JSONProperties:
-    - '{"propertyName":"Property Name","propertyType":4,"multipleValues":false,"repeatValues":false,"minMultiple":0,"maxMultiple":0,"roundValue":false,"values":["#FF000077","#FF00B2FF"],"valueColors":[{"r":1.0,"g":0.0,"b":0.0,"a":0.46666666865348818},{"r":1.0,"g":0.0,"b":0.6968297958374023,"a":1.0}],"valueWeights":[1.0,1.0]}'
+    - '{"propertyName":"Property Name","propertyType":4,"multipleValues":false,"repeatValues":false,"minMultiple":0,"maxMultiple":0,"roundValue":false,"values":["#FF000077","#FF00B2FF"],"valueColors":[{"r":1.0,"g":0.0,"b":0.0,"a":0.46666666865348818},{"r":1.0,"g":0.0,"b":0.6980392336845398,"a":1.0}],"valueWeights":[1.0,1.0]}'
     nodeSprite: {fileID: 0}
     type: 0
     constraintNode: 0

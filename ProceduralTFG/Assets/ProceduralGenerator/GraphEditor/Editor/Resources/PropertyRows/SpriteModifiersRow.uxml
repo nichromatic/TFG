@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UXML xmlns="UnityEditor.UIElements">
+  <VisualElement xmlns="UnityEngine.UIElements" class="row">
+    <VisualElement xmlns="UnityEngine.UIElements" class="col col-values">
+      <ColorField xmlns="UnityEditor.UIElements" name="propertyValue" class="colorVarField"></ColorField>
+    </VisualElement>
+    <VisualElement xmlns="UnityEngine.UIElements" class="col col-weights">
+      <FloatField xmlns="UnityEditor.UIElements" name="valueWeight"></FloatField>
+    </VisualElement>
+    <VisualElement xmlns="UnityEngine.UIElements" class="col col-button">
+      <Button text="X" name="deleteValueBtn" class="deleteButton"></Button>
+    </VisualElement>
+  </VisualElement>
+</UXML>

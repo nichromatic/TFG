@@ -172,6 +172,7 @@ namespace ObjectModel
             deleteBtn.clickable.clicked += () =>
             {
                 valueContainer.Remove(valueRow);
+                this.values.RemoveAt(index);
             };
 
             valueContainer.Add(valueRow);

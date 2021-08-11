@@ -83,6 +83,20 @@ namespace ProceduralGenerator
                             HandleConstraint((ModelConstraintNode)chosenChild);
                         }
                 break;
+                case ConstraintType.MULTIPLY:
+                    for(int i = 0; i < constraint.constraintValue; i++) {
+                        constraint.childLinks.ForEach(link =>
+                        {
+                            if (link.child is ModelNode) {
+                                var childNode = new ProceduralObjectNode(this, (ModelNode)link.child, parentObject);
+                                childNodes.Add(childNode);
+                                childNode.GenerateChildren(link.child);
+                            } else if (link.child is ModelConstraintNode) {
+                                HandleConstraint((ModelConstraintNode)link.child);
+                            }
+                        });
+                    }
+                break;
             }
         }
 
