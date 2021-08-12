@@ -1,0 +1,171 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6cf0c1d50937e8428ba68564cbb4c22, type: 3}
+  m_Name: QuestTest
+  m_EditorClassIdentifier: 
+  nodeList:
+  - nodeID: d89875e2-a371-43cc-aedc-65bc6ccac86d
+    nodePos: {x: 478, y: 266}
+    nodeName: Action
+    rootNode: 0
+    JSONProperties:
+    - '{"propertyName":"Type","propertyType":0,"multipleValues":false,"repeatValues":false,"minMultiple":0,"maxMultiple":0,"roundValue":false,"values":["Kill","Capture"],"valueWeights":[1.0,1.0]}'
+    nodeSprite: {fileID: 0}
+    spriteModifiers:
+    - 
+    - 
+    - 
+    - 
+    - 
+    type: 0
+    constraintNode: 0
+    constraintValue: 0
+  - nodeID: 1ee68690-f4bf-484d-9e12-a3a540d0f62e
+    nodePos: {x: 475, y: 583}
+    nodeName: Reward
+    rootNode: 0
+    JSONProperties: []
+    nodeSprite: {fileID: 0}
+    spriteModifiers:
+    - 
+    - 
+    - 
+    - 
+    - 
+    type: 0
+    constraintNode: 0
+    constraintValue: 0
+  - nodeID: 101c8b94-d725-4c25-bf8a-2913e7d71047
+    nodePos: {x: 737, y: 583}
+    nodeName: 
+    rootNode: 0
+    JSONProperties: []
+    nodeSprite: {fileID: 0}
+    spriteModifiers: []
+    type: 1
+    constraintNode: 1
+    constraintValue: 1
+  - nodeID: 88487c6c-fcc6-4ab3-9da4-10fbd17c630f
+    nodePos: {x: -215, y: 235}
+    nodeName: Quest
+    rootNode: 1
+    JSONProperties:
+    - '{"propertyName":"Description","propertyType":0,"multipleValues":false,"repeatValues":false,"minMultiple":0,"maxMultiple":0,"roundValue":false,"values":["They
+      attacked a nearby village.","I heard rumours there were enemies roaming in
+      the forest.","They stole my treasure! Get it back!"],"valueWeights":[1.0,1.0,1.0]}'
+    - '{"propertyName":"Title","propertyType":0,"multipleValues":false,"repeatValues":false,"minMultiple":0,"maxMultiple":0,"roundValue":false,"values":["Enemies
+      are near","Please take care of them","SOS HELP NEEDED"],"valueWeights":[1.0,1.0,1.0]}'
+    nodeSprite: {fileID: 0}
+    spriteModifiers:
+    - 
+    - 
+    - 
+    - 
+    - 
+    type: 0
+    constraintNode: 0
+    constraintValue: 0
+  - nodeID: 4669af76-7558-4557-8388-9577a2287f08
+    nodePos: {x: 999, y: 556}
+    nodeName: Treasure
+    rootNode: 0
+    JSONProperties: []
+    nodeSprite: {fileID: 0}
+    spriteModifiers:
+    - 
+    - 
+    - 
+    - 
+    - 
+    type: 0
+    constraintNode: 0
+    constraintValue: 0
+  - nodeID: 26b405aa-cfb4-41b6-b4d2-5903a6c102ad
+    nodePos: {x: 479, y: -77}
+    nodeName: Giver
+    rootNode: 0
+    JSONProperties:
+    - '{"propertyName":"NPC","propertyType":0,"multipleValues":false,"repeatValues":false,"minMultiple":0,"maxMultiple":0,"roundValue":false,"values":["Merchant","Warrior","Servant","King"],"valueWeights":[1.0,1.0,1.0,1.0]}'
+    nodeSprite: {fileID: 0}
+    spriteModifiers:
+    - 
+    - 
+    - 
+    - 
+    - 
+    type: 0
+    constraintNode: 0
+    constraintValue: 0
+  - nodeID: 39cb1dc4-f489-443b-a40c-f42f45fbd22c
+    nodePos: {x: 865, y: 125}
+    nodeName: Objective
+    rootNode: 0
+    JSONProperties:
+    - '{"propertyName":"Enemy","propertyType":0,"multipleValues":true,"repeatValues":false,"minMultiple":1,"maxMultiple":2,"roundValue":false,"values":["Wild
+      boars","Orcs","Bandits","Demons"],"valueWeights":[2.0,1.0,2.0,0.5]}'
+    - '{"propertyName":"Amount","propertyType":3,"multipleValues":false,"repeatValues":false,"minMultiple":0,"maxMultiple":0,"roundValue":true,"values":[2.0,5.0]}'
+    nodeSprite: {fileID: 0}
+    spriteModifiers:
+    - 
+    - 
+    - 
+    - 
+    - 
+    type: 0
+    constraintNode: 0
+    constraintValue: 0
+  - nodeID: 683dbc86-d44f-49a3-a896-4e6893557e00
+    nodePos: {x: 996, y: 704}
+    nodeName: Gold
+    rootNode: 0
+    JSONProperties:
+    - '{"propertyName":"Amount","propertyType":3,"multipleValues":false,"repeatValues":false,"minMultiple":0,"maxMultiple":0,"roundValue":true,"values":[100.0,1000.0]}'
+    nodeSprite: {fileID: 0}
+    spriteModifiers:
+    - 
+    - 
+    - 
+    - 
+    - 
+    type: 0
+    constraintNode: 0
+    constraintValue: 0
+  linkList:
+  - parentNodeID: 88487c6c-fcc6-4ab3-9da4-10fbd17c630f
+    childNodeID: 26b405aa-cfb4-41b6-b4d2-5903a6c102ad
+    portName: childPort0
+    chance: 100
+  - parentNodeID: 88487c6c-fcc6-4ab3-9da4-10fbd17c630f
+    childNodeID: d89875e2-a371-43cc-aedc-65bc6ccac86d
+    portName: childPort1
+    chance: 100
+  - parentNodeID: 88487c6c-fcc6-4ab3-9da4-10fbd17c630f
+    childNodeID: 1ee68690-f4bf-484d-9e12-a3a540d0f62e
+    portName: childPort2
+    chance: 100
+  - parentNodeID: d89875e2-a371-43cc-aedc-65bc6ccac86d
+    childNodeID: 39cb1dc4-f489-443b-a40c-f42f45fbd22c
+    portName: childPort0
+    chance: 100
+  - parentNodeID: 1ee68690-f4bf-484d-9e12-a3a540d0f62e
+    childNodeID: 101c8b94-d725-4c25-bf8a-2913e7d71047
+    portName: childPort0
+    chance: 100
+  - parentNodeID: 101c8b94-d725-4c25-bf8a-2913e7d71047
+    childNodeID: 4669af76-7558-4557-8388-9577a2287f08
+    portName: childPort0
+    chance: 100
+  - parentNodeID: 101c8b94-d725-4c25-bf8a-2913e7d71047
+    childNodeID: 683dbc86-d44f-49a3-a896-4e6893557e00
+    portName: childPort1
+    chance: 100
+  inputProperties: []

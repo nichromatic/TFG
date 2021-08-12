@@ -6,25 +6,21 @@ using UnityEngine.UIElements;
 namespace ObjectModel
 {
     [Serializable]
-    public class PropertyRange : Property
+    public class PropertyColorRange : Property
     {
         public List<float> values = new List<float>();
         private const float defaultMin = 0f;
+        private const float defaultMax = 1f;
         private const string defaultName = "Range property";
-        private const float defaultMax = 10f;
 
-        private const bool defaultRound = false;
+        public PropertyColorRange(string name, GraphProperty element) : base(name, PropertyType.Range, element) { }
 
-        public PropertyRange(string name, GraphProperty element) : base(name, PropertyType.Range, element) { }
-
-        public PropertyRange(string name, string data, GraphProperty element, bool loadValues = true) : base(data, element) {
-            PropertyRange p = UnityEngine.JsonUtility.FromJson<PropertyRange>(data);
+        public PropertyColorRange(string name, string data, GraphProperty element, bool loadValues = true) : base(data, element) {
+            PropertyColorRange p = UnityEngine.JsonUtility.FromJson<PropertyColorRange>(data);
             if (loadValues) {
                 values = p.values;
-                roundValue = p.roundValue;
             } else {
-                values = new List<float>(new float[]{defaultMin, defaultMax});
-                roundValue = defaultRound;
+                values = new List<float>(new float[]{defaultMin, defaultMax, defaultMin, defaultMax, defaultMin, defaultMax, defaultMin, defaultMax});
             }
         }
 
@@ -52,7 +48,7 @@ namespace ObjectModel
         public override void InitializeRow(VisualElement parent)
         {
             parentElement = parent;
-            var varRowTemplate = UnityEngine.Resources.Load<VisualTreeAsset>("PropertyRows/RangePropertyRow");
+            var varRowTemplate = UnityEngine.Resources.Load<VisualTreeAsset>("PropertyRows/ColorRangePropertyRow");
             varRow = varRowTemplate.CloneTree();
             parentElement.Add(varRow);
 
@@ -82,23 +78,46 @@ namespace ObjectModel
                 //graphElement.DeleteProperty();
             });
 
-            Toggle roundToInt = varRow.Query<Toggle>("roundValue").ToList()[0];
-            roundToInt.SetValueWithoutNotify(roundValue);
-            roundToInt.MarkDirtyRepaint();
-            roundToInt.RegisterValueChangedCallback(evt => {
-                roundValue = evt.newValue;
+            if (values == null || values.Count < 2) values = new List<float>(new float[]{defaultMin, defaultMax, defaultMin, defaultMax, defaultMin, defaultMax, defaultMin, defaultMax});
+
+            // HUE 
+            FloatField hueFrom = varRow.Query<FloatField>("hueFrom").ToList()[0];
+            InitializeField(hueFrom, 0);
+            FloatField hueTo = varRow.Query<FloatField>("hueTo").ToList()[0];
+            InitializeField(hueTo, 1);
+
+            // SATURATION
+            FloatField saturationFrom = varRow.Query<FloatField>("saturationFrom").ToList()[0];
+            InitializeField(saturationFrom, 2);
+            FloatField saturationTo = varRow.Query<FloatField>("saturationTo").ToList()[0];
+            InitializeField(saturationTo, 3);
+
+            // LIGHT 
+            FloatField lightFrom = varRow.Query<FloatField>("lightFrom").ToList()[0];
+            InitializeField(lightFrom, 4);
+            FloatField lightTo = varRow.Query<FloatField>("lightTo").ToList()[0];
+            InitializeField(lightTo, 5);
+            
+            // Alpha 
+            FloatField alphaFrom = varRow.Query<FloatField>("alphaFrom").ToList()[0];
+            InitializeField(alphaFrom, 6);
+            FloatField alphaTo = varRow.Query<FloatField>("alphaTo").ToList()[0];
+            InitializeField(alphaTo, 7);
+        }
+
+        private void InitializeField(FloatField field, int index) {
+            field.SetValueWithoutNotify(values[index]);
+            field.MarkDirtyRepaint();
+            field.RegisterValueChangedCallback(evt => {
+                if (evt.newValue > 1f) {
+                    field.value = 1f;
+                    values[index] = 1f;
+                } else if (evt.newValue < 0f) {
+                    field.value = 0f;
+                    values[index] = 1f;
+                }
+                values[index] = evt.newValue;
             });
-
-            if (values == null || values.Count < 2) values = new List<float>(new float[]{defaultMin, defaultMax});
-            FloatField minField = varRow.Query<FloatField>("propertyValueMin").ToList()[0];
-            minField.SetValueWithoutNotify(values[0]);
-            minField.MarkDirtyRepaint();
-            minField.RegisterValueChangedCallback(evt => values[0] = evt.newValue);
-
-            FloatField maxField = varRow.Query<FloatField>("propertyValueMax").ToList()[0];
-            maxField.SetValueWithoutNotify(values[1]);
-            maxField.MarkDirtyRepaint();
-            maxField.RegisterValueChangedCallback(evt => values[1] = evt.newValue);
         }
 
         public override void InitializeRowButton(Button button)

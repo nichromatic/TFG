@@ -104,6 +104,10 @@ EnumField.titleEnumField TextElement {
 	padding: 5px 10px;
 }
 
+.colorRangeDescription  {
+	max-width: 200px;
+}
+
 TextField.titleTextField >* {
 	padding: 5px 10px;
 }
@@ -277,4 +281,22 @@ ObjectField.spriteField {
 
 .spriteContainer {
 	padding-bottom: 5px;
+}
+
+.sprite-select {
+	flex-shrink: 0;
+}
+.sprite-modifiers {
+	height: 220px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.sprite-modifiers .labelValueRow Label {
+	-unity-font-style: bold;
+	margin-bottom: 5px;
+}
+
+.sprite-modifiers .row {
+	flex-shrink: 0;
 }

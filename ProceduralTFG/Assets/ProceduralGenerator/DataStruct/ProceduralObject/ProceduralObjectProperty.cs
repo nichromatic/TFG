@@ -36,6 +36,25 @@ namespace ProceduralGenerator
                 } else {
                     values.Add(Mathf.RoundToInt(UnityEngine.Random.Range(min, max)));
                 }
+            } else if (propertyType == PropertyType.ColorRange) {
+                var hueFrom = float.Parse(property.values[0]);
+                var hueTo = float.Parse(property.values[1]);
+                var saturationFrom = float.Parse(property.values[2]);
+                var saturationTo = float.Parse(property.values[3]);
+                var lightFrom = float.Parse(property.values[4]);
+                var lightTo = float.Parse(property.values[5]);
+                var alphaFrom = float.Parse(property.values[6]);
+                var alphaTo = float.Parse(property.values[7]);
+                
+                var generatedHue = GenerateColorValue(hueFrom,hueTo);
+                var generatedSaturation = GenerateColorValue(saturationFrom, saturationTo);
+                var generatedLight = GenerateColorValue(lightFrom, lightTo);
+                var generatedAlpha = GenerateColorValue(alphaFrom, alphaTo);
+
+                var color = Color.HSVToRGB(generatedHue, generatedSaturation, generatedLight);
+                color.a = generatedAlpha;
+                values.Add("#" + UnityEngine.ColorUtility.ToHtmlStringRGBA(color));
+
             } else if (propertyType == PropertyType.String || propertyType == PropertyType.Number || propertyType == PropertyType.Color) {
 
                 List<object> possibleValues = new List<object>(property.values);
@@ -81,6 +100,18 @@ namespace ProceduralGenerator
                     if (!property.repeatValues) possibleValues.RemoveAt(coinToss);
                 }
             }*/
+        }
+
+        private float GenerateColorValue(float from, float to) {
+            if (from <= to) {
+                return UnityEngine.Random.Range(from, to);
+            } else {
+                if (UnityEngine.Random.value > 0.5) {
+                    return UnityEngine.Random.Range(from, 1f);
+                } else {
+                    return UnityEngine.Random.Range(0f, to);
+                }
+            }
         }
         
         public int GetValueCount() {

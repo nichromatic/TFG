@@ -1,0 +1,80 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6cf0c1d50937e8428ba68564cbb4c22, type: 3}
+  m_Name: Mesa
+  m_EditorClassIdentifier: 
+  nodeList:
+  - nodeID: bfb1c8d6-3546-4ceb-88b5-2e98fc6be82a
+    nodePos: {x: 138, y: 311}
+    nodeName: Mesa
+    rootNode: 1
+    JSONProperties: []
+    nodeSprite: {fileID: 0}
+    type: 0
+    constraintNode: 0
+    constraintValue: 0
+  - nodeID: 15780378-950b-40cc-b5c9-9a9852afc976
+    nodePos: {x: 1006, y: 232}
+    nodeName: Pata
+    rootNode: 0
+    JSONProperties: []
+    nodeSprite: {fileID: 0}
+    type: 0
+    constraintNode: 0
+    constraintValue: 0
+  - nodeID: cc2eb5e7-82c8-43a7-bafc-02e1d5695cb0
+    nodePos: {x: 689, y: 280}
+    nodeName: 
+    rootNode: 0
+    JSONProperties: []
+    nodeSprite: {fileID: 0}
+    type: 2
+    constraintNode: 1
+    constraintValue: 4
+  - nodeID: d1f6da7b-69e7-45e9-839d-0edb40798eaf
+    nodePos: {x: 599, y: 439}
+    nodeName: Hoja
+    rootNode: 0
+    JSONProperties:
+    - '{"propertyName":"Texto","propertyType":0,"multipleValues":true,"repeatValues":false,"minMultiple":1,"maxMultiple":2,"roundValue":false,"values":["Hola","Lista
+      de la compra","Nota"],"valueWeights":[1.0,1.0,1.0]}'
+    nodeSprite: {fileID: 0}
+    type: 0
+    constraintNode: 0
+    constraintValue: 0
+  - nodeID: 3e92af37-b4d5-4d2b-aec8-62c5df706bff
+    nodePos: {x: 358, y: 208}
+    nodeName: Superficie
+    rootNode: 0
+    JSONProperties: []
+    nodeSprite: {fileID: 10300, guid: 0000000000000000f000000000000000, type: 0}
+    type: 0
+    constraintNode: 0
+    constraintValue: 0
+  linkList:
+  - parentNodeID: bfb1c8d6-3546-4ceb-88b5-2e98fc6be82a
+    childNodeID: 3e92af37-b4d5-4d2b-aec8-62c5df706bff
+    portName: childPort0
+    chance: 100
+  - parentNodeID: cc2eb5e7-82c8-43a7-bafc-02e1d5695cb0
+    childNodeID: 15780378-950b-40cc-b5c9-9a9852afc976
+    portName: childPort0
+    chance: 100
+  - parentNodeID: 3e92af37-b4d5-4d2b-aec8-62c5df706bff
+    childNodeID: cc2eb5e7-82c8-43a7-bafc-02e1d5695cb0
+    portName: childPort0
+    chance: 100
+  - parentNodeID: 3e92af37-b4d5-4d2b-aec8-62c5df706bff
+    childNodeID: d1f6da7b-69e7-45e9-839d-0edb40798eaf
+    portName: childPort1
+    chance: 100
+  inputProperties: []

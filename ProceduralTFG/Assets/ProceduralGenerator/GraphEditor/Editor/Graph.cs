@@ -47,14 +47,19 @@ namespace ObjectModel
             var name = "Node";
             if (data != null) name = data.nodeName;
             Texture2D sprite = null;
-            if (data != null) sprite = data.nodeSprite;
+            List<string> spriteModifiers = new List<string>(new string[] {"","","","",""});
+            if (data != null) {
+                sprite = data.nodeSprite;
+                spriteModifiers = data.spriteModifiers;
+            }
 
             var newNode = new GraphNode
             {
                 GUID = Guid.NewGuid().ToString(),
                 rootNode = false,
                 nodeName = name,
-                nodeSprite = sprite
+                nodeSprite = sprite,
+                nodeSpriteModifiers = spriteModifiers
             };
 
             // Parent (input) port
@@ -179,14 +184,19 @@ namespace ObjectModel
             var name = "Root node";
             if (data != null) name = data.nodeName;
             Texture2D sprite = null;
-            if (data != null) sprite = data.nodeSprite;
+            List<string> spriteModifiers = new List<string>(new string[] {"","","","",""});
+            if (data != null) {
+                sprite = data.nodeSprite;
+                spriteModifiers = data.spriteModifiers;
+            }
 
             var rootNode = new GraphNode
             {
                 GUID = Guid.NewGuid().ToString(),
                 rootNode = true,
                 nodeName = name,
-                nodeSprite = sprite
+                nodeSprite = sprite,
+                nodeSpriteModifiers = spriteModifiers,
             };
 
             // Textfield for the nodeName

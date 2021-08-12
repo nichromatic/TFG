@@ -21,6 +21,7 @@ namespace ObjectModel
         public List<string> JSONProperties = new List<string>();
 
         public Texture2D nodeSprite;
+        public List<string> spriteModifiers = new List<string>();
 
         public ConstraintType type;
         public bool constraintNode;

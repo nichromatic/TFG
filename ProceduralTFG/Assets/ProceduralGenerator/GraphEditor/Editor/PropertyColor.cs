@@ -13,7 +13,7 @@ namespace ObjectModel
         public List<float> valueWeights = new List<float>();
 
         private static UnityEngine.Color defaultValue = UnityEngine.Color.white;
-        private const string defaultName = "UnityEngine.Color property";
+        private const string defaultName = "Color property";
         private const float defaultWeight = 1f;
 
         public PropertyColor(string name, GraphProperty element) : base(name, PropertyType.Color, element) { }
@@ -157,7 +157,7 @@ namespace ObjectModel
         {
             if (value == null)
             {
-                index = values.Count;
+                index = valueColors.Count;
                 value = defaultValue;
             }
 

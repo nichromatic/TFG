@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<UXML xmlns="UnityEditor.UIElements">
+  <VisualElement xmlns="UnityEngine.UIElements" class="property-header">
+    <Label text="Property" name="propertyLabel"></Label>
+    <Button text="X" name="deletePropertyBtn" class="deleteButton"></Button>
+  </VisualElement>
+  <VisualElement xmlns="UnityEngine.UIElements" class="property-row">
+    
+    <VisualElement xmlns="UnityEngine.UIElements" class="info-column col">
+      <VisualElement xmlns="UnityEngine.UIElements" class="main-info row">
+        <VisualElement xmlns="UnityEngine.UIElements" class="col">
+          <Label text="Type"></Label>
+          <EnumField xmlns="UnityEditor.UIElements" type="ObjectModel.PropertyType, Assembly-CSharp" name="propertyType"></EnumField>
+        </VisualElement>
+        <VisualElement xmlns="UnityEngine.UIElements" class="col">
+          <Label text="Name"></Label>
+          <TextField name="propertyName" class="flex-grow"></TextField>
+        </VisualElement>
+      </VisualElement>
+      <VisualElement xmlns="UnityEngine.UIElements" class="row">
+        <TextElement class="colorRangeDescription" text="Values must range from 0 to 1. The 'from' value can be higher than the 'to' value."></TextElement>
+      </VisualElement>
+    </VisualElement>
+    
+    <VisualElement xmlns="UnityEngine.UIElements" class="value-column col">
+      
+      <VisualElement xmlns="UnityEngine.UIElements" name="valueRowContainer" class="value-row-col col">
+        <VisualElement xmlns="UnityEngine.UIElements" name="labelValueRow" class="value-row row">
+          <VisualElement xmlns="UnityEngine.UIElements" class="col col-values">
+          </VisualElement>
+          <VisualElement xmlns="UnityEngine.UIElements" class="col col-values">
+            <Label text="From"></Label>
+          </VisualElement>
+          <VisualElement xmlns="UnityEngine.UIElements" class="col col-values">
+            <Label text="To"></Label>
+          </VisualElement>
+        </VisualElement>
+      </VisualElement>
+
+      <VisualElement xmlns="UnityEngine.UIElements" name="valueRow" class="value-row row">
+        <VisualElement xmlns="UnityEngine.UIElements" class="col col-values">
+          <Label text="Hue"></Label>
+        </VisualElement>
+        <VisualElement xmlns="UnityEngine.UIElements" class="col col-values">
+          <FloatField xmlns="UnityEditor.UIElements" name="hueFrom"></FloatField>
+        </VisualElement>
+        <VisualElement xmlns="UnityEngine.UIElements" class="col col-values">
+          <FloatField xmlns="UnityEditor.UIElements" name="hueTo"></FloatField>
+        </VisualElement>
+      </VisualElement>
+
+      <VisualElement xmlns="UnityEngine.UIElements" name="valueRow" class="value-row row">
+        <VisualElement xmlns="UnityEngine.UIElements" class="col col-values">
+          <Label text="Saturation"></Label>
+        </VisualElement>
+        <VisualElement xmlns="UnityEngine.UIElements" class="col col-values">
+          <FloatField xmlns="UnityEditor.UIElements" name="saturationFrom"></FloatField>
+        </VisualElement>
+        <VisualElement xmlns="UnityEngine.UIElements" class="col col-values">
+          <FloatField xmlns="UnityEditor.UIElements" name="saturationTo"></FloatField>
+        </VisualElement>
+      </VisualElement>
+
+      <VisualElement xmlns="UnityEngine.UIElements" name="valueRow" class="value-row row">
+        <VisualElement xmlns="UnityEngine.UIElements" class="col col-values">
+          <Label text="Value"></Label>
+        </VisualElement>
+        <VisualElement xmlns="UnityEngine.UIElements" class="col col-values">
+          <FloatField xmlns="UnityEditor.UIElements" name="lightFrom"></FloatField>
+        </VisualElement>
+        <VisualElement xmlns="UnityEngine.UIElements" class="col col-values">
+          <FloatField xmlns="UnityEditor.UIElements" name="lightTo"></FloatField>
+        </VisualElement>
+      </VisualElement>
+
+      <VisualElement xmlns="UnityEngine.UIElements" name="valueRow" class="value-row row">
+        <VisualElement xmlns="UnityEngine.UIElements" class="col col-values">
+          <Label text="Alpha"></Label>
+        </VisualElement>
+        <VisualElement xmlns="UnityEngine.UIElements" class="col col-values">
+          <FloatField xmlns="UnityEditor.UIElements" name="alphaFrom"></FloatField>
+        </VisualElement>
+        <VisualElement xmlns="UnityEngine.UIElements" class="col col-values">
+          <FloatField xmlns="UnityEditor.UIElements" name="alphaTo"></FloatField>
+        </VisualElement>
+      </VisualElement>
+    </VisualElement>
+  </VisualElement>
+</UXML>

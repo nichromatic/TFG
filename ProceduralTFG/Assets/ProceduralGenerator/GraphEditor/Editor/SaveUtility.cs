@@ -63,7 +63,8 @@ namespace ObjectModel
                         nodeName = n.nodeName,
                         rootNode = n.rootNode,
                         JSONProperties = n.ExportPropertyData(),
-                        nodeSprite = n.nodeSprite
+                        nodeSprite = n.nodeSprite,
+                        spriteModifiers = n.nodeSpriteModifiers,
                     });
                 } else if (graphNode is GraphConstraintNode) {
                     GraphConstraintNode c = (GraphConstraintNode)graphNode;

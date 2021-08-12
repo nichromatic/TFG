@@ -4,15 +4,15 @@ using ObjectModel;
 
 namespace ProceduralGenerator
 {
-    [CustomEditor(typeof(ObjectData))]
+    [CustomEditor(typeof(ObjectDataContainer))]
     public class ObjectDataEditor : Editor
     {
-        private ObjectData objectData;
+        private ObjectDataContainer objectData;
 
         public override void OnInspectorGUI()
         {
-            if (objectData == null) objectData = (ObjectData)target;
-            var nodeData = objectData.nodeData;
+            if (objectData == null) objectData = (ObjectDataContainer)target;
+            ObjectDataContainer.ObjectData nodeData = objectData.nodeData;
             //base.OnInspectorGUI();
 
             // Draw Node name
@@ -24,7 +24,7 @@ namespace ProceduralGenerator
                 GUILayout.Label("---------------------------------------");
                 GUILayout.Label("PROPERTIES");
                 GUILayout.Label("---------------------------------------");
-                foreach (ProceduralObjectProperty p in nodeData.properties) {
+                foreach (ObjectDataContainer.ObjectPropertyData p in nodeData.properties) {
                     GUILayout.Label("Property name: " + p.propertyName);
                     GUILayout.Label("Property type: " + p.propertyType);
                     if (p.values.Count == 1) {
@@ -32,7 +32,7 @@ namespace ProceduralGenerator
                     } else {
                         GUILayout.Label("Values:");
                         for (int i = 0; i < p.values.Count; i++) {
-                            GUILayout.Label("[" + i + "] " + p.values[i].ToString());
+                            GUILayout.Label("[" + i + "] " + p.values[i]);
                         }
                     }
                     GUILayout.Label("---------------------------------------");

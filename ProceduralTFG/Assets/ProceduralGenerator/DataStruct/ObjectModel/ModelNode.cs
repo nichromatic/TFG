@@ -8,6 +8,7 @@ namespace ObjectModel
         public string nodeName;
         public List<PropertyData> nodeProperties = new List<PropertyData>();
         public Texture2D nodeSprite;
+        public List<string> spriteModifiers = new List<string>(new string[] {"","","","",""});
 
         public ModelNode(NodeData nodeData) : base(nodeData)
         {
@@ -16,6 +17,7 @@ namespace ObjectModel
             foreach(string s in nodeData.JSONProperties) {
                 nodeProperties.Add(UnityEngine.JsonUtility.FromJson<PropertyData>(s));
             }
+            spriteModifiers = nodeData.spriteModifiers;
         }
     }
 }

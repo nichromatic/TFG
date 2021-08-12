@@ -1,0 +1,74 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6cf0c1d50937e8428ba68564cbb4c22, type: 3}
+  m_Name: Goblin
+  m_EditorClassIdentifier: 
+  nodeList:
+  - nodeID: 7b2eb539-2bdc-4400-a1af-fa64edf96b21
+    nodePos: {x: 270, y: 13}
+    nodeName: Goblin
+    rootNode: 1
+    JSONProperties:
+    - '{"propertyName":"ColorRange","propertyType":5,"multipleValues":false,"repeatValues":false,"minMultiple":0,"maxMultiple":0,"roundValue":false,"values":[0.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0]}'
+    - '{"propertyName":"PosX","propertyType":3,"multipleValues":false,"repeatValues":false,"minMultiple":0,"maxMultiple":0,"roundValue":false,"values":[1.0,2.0]}'
+    nodeSprite: {fileID: 2800000, guid: 621136a53223dd942b04ab3192dfa535, type: 3}
+    spriteModifiers:
+    - ColorRange
+    - 
+    - 
+    - PosX
+    - PosX
+    type: 0
+    constraintNode: 0
+    constraintValue: 0
+  - nodeID: 9f802abd-e42e-42e4-951a-45d7913afd00
+    nodePos: {x: 861, y: 10}
+    nodeName: Gorro
+    rootNode: 0
+    JSONProperties:
+    - '{"propertyName":"Scale","propertyType":3,"multipleValues":false,"repeatValues":false,"minMultiple":0,"maxMultiple":0,"roundValue":false,"values":[0.75,1.25]}'
+    nodeSprite: {fileID: 2800000, guid: e5148001c50ead54997daf51a8354d49, type: 3}
+    spriteModifiers:
+    - 
+    - Scale
+    - Scale
+    - 
+    - 
+    type: 0
+    constraintNode: 0
+    constraintValue: 0
+  - nodeID: 38f67f05-8532-4e7f-8397-fe3e00a5d757
+    nodePos: {x: 861, y: 667}
+    nodeName: Espada
+    rootNode: 0
+    JSONProperties:
+    - '{"propertyName":"Color","propertyType":4,"multipleValues":false,"repeatValues":false,"minMultiple":0,"maxMultiple":0,"roundValue":false,"values":["#FF0000FF","#FF00D6FF","#001EFFFF"],"valueColors":[{"r":1.0,"g":0.0,"b":0.0,"a":1.0},{"r":1.0,"g":0.0,"b":0.8389568328857422,"a":1.0},{"r":0.0,"g":0.11691880226135254,"b":1.0,"a":1.0}],"valueWeights":[1.0,1.0,1.0]}'
+    nodeSprite: {fileID: 2800000, guid: a6cd4d470c978b44e9dd401ccb758846, type: 3}
+    spriteModifiers:
+    - Color
+    - 
+    - 
+    - 
+    - 
+    type: 0
+    constraintNode: 0
+    constraintValue: 0
+  linkList:
+  - parentNodeID: 7b2eb539-2bdc-4400-a1af-fa64edf96b21
+    childNodeID: 9f802abd-e42e-42e4-951a-45d7913afd00
+    portName: childPort0
+    chance: 75
+  - parentNodeID: 7b2eb539-2bdc-4400-a1af-fa64edf96b21
+    childNodeID: 38f67f05-8532-4e7f-8397-fe3e00a5d757
+    portName: childPort1
+    chance: 50
+  inputProperties: []

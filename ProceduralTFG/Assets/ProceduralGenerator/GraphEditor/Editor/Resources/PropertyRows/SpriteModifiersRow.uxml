@@ -1,14 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <UXML xmlns="UnityEditor.UIElements">
-  <VisualElement xmlns="UnityEngine.UIElements" class="row">
-    <VisualElement xmlns="UnityEngine.UIElements" class="col col-values">
-      <ColorField xmlns="UnityEditor.UIElements" name="propertyValue" class="colorVarField"></ColorField>
+  <VisualElement xmlns="UnityEngine.UIElements" class="sprite-modifiers col">
+    <VisualElement xmlns="UnityEngine.UIElements" class="value-row row labelValueRow">
+      <VisualElement xmlns="UnityEngine.UIElements" class="col col-values">
+        <Label text="Modifier"></Label>
+      </VisualElement>
+      <VisualElement xmlns="UnityEngine.UIElements" class="col col-values">
+        <Label text="Related property name"></Label>
+      </VisualElement>
     </VisualElement>
-    <VisualElement xmlns="UnityEngine.UIElements" class="col col-weights">
-      <FloatField xmlns="UnityEditor.UIElements" name="valueWeight"></FloatField>
+
+    <VisualElement xmlns="UnityEngine.UIElements" class="value-row row">
+      <VisualElement xmlns="UnityEngine.UIElements" class="col col-values">
+        <Label text="Color tint"></Label>
+      </VisualElement>
+      <VisualElement xmlns="UnityEngine.UIElements" class="col col-values">
+        <TextField name="colorTint"></TextField>
+      </VisualElement>
     </VisualElement>
-    <VisualElement xmlns="UnityEngine.UIElements" class="col col-button">
-      <Button text="X" name="deleteValueBtn" class="deleteButton"></Button>
+
+    <VisualElement xmlns="UnityEngine.UIElements" class="value-row row">
+      <VisualElement xmlns="UnityEngine.UIElements" class="col col-values">
+        <Label text="X Scale"></Label>
+      </VisualElement>
+      <VisualElement xmlns="UnityEngine.UIElements" class="col col-values">
+        <TextField name="xscale"></TextField>
+      </VisualElement>
+    </VisualElement>
+
+    <VisualElement xmlns="UnityEngine.UIElements" class="value-row row">
+      <VisualElement xmlns="UnityEngine.UIElements" class="col col-values">
+        <Label text="Y Scale"></Label>
+      </VisualElement>
+      <VisualElement xmlns="UnityEngine.UIElements" class="col col-values">
+        <TextField name="yscale"></TextField>
+      </VisualElement>
+    </VisualElement>
+
+    <VisualElement xmlns="UnityEngine.UIElements" class="value-row row">
+      <VisualElement xmlns="UnityEngine.UIElements" class="col col-values">
+        <Label text="X Offset"></Label>
+      </VisualElement>
+      <VisualElement xmlns="UnityEngine.UIElements" class="col col-values">
+        <TextField name="xoffset"></TextField>
+      </VisualElement>
+    </VisualElement>
+
+    <VisualElement xmlns="UnityEngine.UIElements" class="value-row row">
+      <VisualElement xmlns="UnityEngine.UIElements" class="col col-values">
+        <Label text="Y Offset"></Label>
+      </VisualElement>
+      <VisualElement xmlns="UnityEngine.UIElements" class="col col-values">
+        <TextField name="yoffset"></TextField>
+      </VisualElement>
     </VisualElement>
   </VisualElement>
 </UXML>

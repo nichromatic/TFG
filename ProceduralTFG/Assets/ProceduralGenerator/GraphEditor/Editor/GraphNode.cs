@@ -17,6 +17,7 @@ namespace ObjectModel
         public VisualElement nodePropertiesFoldout;
         public Texture2D nodeSprite;
         public VisualElement nodeSpriteContainer;
+        public List<string> nodeSpriteModifiers = new List<string>(new string[] {"","","","",""});
 
         private int nextPortID = -1;
 
@@ -82,11 +83,48 @@ namespace ObjectModel
 
             var spriteSelectRow = new VisualElement();
             spriteSelectRow.AddToClassList("row");
+            spriteSelectRow.AddToClassList("sprite-select");
             spriteSelectRow.Add(spriteField);
             spriteSelectRow.Add(deleteSpriteBtn);
 
+            var modifiers = UnityEngine.Resources.Load<VisualTreeAsset>("PropertyRows/SpriteModifiersRow");
+            VisualElement modifiersRow = modifiers.CloneTree();
+
+            var colorTint = modifiersRow.Q<TextField>("colorTint");
+            colorTint.value = this.nodeSpriteModifiers[0];
+            colorTint.RegisterValueChangedCallback(e =>
+            {
+                this.nodeSpriteModifiers[0] = e.newValue;
+            });
+            var xscale = modifiersRow.Q<TextField>("xscale");
+            xscale.value = this.nodeSpriteModifiers[1];
+            xscale.RegisterValueChangedCallback(e =>
+            {
+                this.nodeSpriteModifiers[1] = e.newValue;
+            });
+            var yscale = modifiersRow.Q<TextField>("yscale");
+            yscale.value = this.nodeSpriteModifiers[2];
+            yscale.RegisterValueChangedCallback(e =>
+            {
+                this.nodeSpriteModifiers[2] = e.newValue;
+            });
+            var xoffset = modifiersRow.Q<TextField>("xoffset");
+            xoffset.value = this.nodeSpriteModifiers[3];
+            xoffset.RegisterValueChangedCallback(e =>
+            {
+                this.nodeSpriteModifiers[3] = e.newValue;
+            });
+            var yoffset = modifiersRow.Q<TextField>("yoffset");
+            yoffset.value = this.nodeSpriteModifiers[4];
+            yoffset.RegisterValueChangedCallback(e =>
+            {
+                this.nodeSpriteModifiers[4] = e.newValue;
+            });
+
+
             nodeSpriteContainer.Add(spritePreview);
             nodeSpriteContainer.Add(spriteSelectRow);
+            nodeSpriteContainer.Add(modifiersRow);
             parent.Add(nodeSpriteContainer);
         }
     }
