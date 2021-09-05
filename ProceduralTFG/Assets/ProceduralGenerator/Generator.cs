@@ -14,8 +14,8 @@ namespace ProceduralGenerator
         private Model objectModel;                  // Built object model
         public GraphData oldGraph;                  // Duplicate of loaded graph for checking when it's changed
 
-        public int seed = 0;
-        public bool useRandomSeed = true;
+        public int seed = 0;                        // Seed for the generation process
+        public bool useRandomSeed = true;           // If true, ignore seed and use a random one each time
 
         public bool spawnNewObject = true;          // Determines if the same object is reset whenever we generate a new one
         public GameObject generatedGameObject;      // Last generated object (gameobject)
@@ -100,6 +100,15 @@ namespace ProceduralGenerator
             if (parentGameObject != null) generatedGameObject.transform.parent = parentGameObject.transform;
 
             return generatedGameObject;
+        }
+
+        public void SetSeed(int newSeed, bool useRandom = false) {
+            this.seed = newSeed;
+            this.useRandomSeed = useRandom;
+        }
+
+        public void SetRandomSeed(bool useRandom = true) {
+            this.useRandomSeed = useRandom;
         }
 
         private void GenerateChildGameObjects(Transform parent, ProceduralObjectNode node, int depth = 1)

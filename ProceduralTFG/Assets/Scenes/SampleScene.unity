@@ -563,6 +563,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1870818501, guid: 330fad595c1e5e64b83f993983d8499b, type: 3}
+      propertyPath: g
+      value: 
+      objectReference: {fileID: 1954672503}
     - target: {fileID: 8122664802569594373, guid: 330fad595c1e5e64b83f993983d8499b,
         type: 3}
       propertyPath: m_RootOrder
@@ -627,11 +631,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: QuestUI
-      objectReference: {fileID: 0}
-    - target: {fileID: 8122664802707370889, guid: 330fad595c1e5e64b83f993983d8499b,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 330fad595c1e5e64b83f993983d8499b, type: 3}

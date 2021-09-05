@@ -17,12 +17,19 @@ public class QuestDisplay : MonoBehaviour
 
     void Start()
     {
+        UpdateUI();
+    }
+
+    public void UpdateUI(GameObject quest = null) {
         if (generator == null) {
             Debug.LogError("The generator object has not been set.", this);
             return;
         }
-
-        generatedQuest = generator.GenerateGameObject();
+        if (quest == null) {
+            generatedQuest = generator.GenerateGameObject();
+        } else {
+            generatedQuest = quest;
+        }
 
         var allData = ObjectDataContainer.GetAllObjectData(generatedQuest);
 
