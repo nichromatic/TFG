@@ -18,6 +18,8 @@ namespace ObjectModel
         public Blackboard _blackboard;
         public List<InputProperty> inputProperties = new List<InputProperty>();
 
+        private List<GraphElement> copiedElements = new List<GraphElement>();
+
         public Graph()
         {
             SetupZoom(ContentZoomer.DefaultMinScale, ContentZoomer.DefaultMaxScale);
@@ -31,7 +33,13 @@ namespace ObjectModel
             Insert(0, gridBg);
             gridBg.StretchToParentSize();
 
+            canPasteSerializedData += AllowPaste;
+
             InitializeGraph();
+        }
+
+        private bool AllowPaste(string data) {
+            return false;
         }
 
         public void InitializeGraph()
@@ -101,7 +109,8 @@ namespace ObjectModel
             addGraphicBtn.AddToClassList("addBtn");
             graphicFoldout.Add(addGraphicBtn); */
             newNode.InitializeSpriteField(graphicFoldout, newNode.nodeSprite);
-            if (newNode.nodeSprite == null) graphicFoldout.value = false;
+            //if (newNode.nodeSprite == null) graphicFoldout.value = false;
+            graphicFoldout.value = false;
             graphicFoldout.text = "Visual representation";
             graphicFoldout.AddToClassList("nodeFoldout");
             graphicFoldout.AddToClassList("graphicFoldout");

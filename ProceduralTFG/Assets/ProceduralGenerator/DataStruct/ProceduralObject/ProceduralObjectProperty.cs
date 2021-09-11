@@ -84,10 +84,12 @@ namespace ProceduralGenerator
                             index++;
                         }
                     } while (!foundChosen);
-                    values.Add(possibleValues[index]);
+                    if (possibleValues.Count > index) values.Add(possibleValues[index]);
                     if (!property.repeatValues) {
-                        possibleValues.RemoveAt(index);
-                        possibleValuesWeights.RemoveAt(index);
+                        if (possibleValues.Count > index) {
+                            possibleValues.RemoveAt(index);
+                            possibleValuesWeights.RemoveAt(index);
+                        }
                     }
                 }
             } /*else if (propertyType == PropertyType.Color) {

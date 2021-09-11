@@ -1,0 +1,548 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6cf0c1d50937e8428ba68564cbb4c22, type: 3}
+  m_Name: HeroPortrait
+  m_EditorClassIdentifier: 
+  nodeList:
+  - nodeID: c727853f-4610-400d-a95a-e42b81de70e7
+    nodePos: {x: 122, y: 241}
+    nodeName: HeroPortrait
+    rootNode: 1
+    JSONProperties: []
+    nodeSprite: {fileID: 0}
+    spriteModifiers:
+    - 
+    - 
+    - 
+    - 
+    - 
+    type: 0
+    constraintNode: 0
+    constraintValue: 0
+  - nodeID: 4d0b00e3-ebe9-4f4d-895b-2258b1a728c8
+    nodePos: {x: 631, y: -331}
+    nodeName: 
+    rootNode: 0
+    JSONProperties: []
+    nodeSprite: {fileID: 0}
+    spriteModifiers: []
+    type: 1
+    constraintNode: 1
+    constraintValue: 1
+  - nodeID: 36f0b3fc-4854-496b-9e94-ab04a9c4fa9b
+    nodePos: {x: 955, y: -758}
+    nodeName: PaladinClass
+    rootNode: 0
+    JSONProperties: []
+    nodeSprite: {fileID: 2800000, guid: d38f98751c5f79346abb8d0664a685b3, type: 3}
+    spriteModifiers:
+    - 
+    - 
+    - 
+    - 
+    - 
+    type: 0
+    constraintNode: 0
+    constraintValue: 0
+  - nodeID: ded648bf-e6dc-44cb-a99a-013d99b4f974
+    nodePos: {x: 963, y: -385}
+    nodeName: RogueClass
+    rootNode: 0
+    JSONProperties: []
+    nodeSprite: {fileID: 2800000, guid: 603e9250d615a544ca8333610def0f7f, type: 3}
+    spriteModifiers:
+    - 
+    - 
+    - 
+    - 
+    - 
+    type: 0
+    constraintNode: 0
+    constraintValue: 0
+  - nodeID: 7f672ac6-c2c7-4fe2-a663-02e2eae67232
+    nodePos: {x: 1048, y: 26}
+    nodeName: Face
+    rootNode: 0
+    JSONProperties: []
+    nodeSprite: {fileID: 0}
+    spriteModifiers:
+    - 
+    - 
+    - 
+    - 
+    - 
+    type: 0
+    constraintNode: 0
+    constraintValue: 0
+  - nodeID: 450ca0bf-43d8-42ab-b788-1163dc35cc38
+    nodePos: {x: 1263, y: -7}
+    nodeName: 
+    rootNode: 0
+    JSONProperties: []
+    nodeSprite: {fileID: 0}
+    spriteModifiers: []
+    type: 1
+    constraintNode: 1
+    constraintValue: 1
+  - nodeID: 3813c703-a17c-4326-96b7-9e9c537f9359
+    nodePos: {x: 1546, y: 10}
+    nodeName: MascFace_02
+    rootNode: 0
+    JSONProperties: []
+    nodeSprite: {fileID: 2800000, guid: 8247e85cf5c4d884793d4fd40b618ac6, type: 3}
+    spriteModifiers:
+    - 
+    - 
+    - 
+    - 
+    - 
+    type: 0
+    constraintNode: 0
+    constraintValue: 0
+  - nodeID: ddaba08c-68c5-4763-a6c6-dee7d343187b
+    nodePos: {x: 1545, y: -148}
+    nodeName: MascFace_01
+    rootNode: 0
+    JSONProperties: []
+    nodeSprite: {fileID: 2800000, guid: 51ddb4b386477924380596b7971f785f, type: 3}
+    spriteModifiers:
+    - 
+    - 
+    - 
+    - 
+    - 
+    type: 0
+    constraintNode: 0
+    constraintValue: 0
+  - nodeID: 8db98fb4-5050-445a-967b-948ff127c619
+    nodePos: {x: 957, y: -171}
+    nodeName: BarbarianClass
+    rootNode: 0
+    JSONProperties: []
+    nodeSprite: {fileID: 2800000, guid: 639d1bb54b44159459754319a517d98a, type: 3}
+    spriteModifiers:
+    - 
+    - 
+    - 
+    - 
+    - 
+    type: 0
+    constraintNode: 0
+    constraintValue: 0
+  - nodeID: 87e953e8-fe6c-49e6-b43e-c36e7b26ced5
+    nodePos: {x: 753, y: 37}
+    nodeName: MasculineBody
+    rootNode: 0
+    JSONProperties:
+    - '{"propertyName":"SkinColor","propertyType":4,"multipleValues":false,"repeatValues":false,"minMultiple":0,"maxMultiple":0,"roundValue":false,"values":["#FFE8D5FF","#FFC7A0FF","#F3CBD1FF","#A46F5AFF","#765041FF","#603737FF"],"valueColors":[{"r":1.0,"g":0.9098039269447327,"b":0.8352941274642944,"a":1.0},{"r":1.0,"g":0.7803921699523926,"b":0.6274510025978088,"a":1.0},{"r":0.9529411792755127,"g":0.7960784435272217,"b":0.8196078538894653,"a":1.0},{"r":0.6431372761726379,"g":0.43529412150382998,"b":0.3529411852359772,"a":1.0},{"r":0.4627451002597809,"g":0.3137255012989044,"b":0.2549019753932953,"a":1.0},{"r":0.3764705955982208,"g":0.21568627655506135,"b":0.21568627655506135,"a":1.0}],"valueWeights":[1.0,1.0,1.0,1.0,1.0,1.0]}'
+    nodeSprite: {fileID: 2800000, guid: bc3ec746568d4e2488c561f1cb973c21, type: 3}
+    spriteModifiers:
+    - SkinColor
+    - 
+    - 
+    - 
+    - 
+    type: 0
+    constraintNode: 0
+    constraintValue: 0
+  - nodeID: cc6d38cc-c249-4fd6-aaa3-4428c5a23efa
+    nodePos: {x: 485, y: 44}
+    nodeName: 
+    rootNode: 0
+    JSONProperties: []
+    nodeSprite: {fileID: 0}
+    spriteModifiers: []
+    type: 1
+    constraintNode: 1
+    constraintValue: 1
+  - nodeID: 44e3d70c-e31c-4f31-b386-523d1e07016b
+    nodePos: {x: 1022, y: 616}
+    nodeName: Face
+    rootNode: 0
+    JSONProperties: []
+    nodeSprite: {fileID: 0}
+    spriteModifiers:
+    - 
+    - 
+    - 
+    - 
+    - 
+    type: 0
+    constraintNode: 0
+    constraintValue: 0
+  - nodeID: 0b3c3ff7-e7b2-4ced-beea-342d50498739
+    nodePos: {x: 1544, y: 517}
+    nodeName: FemFace_01
+    rootNode: 0
+    JSONProperties: []
+    nodeSprite: {fileID: 2800000, guid: d7e1bcf427b06424ebbd8c0e88d5d566, type: 3}
+    spriteModifiers:
+    - 
+    - 
+    - 
+    - 
+    - 
+    type: 0
+    constraintNode: 0
+    constraintValue: 0
+  - nodeID: bd0349e7-d6f3-4cda-aed6-373a40028e02
+    nodePos: {x: 1270, y: 617}
+    nodeName: 
+    rootNode: 0
+    JSONProperties: []
+    nodeSprite: {fileID: 0}
+    spriteModifiers: []
+    type: 1
+    constraintNode: 1
+    constraintValue: 1
+  - nodeID: f26ac047-4347-46d3-a84c-7c077ce508da
+    nodePos: {x: 1546, y: 666}
+    nodeName: FemFace_02
+    rootNode: 0
+    JSONProperties: []
+    nodeSprite: {fileID: 2800000, guid: 8247e85cf5c4d884793d4fd40b618ac6, type: 3}
+    spriteModifiers:
+    - 
+    - 
+    - 
+    - 
+    - 
+    type: 0
+    constraintNode: 0
+    constraintValue: 0
+  - nodeID: a7ff610f-d0a2-42db-9d71-c44bf2a14b69
+    nodePos: {x: 1052, y: 199}
+    nodeName: Hair
+    rootNode: 0
+    JSONProperties: []
+    nodeSprite: {fileID: 0}
+    spriteModifiers:
+    - 
+    - 
+    - 
+    - 
+    - 
+    type: 0
+    constraintNode: 0
+    constraintValue: 0
+  - nodeID: c292a354-e8f6-49b3-ad8b-d584ed1cb03f
+    nodePos: {x: 1286, y: 203}
+    nodeName: 
+    rootNode: 0
+    JSONProperties: []
+    nodeSprite: {fileID: 0}
+    spriteModifiers: []
+    type: 1
+    constraintNode: 1
+    constraintValue: 1
+  - nodeID: bd0c7966-0cb5-40ce-b18c-55c0fad3900f
+    nodePos: {x: 1563, y: 175}
+    nodeName: HairShort_01
+    rootNode: 0
+    JSONProperties:
+    - '{"propertyName":"HairColor","propertyType":5,"multipleValues":false,"repeatValues":false,"minMultiple":0,"maxMultiple":0,"roundValue":false,"values":[0.0,1.0,0.5,1.0,0.5,1.0,1.0,1.0]}'
+    nodeSprite: {fileID: 2800000, guid: 6ad73d03fbb0c5a438d6950a64cb2762, type: 3}
+    spriteModifiers:
+    - HairColor
+    - 
+    - 
+    - 
+    - 
+    type: 0
+    constraintNode: 0
+    constraintValue: 0
+  - nodeID: 0d9c3c5c-0339-4ba7-a415-3a5fc8858db2
+    nodePos: {x: 1564, y: 318}
+    nodeName: HairShort_02
+    rootNode: 0
+    JSONProperties:
+    - '{"propertyName":"HairColor","propertyType":5,"multipleValues":false,"repeatValues":false,"minMultiple":0,"maxMultiple":0,"roundValue":false,"values":[0.0,1.0,0.5,1.0,0.5,1.0,1.0,1.0]}'
+    nodeSprite: {fileID: 2800000, guid: 0d587061221b6e14da51c6015946b954, type: 3}
+    spriteModifiers:
+    - HairColor
+    - 
+    - 
+    - 
+    - 
+    type: 0
+    constraintNode: 0
+    constraintValue: 0
+  - nodeID: 5c04a54b-7803-4e36-86b6-02689735bdeb
+    nodePos: {x: 1025, y: 778}
+    nodeName: Hair
+    rootNode: 0
+    JSONProperties: []
+    nodeSprite: {fileID: 0}
+    spriteModifiers:
+    - 
+    - 
+    - 
+    - 
+    - 
+    type: 0
+    constraintNode: 0
+    constraintValue: 0
+  - nodeID: 957a02e5-13bb-45cf-9f15-bc46c06ad722
+    nodePos: {x: 1558, y: 988}
+    nodeName: HairMedium_01
+    rootNode: 0
+    JSONProperties:
+    - '{"propertyName":"HairColor","propertyType":5,"multipleValues":false,"repeatValues":false,"minMultiple":0,"maxMultiple":0,"roundValue":false,"values":[0.0,1.0,0.5,1.0,0.5,1.0,1.0,1.0]}'
+    nodeSprite: {fileID: 2800000, guid: 6126ab59b8595074681eca8a57d3ea4f, type: 3}
+    spriteModifiers:
+    - HairColor
+    - 
+    - 
+    - 
+    - 
+    type: 0
+    constraintNode: 0
+    constraintValue: 0
+  - nodeID: 6cf93314-c34e-4010-9adf-ba2ccdd5f518
+    nodePos: {x: 1559, y: 839}
+    nodeName: HairShort_02
+    rootNode: 0
+    JSONProperties:
+    - '{"propertyName":"HairColor","propertyType":5,"multipleValues":false,"repeatValues":false,"minMultiple":0,"maxMultiple":0,"roundValue":false,"values":[0.0,1.0,0.5,1.0,0.5,1.0,1.0,1.0]}'
+    nodeSprite: {fileID: 2800000, guid: 0d587061221b6e14da51c6015946b954, type: 3}
+    spriteModifiers:
+    - HairColor
+    - 
+    - 
+    - 
+    - 
+    type: 0
+    constraintNode: 0
+    constraintValue: 0
+  - nodeID: 7734daf9-ad5c-4f1f-93dd-c0d6e07fdf0d
+    nodePos: {x: 1259, y: 844}
+    nodeName: 
+    rootNode: 0
+    JSONProperties: []
+    nodeSprite: {fileID: 0}
+    spriteModifiers: []
+    type: 1
+    constraintNode: 1
+    constraintValue: 1
+  - nodeID: 9f8699d7-0290-447c-b9b1-db478827382b
+    nodePos: {x: 1805, y: 312}
+    nodeName: HairMedium_01
+    rootNode: 0
+    JSONProperties:
+    - '{"propertyName":"HairColor","propertyType":5,"multipleValues":false,"repeatValues":false,"minMultiple":0,"maxMultiple":0,"roundValue":false,"values":[0.0,1.0,0.5,1.0,0.5,1.0,1.0,1.0]}'
+    nodeSprite: {fileID: 2800000, guid: 6126ab59b8595074681eca8a57d3ea4f, type: 3}
+    spriteModifiers:
+    - HairColor
+    - 
+    - 
+    - 
+    - 
+    type: 0
+    constraintNode: 0
+    constraintValue: 0
+  - nodeID: 68336be6-7aee-4f1f-9f50-3a512979515a
+    nodePos: {x: 1810, y: 172}
+    nodeName: HairLong_01
+    rootNode: 0
+    JSONProperties:
+    - '{"propertyName":"HairColor","propertyType":5,"multipleValues":false,"repeatValues":false,"minMultiple":0,"maxMultiple":0,"roundValue":false,"values":[0.0,1.0,0.5,1.0,0.5,1.0,1.0,1.0]}'
+    nodeSprite: {fileID: 2800000, guid: cbbf3dcff6caf2949aa6731d22493fd7, type: 3}
+    spriteModifiers:
+    - HairColor
+    - 
+    - 
+    - 
+    - 
+    type: 0
+    constraintNode: 0
+    constraintValue: 0
+  - nodeID: 0ea59db2-14d7-4ec1-9069-c8e195dc61b3
+    nodePos: {x: 1546, y: 1146}
+    nodeName: HairLong_01
+    rootNode: 0
+    JSONProperties:
+    - '{"propertyName":"HairColor","propertyType":5,"multipleValues":false,"repeatValues":false,"minMultiple":0,"maxMultiple":0,"roundValue":false,"values":[0.0,1.0,0.5,1.0,0.5,1.0,1.0,1.0]}'
+    nodeSprite: {fileID: 2800000, guid: cbbf3dcff6caf2949aa6731d22493fd7, type: 3}
+    spriteModifiers:
+    - HairColor
+    - 
+    - 
+    - 
+    - 
+    type: 0
+    constraintNode: 0
+    constraintValue: 0
+  - nodeID: 47612e03-eadb-49c4-8ae7-a237916d4555
+    nodePos: {x: 1821, y: 906}
+    nodeName: HairLong_02
+    rootNode: 0
+    JSONProperties:
+    - '{"propertyName":"HairColor","propertyType":5,"multipleValues":false,"repeatValues":false,"minMultiple":0,"maxMultiple":0,"roundValue":false,"values":[0.0,1.0,0.5,1.0,0.5,1.0,1.0,1.0]}'
+    nodeSprite: {fileID: 2800000, guid: 0be9e10b353daf84d8d778c861b92dd7, type: 3}
+    spriteModifiers:
+    - HairColor
+    - 
+    - 
+    - 
+    - 
+    type: 0
+    constraintNode: 0
+    constraintValue: 0
+  - nodeID: fd5b902f-1b9d-4347-a02e-35630c2e185e
+    nodePos: {x: 380, y: 538}
+    nodeName: FeminineBody
+    rootNode: 0
+    JSONProperties:
+    - '{"propertyName":"SkinColor","propertyType":4,"multipleValues":false,"repeatValues":false,"minMultiple":0,"maxMultiple":0,"roundValue":false,"values":["#FFE8D5FF","#FFC7A0FF","#F3CBD1FF","#A46F5AFF","#765041FF","#603737FF"],"valueColors":[{"r":1.0,"g":0.9098039269447327,"b":0.8352941274642944,"a":1.0},{"r":1.0,"g":0.7803921699523926,"b":0.6274510025978088,"a":1.0},{"r":0.9529411792755127,"g":0.7960784435272217,"b":0.8196078538894653,"a":1.0},{"r":0.6431372761726379,"g":0.43529412150382998,"b":0.3529411852359772,"a":1.0},{"r":0.4627451002597809,"g":0.3137255012989044,"b":0.2549019753932953,"a":1.0},{"r":0.3764705955982208,"g":0.21568627655506135,"b":0.21568627655506135,"a":1.0}],"valueWeights":[1.0,1.0,1.0,1.0,1.0,1.0]}'
+    nodeSprite: {fileID: 2800000, guid: 55ec770ad2c0b2149b76b3c3f60964bf, type: 3}
+    spriteModifiers:
+    - SkinColor
+    - 
+    - 
+    - 
+    - 
+    type: 0
+    constraintNode: 0
+    constraintValue: 0
+  - nodeID: 672bdcdc-4f4b-45e8-8e25-c0ecaf00c1c0
+    nodePos: {x: 233, y: -561}
+    nodeName: Stats
+    rootNode: 0
+    JSONProperties:
+    - '{"propertyName":"AttackBonus","propertyType":1,"multipleValues":false,"repeatValues":false,"minMultiple":0,"maxMultiple":0,"roundValue":false,"values":[1.0,1.25,1.5],"valueWeights":[2.0,1.0,0.5]}'
+    - '{"propertyName":"Defense","propertyType":3,"multipleValues":false,"repeatValues":false,"minMultiple":0,"maxMultiple":0,"roundValue":false,"values":[5.0,10.0]}'
+    - '{"propertyName":"Element","propertyType":0,"multipleValues":true,"repeatValues":false,"minMultiple":0,"maxMultiple":2,"roundValue":false,"values":["Fire","Water","Earth"],"valueWeights":[1.0,1.0,1.0,1.0]}'
+    - '{"propertyName":"Attack","propertyType":3,"multipleValues":false,"repeatValues":false,"minMultiple":0,"maxMultiple":0,"roundValue":false,"values":[5.0,7.5]}'
+    nodeSprite: {fileID: 0}
+    spriteModifiers:
+    - 
+    - 
+    - 
+    - 
+    - 
+    type: 0
+    constraintNode: 0
+    constraintValue: 0
+  linkList:
+  - parentNodeID: c727853f-4610-400d-a95a-e42b81de70e7
+    childNodeID: 672bdcdc-4f4b-45e8-8e25-c0ecaf00c1c0
+    portName: childPort0
+    chance: 100
+  - parentNodeID: c727853f-4610-400d-a95a-e42b81de70e7
+    childNodeID: cc6d38cc-c249-4fd6-aaa3-4428c5a23efa
+    portName: childPort1
+    chance: 100
+  - parentNodeID: 672bdcdc-4f4b-45e8-8e25-c0ecaf00c1c0
+    childNodeID: 4d0b00e3-ebe9-4f4d-895b-2258b1a728c8
+    portName: childPort0
+    chance: 100
+  - parentNodeID: 4d0b00e3-ebe9-4f4d-895b-2258b1a728c8
+    childNodeID: 36f0b3fc-4854-496b-9e94-ab04a9c4fa9b
+    portName: childPort0
+    chance: 100
+  - parentNodeID: 4d0b00e3-ebe9-4f4d-895b-2258b1a728c8
+    childNodeID: ded648bf-e6dc-44cb-a99a-013d99b4f974
+    portName: childPort1
+    chance: 100
+  - parentNodeID: 4d0b00e3-ebe9-4f4d-895b-2258b1a728c8
+    childNodeID: 8db98fb4-5050-445a-967b-948ff127c619
+    portName: childPort2
+    chance: 100
+  - parentNodeID: 7f672ac6-c2c7-4fe2-a663-02e2eae67232
+    childNodeID: 450ca0bf-43d8-42ab-b788-1163dc35cc38
+    portName: childPort0
+    chance: 100
+  - parentNodeID: 450ca0bf-43d8-42ab-b788-1163dc35cc38
+    childNodeID: ddaba08c-68c5-4763-a6c6-dee7d343187b
+    portName: childPort0
+    chance: 100
+  - parentNodeID: 450ca0bf-43d8-42ab-b788-1163dc35cc38
+    childNodeID: 3813c703-a17c-4326-96b7-9e9c537f9359
+    portName: childPort1
+    chance: 100
+  - parentNodeID: 87e953e8-fe6c-49e6-b43e-c36e7b26ced5
+    childNodeID: 7f672ac6-c2c7-4fe2-a663-02e2eae67232
+    portName: childPort0
+    chance: 100
+  - parentNodeID: 87e953e8-fe6c-49e6-b43e-c36e7b26ced5
+    childNodeID: a7ff610f-d0a2-42db-9d71-c44bf2a14b69
+    portName: childPort1
+    chance: 90
+  - parentNodeID: cc6d38cc-c249-4fd6-aaa3-4428c5a23efa
+    childNodeID: 87e953e8-fe6c-49e6-b43e-c36e7b26ced5
+    portName: childPort0
+    chance: 100
+  - parentNodeID: cc6d38cc-c249-4fd6-aaa3-4428c5a23efa
+    childNodeID: fd5b902f-1b9d-4347-a02e-35630c2e185e
+    portName: childPort1
+    chance: 100
+  - parentNodeID: 44e3d70c-e31c-4f31-b386-523d1e07016b
+    childNodeID: bd0349e7-d6f3-4cda-aed6-373a40028e02
+    portName: childPort0
+    chance: 100
+  - parentNodeID: bd0349e7-d6f3-4cda-aed6-373a40028e02
+    childNodeID: 0b3c3ff7-e7b2-4ced-beea-342d50498739
+    portName: childPort0
+    chance: 100
+  - parentNodeID: bd0349e7-d6f3-4cda-aed6-373a40028e02
+    childNodeID: f26ac047-4347-46d3-a84c-7c077ce508da
+    portName: childPort1
+    chance: 100
+  - parentNodeID: a7ff610f-d0a2-42db-9d71-c44bf2a14b69
+    childNodeID: c292a354-e8f6-49b3-ad8b-d584ed1cb03f
+    portName: childPort0
+    chance: 100
+  - parentNodeID: c292a354-e8f6-49b3-ad8b-d584ed1cb03f
+    childNodeID: bd0c7966-0cb5-40ce-b18c-55c0fad3900f
+    portName: childPort0
+    chance: 100
+  - parentNodeID: c292a354-e8f6-49b3-ad8b-d584ed1cb03f
+    childNodeID: 0d9c3c5c-0339-4ba7-a415-3a5fc8858db2
+    portName: childPort1
+    chance: 100
+  - parentNodeID: c292a354-e8f6-49b3-ad8b-d584ed1cb03f
+    childNodeID: 9f8699d7-0290-447c-b9b1-db478827382b
+    portName: childPort2
+    chance: 100
+  - parentNodeID: c292a354-e8f6-49b3-ad8b-d584ed1cb03f
+    childNodeID: 68336be6-7aee-4f1f-9f50-3a512979515a
+    portName: childPort3
+    chance: 100
+  - parentNodeID: 5c04a54b-7803-4e36-86b6-02689735bdeb
+    childNodeID: 7734daf9-ad5c-4f1f-93dd-c0d6e07fdf0d
+    portName: childPort0
+    chance: 100
+  - parentNodeID: 7734daf9-ad5c-4f1f-93dd-c0d6e07fdf0d
+    childNodeID: 6cf93314-c34e-4010-9adf-ba2ccdd5f518
+    portName: childPort0
+    chance: 100
+  - parentNodeID: 7734daf9-ad5c-4f1f-93dd-c0d6e07fdf0d
+    childNodeID: 957a02e5-13bb-45cf-9f15-bc46c06ad722
+    portName: childPort1
+    chance: 100
+  - parentNodeID: 7734daf9-ad5c-4f1f-93dd-c0d6e07fdf0d
+    childNodeID: 0ea59db2-14d7-4ec1-9069-c8e195dc61b3
+    portName: childPort2
+    chance: 100
+  - parentNodeID: 7734daf9-ad5c-4f1f-93dd-c0d6e07fdf0d
+    childNodeID: 47612e03-eadb-49c4-8ae7-a237916d4555
+    portName: childPort3
+    chance: 100
+  - parentNodeID: fd5b902f-1b9d-4347-a02e-35630c2e185e
+    childNodeID: 44e3d70c-e31c-4f31-b386-523d1e07016b
+    portName: childPort0
+    chance: 100
+  - parentNodeID: fd5b902f-1b9d-4347-a02e-35630c2e185e
+    childNodeID: 5c04a54b-7803-4e36-86b6-02689735bdeb
+    portName: childPort1
+    chance: 100
+  inputProperties: []

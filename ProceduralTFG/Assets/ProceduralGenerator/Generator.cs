@@ -63,10 +63,10 @@ namespace ProceduralGenerator
                 spriteRenderer.sprite = Sprite.Create(obj.rootNode.nodeSprite, new Rect(0.0f, 0.0f, obj.rootNode.nodeSprite.width, obj.rootNode.nodeSprite.height), new Vector2(0.5f, 0.5f), 100.0f);
                 for (int i = 0; i < obj.rootNode.spriteModifiers.Count; i++) {
                     string propname = obj.rootNode.spriteModifiers[i];
-                    Debug.Log("Modifiers: " + propname);
+                    //Debug.Log("Modifiers: " + propname);
                     if (propname != null && propname != "") {
                         var property = obj.rootNode.properties.Find(p => p.propertyName == propname);
-                        Debug.Log("Property found: " + property);
+                        //Debug.Log("Property found: " + property);
                         if (property != null && property.values.Count > 0) {
                             switch (i) {
                                 case 0: // Color tint
@@ -97,7 +97,11 @@ namespace ProceduralGenerator
             }
             GenerateChildGameObjects(generatedGameObject.transform, obj.rootNode);
 
-            if (parentGameObject != null) generatedGameObject.transform.parent = parentGameObject.transform;
+            if (parentGameObject != null) {
+                generatedGameObject.transform.SetParent(parentGameObject.transform);
+                generatedGameObject.transform.localPosition = new Vector3(0,0,0);
+                generatedGameObject.transform.localScale = new Vector3(1,1,1);
+            }
 
             return generatedGameObject;
         }
@@ -118,6 +122,7 @@ namespace ProceduralGenerator
                 var go = new GameObject(child.nodeName);
                 go.transform.SetParent(parent);
                 go.transform.localPosition = new Vector3(0,0,0);
+                go.transform.localScale = new Vector3(1,1,1);
                 var objData = go.AddComponent<ObjectDataContainer>();
                 objData.LoadNodeData(child);
                 if (child.nodeSprite != null) {
@@ -128,7 +133,7 @@ namespace ProceduralGenerator
                         var propname = child.spriteModifiers[i];
                         if (propname != null && propname != "") {
                             var property = child.properties.Find(p => p.propertyName == propname);
-                            Debug.Log("Property found: " + property);
+                            //Debug.Log("Property found: " + property);
                             if (property != null && property.values.Count > 0) {
                                 switch (i) {
                                     case 0: // Color tint
